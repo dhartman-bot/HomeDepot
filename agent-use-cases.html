@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Home Depot Retail AI Agents: 15+ Production-Ready Use Cases for E-commerce, Customer Service, Store Operations, and Supply Chain">
+    <title>Retail AI Agents | Home Depot x Anthropic</title>
+    <link rel="stylesheet" href="assets/css/homedepot-brand.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <svg width="220" height="30" viewBox="0 0 220 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="22" font-family="Arial Black, Arial, sans-serif" font-size="20" font-weight="700" fill="#F96302">The Home Depot</text>
+                    <text x="155" y="22" font-family="Arial, sans-serif" font-size="14" fill="#333333"> x Anthropic</text>
+                </svg>
+            </a>
+            <ul class="navbar-nav">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="marketing-ai.html" class="nav-link">Marketing AI</a></li>
+                <li><a href="agent-use-cases.html" class="nav-link">Agent Use Cases</a></li>
+                <li><a href="claude-code.html" class="nav-link">Claude Code</a></li>
+                <li><a href="mailto:dhartman@anthropic.com" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Contact Sales</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">15+ Production-Ready AI Agents</div>
+                <h1>Transform Every Touchpoint<br>with Retail AI Agents</h1>
+                <p>Deploy specialized Claude agents across your entire retail operation—from intelligent product discovery to supply chain optimization—delivering exceptional customer experiences while driving operational efficiency.</p>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+                    <a href="#ecommerce" class="btn btn-secondary">E-commerce Agents</a>
+                    <a href="#customer-service" class="btn btn-secondary">Customer Service</a>
+                    <a href="#store-ops" class="btn btn-secondary">Store Operations</a>
+                    <a href="#supply-chain" class="btn btn-secondary">Supply Chain</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent Categories Overview -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">AI Agents Across <span class="text-orange">Your Retail Ecosystem</span></h2>
+            <p class="section-subtitle">Claude-powered agents working 24/7 to enhance customer experience, empower associates, and optimize operations</p>
+
+            <div class="grid grid-cols-4">
+                <div class="card">
+                    <div class="card-icon orange">🛒</div>
+                    <h3 class="card-title">E-commerce</h3>
+                    <p class="card-text" style="margin-bottom: 1.5rem;">Smart product discovery, visual search, and personalized recommendations</p>
+                    <div style="background: rgba(249, 99, 2, 0.05); padding: 1rem; border-radius: 0.5rem;">
+                        <strong class="text-orange">3 agents</strong>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon blue">💬</div>
+                    <h3 class="card-title">Customer Service</h3>
+                    <p class="card-text" style="margin-bottom: 1.5rem;">24/7 support, DIY advice, and intelligent order assistance</p>
+                    <div style="background: rgba(0, 115, 207, 0.05); padding: 1rem; border-radius: 0.5rem;">
+                        <strong class="text-blue">3 agents</strong>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon green">🏪</div>
+                    <h3 class="card-title">Store Operations</h3>
+                    <p class="card-text" style="margin-bottom: 1.5rem;">Associate knowledge, inventory lookups, and scheduling optimization</p>
+                    <div style="background: rgba(0, 168, 45, 0.05); padding: 1rem; border-radius: 0.5rem;">
+                        <strong class="text-green">3 agents</strong>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon orange">📦</div>
+                    <h3 class="card-title">Supply Chain</h3>
+                    <p class="card-text" style="margin-bottom: 1.5rem;">Demand forecasting, logistics optimization, and supplier management</p>
+                    <div style="background: rgba(249, 99, 2, 0.05); padding: 1rem; border-radius: 0.5rem;">
+                        <strong class="text-orange">3 agents</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-commerce & Product Discovery Agents -->
+    <section id="ecommerce" class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">E-commerce & <span class="text-orange">Product Discovery Agents</span></h2>
+            <p class="section-subtitle">Transform online shopping with intelligent search, personalized recommendations, and visual product matching</p>
+
+            <div class="grid grid-cols-3">
+                <!-- Agent 1: Intelligent Product Search -->
+                <div class="card">
+                    <div class="card-icon orange">🔍</div>
+                    <h3 class="card-title">Intelligent Product Search Agent</h3>
+                    <p class="card-text">Natural language search that understands customer intent and project context—"paint for kids' bedroom" returns family-safe, durable options with application guides.</p>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--homedepot-orange);">Key Features</h4>
+                    <ul class="feature-list">
+                        <li>Semantic search understanding customer intent</li>
+                        <li>Project-aware product filtering</li>
+                        <li>Skill level appropriate recommendations</li>
+                        <li>Budget-based product suggestions</li>
+                        <li>Alternative product recommendations</li>
+                        <li>Real-time inventory integration</li>
+                    </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(249, 99, 2, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact Metrics:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+                            • 45% improvement in search conversion<br>
+                            • 35% reduction in zero-result searches<br>
+                            • 28% increase in average order value
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Agent 2: Personalized Recommendation Engine -->
+                <div class="card">
+                    <div class="card-icon blue">🎯</div>
+                    <h3 class="card-title">Personalized Recommendation Agent</h3>
+                    <p class="card-text">Context-aware product recommendations based on browsing history, project type, past purchases, and seasonal trends—delivering relevant suggestions at every touchpoint.</p>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--homedepot-blue);">Key Features</h4>
+                    <ul class="feature-list">
+                        <li>Project-based product bundling</li>
+                        <li>Complementary product suggestions</li>
+                        <li>Frequently-bought-together analysis</li>
+                        <li>Seasonal & trending product highlights</li>
+                        <li>Pro vs DIY tailored recommendations</li>
+                        <li>Cross-category discovery</li>
+                    </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 115, 207, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact Metrics:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+                            • 40% increase in basket size<br>
+                            • 52% higher click-through on recommendations<br>
+                            • 30% lift in cross-category purchases
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Agent 3: Visual Search & Product Matching -->
+                <div class="card">
+                    <div class="card-icon green">📸</div>
+                    <h3 class="card-title">Visual Search Agent</h3>
+                    <p class="card-text">Snap a photo of any product, material, or project and instantly find matching items in-store or online—perfect for paint colors, hardware, fixtures, and materials.</p>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--homedepot-green);">Key Features</h4>
+                    <ul class="feature-list">
+                        <li>Image-to-product matching</li>
+                        <li>Color matching for paint & stains</li>
+                        <li>Style similarity recommendations</li>
+                        <li>Material identification (wood, metal, etc.)</li>
+                        <li>Multi-angle product recognition</li>
+                        <li>In-store & online availability check</li>
+                    </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 168, 45, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact Metrics:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+                            • 65% faster product discovery<br>
+                            • 38% conversion rate on visual searches<br>
+                            • 25% reduction in product returns
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-commerce Agent Demo -->
+            <div class="card" style="margin-top: 3rem; background: white;">
+                <h3 class="card-title">Example: Intelligent Product Search in Action</h3>
+                <div class="grid grid-cols-2" style="margin-top: 1.5rem;">
+                    <div style="background: var(--homedepot-light-gray); padding: 1.5rem; border-radius: 0.5rem;">
+                        <h4 class="text-orange">Customer Query</h4>
+                        <p style="background: white; padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem;">
+                            "I need to build a deck for my backyard. I'm a beginner and my budget is around $3,000. What do I need?"
+                        </p>
+                    </div>
+                    <div style="background: var(--homedepot-light-gray); padding: 1.5rem; border-radius: 0.5rem;">
+                        <h4 class="text-green">AI Agent Response</h4>
+                        <ul class="feature-list" style="font-size: 0.875rem;">
+                            <li>Pressure-treated lumber bundle (200 sq ft) - $1,200</li>
+                            <li>Deck screws & fasteners kit - $85</li>
+                            <li>DIY-friendly deck stain & sealer - $120</li>
+                            <li>Basic power tools rental recommendation - $150</li>
+                            <li>Step-by-step deck building guide included</li>
+                            <li>Total project cost: $2,850 (within budget!)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(249, 99, 2, 0.05); border-radius: 0.5rem; text-align: center;">
+                    <strong>Result:</strong> Complete project solution in seconds, with budget-appropriate products and beginner-friendly guidance
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Service Automation Agents -->
+    <section id="customer-service" class="section">
+        <div class="container">
+            <h2 class="section-title">Customer Service <span class="text-orange">Automation Agents</span></h2>
+            <p class="section-subtitle">Deliver exceptional 24/7 customer support with AI agents trained on Home Depot's expertise</p>
+
+            <div class="grid grid-cols-3">
+                <!-- Agent 4: 24/7 Customer Support Chatbot -->
+                <div class="card">
+                    <div class="card-icon blue">💬</div>
+                    <h3 class="card-title">24/7 Customer Support Agent</h3>
+                    <p class="card-text">Always-on intelligent chatbot handling order tracking, product questions, returns, store hours, and general inquiries—escalating complex issues to human agents.</p>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--homedepot-blue);">Key Features</h4>
+                    <ul class="feature-list">
+                        <li>Order status & tracking updates</li>
+                        <li>Returns & exchange processing</li>
+                        <li>Store location & hours lookup</li>
+                        <li>Product availability checking</li>
+                        <li>Account management assistance</li>
+                        <li>Intelligent escalation to human agents</li>
+                    </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 115, 207, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact Metrics:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+                            • 70% of inquiries resolved without human<br>
+                            • Average response time under 30 seconds<br>
+                            • 85% customer satisfaction score
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Agent 5: DIY Project Advisor -->
+                <div class="card">
+                    <div class="card-icon orange">🛠️</div>
+                    <h3 class="card-title">DIY Project Advisor Agent</h3>
+                    <p class="card-text">Expert guidance for home improvement projects—from planning to execution. Provides step-by-step instructions, tool recommendations, and pro tips for successful DIY completion.</p>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--homedepot-orange);">Key Features</h4>
+                    <ul class="feature-list">
+                        <li>Project planning & materials estimation</li>
+                        <li>Step-by-step installation guides</li>
+                        <li>Tool & equipment recommendations</li>
+                        <li>Safety tips & best practices</li>
+                        <li>Troubleshooting common problems</li>
+                        <li>Video tutorial recommendations</li>
+                    </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(249, 99, 2, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact Metrics:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+                            • 45% increase in project completion rates<br>
+                            • 32% reduction in product returns<br>
+                            • 50% fewer in-store clarification visits
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Agent 6: Order & Delivery Support -->
+                <div class="card">
+                    <div class="card-icon green">📦</div>
+                    <h3 class="card-title">Order & Delivery Agent</h3>
+                    <p class="card-text">Proactive order management including real-time tracking, delivery scheduling, issue resolution, and automated notifications—keeping customers informed every step.</p>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--homedepot-green);">Key Features</h4>
+                    <ul class="feature-list">
+                        <li>Real-time order tracking & updates</li>
+                        <li>Delivery window scheduling</li>
+                        <li>Proactive delay notifications</li>
+                        <li>Missing item & damage reporting</li>
+                        <li>Installation service coordination</li>
+                        <li>Pickup vs delivery optimization</li>
+                    </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 168, 45, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact Metrics:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+                            • 60% reduction in "where's my order" calls<br>
+                            • 90% on-time delivery communication<br>
+                            • 40% faster issue resolution
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Operations Agents -->
+    <section id="store-ops" class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">Store Operations <span class="text-orange">Empowerment Agents</span></h2>
+            <p class="section-subtitle">Equip every associate with expert knowledge and real-time operational intelligence</p>
+
+            <div class="grid grid-cols-3">
+                <!-- Agent 7: Associate Knowledge Base -->
+                <div class="card">
+                    <div class="card-icon orange">📚</div>
+                    <h3 class="card-title">Associate Knowledge Agent</h3>
+                    <p class="card-text">Instant access to product specifications, installation guides, project advice, and expert knowledge—transforming every associate into a home improvement expert.</p>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--homedepot-orange);">Key Features</h4>
+                    <ul class="feature-list">
+                        <li>40,000+ product specifications lookup</li>
+                        <li>Installation & usage guidance</li>
+                        <li>Product comparison assistance</li>
+                        <li>Pro vs DIY product recommendations</li>
+                        <li>Multi-language support (10+ languages)</li>
+                        <li>Mobile-optimized for floor use</li>
+                    </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(249, 99, 2, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact Metrics:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+                            • 80% faster customer question resolution<br>
+                            • 50% reduction in associate training time<br>
+                            • 35% increase in customer satisfaction
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Agent 8: Real-Time Inventory Assistant -->
+                <div class="card">
+                    <div class="card-icon blue">📊</div>
+                    <h3 class="card-title">Real-Time Inventory Agent</h3>
+                    <p class="card-text">Instant inventory lookups across all store locations, real-time stock updates, and intelligent reorder suggestions—ensuring products are always available when customers need them.</p>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--homedepot-blue);">Key Features</h4>
+                    <ul class="feature-list">
+                        <li>Real-time stock level checking</li>
+                        <li>Multi-store inventory visibility</li>
+                        <li>Aisle & bay location guidance</li>
+                        <li>Incoming shipment tracking</li>
+                        <li>Alternative product suggestions</li>
+                        <li>Customer hold & transfer requests</li>
+                    </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 115, 207, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact Metrics:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+                            • 95% inventory accuracy in real-time<br>
+                            • 40% reduction in out-of-stock situations<br>
+                            • 25% fewer lost sales
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Agent 9: In-Store Navigation & Project Planning -->
+                <div class="card">
+                    <div class="card-icon green">🗺️</div>
+                    <h3 class="card-title">Smart Navigation Agent</h3>
+                    <p class="card-text">Interactive store navigation guiding customers to products, departments, and services—with project planning stations that create complete shopping lists and project timelines.</p>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--homedepot-green);">Key Features</h4>
+                    <ul class="feature-list">
+                        <li>Turn-by-turn in-store navigation</li>
+                        <li>Shortest path multi-item routing</li>
+                        <li>Project planning kiosks</li>
+                        <li>Complete materials list generation</li>
+                        <li>Department expert location</li>
+                        <li>Service desk & checkout wayfinding</li>
+                    </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 168, 45, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact Metrics:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+                            • 30% reduction in shopping time<br>
+                            • 45% increase in basket completeness<br>
+                            • 20% higher customer satisfaction
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Store Operations Demo -->
+            <div class="card" style="margin-top: 3rem; background: white;">
+                <h3 class="card-title">Example: Associate Knowledge Agent Assisting Customer</h3>
+                <div class="grid grid-cols-2" style="margin-top: 1.5rem;">
+                    <div style="background: var(--homedepot-light-gray); padding: 1.5rem; border-radius: 0.5rem;">
+                        <h4 class="text-orange">Customer Question</h4>
+                        <p style="background: white; padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem; margin-bottom: 1rem;">
+                            "Which drill should I buy for installing cabinets in my kitchen?"
+                        </p>
+                        <h4 class="text-blue">Associate Uses Agent</h4>
+                        <p style="background: white; padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem;">
+                            Types query into mobile device and instantly receives product recommendations with specifications
+                        </p>
+                    </div>
+                    <div style="background: var(--homedepot-light-gray); padding: 1.5rem; border-radius: 0.5rem;">
+                        <h4 class="text-green">Agent Provides</h4>
+                        <ul class="feature-list" style="font-size: 0.875rem;">
+                            <li><strong>Top Recommendation:</strong> Milwaukee M18 Hammer Drill (18V, brushless, 500 in-lbs torque)</li>
+                            <li><strong>Why:</strong> Sufficient power for cabinet installation, includes level & LED light</li>
+                            <li><strong>Accessories Needed:</strong> Drill bit set for wood, cabinet screws</li>
+                            <li><strong>Alternative:</strong> DeWalt 20V if customer prefers DeWalt ecosystem</li>
+                            <li><strong>Pro Tip:</strong> Pre-drill pilot holes to prevent wood splitting</li>
+                            <li><strong>Store Location:</strong> Aisle 12, Bay 3</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(249, 99, 2, 0.05); border-radius: 0.5rem; text-align: center;">
+                    <strong>Result:</strong> Expert-level product recommendation in under 30 seconds, leading to confident purchase and successful project completion
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supply Chain Intelligence Agents -->
+    <section id="supply-chain" class="section">
+        <div class="container">
+            <h2 class="section-title">Supply Chain <span class="text-orange">Intelligence Agents</span></h2>
+            <p class="section-subtitle">Optimize inventory, logistics, and supplier relationships with predictive AI agents</p>
+
+            <div class="grid grid-cols-3">
+                <!-- Agent 10: Demand Forecasting -->
+                <div class="card">
+                    <div class="card-icon blue">📈</div>
+                    <h3 class="card-title">Demand Forecasting Agent</h3>
+                    <p class="card-text">Predictive analytics for inventory planning using historical data, seasonal trends, local market factors, and real-time signals—ensuring optimal stock levels at every location.</p>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--homedepot-blue);">Key Features</h4>
+                    <ul class="feature-list">
+                        <li>3-12 month demand forecasting</li>
+                        <li>Seasonal & weather-driven predictions</li>
+                        <li>Local market trend analysis</li>
+                        <li>New product launch planning</li>
+                        <li>Promotional impact modeling</li>
+                        <li>Store-specific inventory optimization</li>
+                    </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 115, 207, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact Metrics:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+                            • 30% reduction in excess inventory<br>
+                            • 40% fewer stockouts<br>
+                            • 25% improvement in inventory turnover
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Agent 11: Logistics Optimization -->
+                <div class="card">
+                    <div class="card-icon green">🚚</div>
+                    <h3 class="card-title">Logistics Optimization Agent</h3>
+                    <p class="card-text">Intelligent routing, load optimization, and delivery scheduling to minimize costs and maximize on-time deliveries—adapting in real-time to traffic, weather, and demand changes.</p>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--homedepot-green);">Key Features</h4>
+                    <ul class="feature-list">
+                        <li>Dynamic route optimization</li>
+                        <li>Load balancing & truck utilization</li>
+                        <li>Real-time traffic & weather integration</li>
+                        <li>Delivery window optimization</li>
+                        <li>Cross-dock efficiency planning</li>
+                        <li>Last-mile delivery coordination</li>
+                    </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 168, 45, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact Metrics:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+                            • 20% reduction in transportation costs<br>
+                            • 95% on-time delivery rate<br>
+                            • 15% improvement in truck utilization
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Agent 12: Supplier Performance Management -->
+                <div class="card">
+                    <div class="card-icon orange">🤝</div>
+                    <h3 class="card-title">Supplier Intelligence Agent</h3>
+                    <p class="card-text">Comprehensive supplier performance tracking, risk assessment, and relationship management—identifying opportunities for negotiation, diversification, and quality improvement.</p>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--homedepot-orange);">Key Features</h4>
+                    <ul class="feature-list">
+                        <li>Real-time supplier scorecards</li>
+                        <li>Quality & delivery performance tracking</li>
+                        <li>Risk assessment & early warning</li>
+                        <li>Contract compliance monitoring</li>
+                        <li>Alternative supplier recommendations</li>
+                        <li>Price optimization opportunities</li>
+                    </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(249, 99, 2, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact Metrics:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+                            • 25% improvement in supplier performance<br>
+                            • 18% reduction in supply disruptions<br>
+                            • 12% cost savings through optimization
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional High-Impact Agents -->
+    <section class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">Additional <span class="text-orange">High-Impact Agents</span></h2>
+            <p class="section-subtitle">Specialized AI agents solving critical operational and customer experience challenges</p>
+
+            <div class="grid grid-cols-3">
+                <!-- Agent 13: Price Optimization -->
+                <div class="card">
+                    <div class="card-icon blue">💰</div>
+                    <h3 class="card-title">Dynamic Pricing Agent</h3>
+                    <p class="card-text">Intelligent pricing optimization based on demand, competition, seasonality, and inventory levels—maximizing revenue while remaining competitive.</p>
+                    <ul class="feature-list" style="margin-top: 1rem;">
+                        <li>Real-time competitive price monitoring</li>
+                        <li>Demand-based dynamic pricing</li>
+                        <li>Clearance & markdown optimization</li>
+                        <li>Promotional pricing strategy</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 115, 207, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact:</strong> 15% margin improvement
+                    </div>
+                </div>
+
+                <!-- Agent 14: Workforce Scheduling -->
+                <div class="card">
+                    <div class="card-icon green">📅</div>
+                    <h3 class="card-title">Workforce Optimization Agent</h3>
+                    <p class="card-text">Smart scheduling balancing customer traffic patterns, associate preferences, skill requirements, and labor regulations—optimizing coverage and employee satisfaction.</p>
+                    <ul class="feature-list" style="margin-top: 1rem;">
+                        <li>Predictive traffic-based scheduling</li>
+                        <li>Skills-based shift assignment</li>
+                        <li>Break & lunch optimization</li>
+                        <li>Compliance with labor regulations</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 168, 45, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact:</strong> 20% labor cost optimization
+                    </div>
+                </div>
+
+                <!-- Agent 15: Returns & Warranty Processing -->
+                <div class="card">
+                    <div class="card-icon orange">🔄</div>
+                    <h3 class="card-title">Returns Intelligence Agent</h3>
+                    <p class="card-text">Automated returns processing, warranty validation, and fraud detection—streamlining refunds while identifying patterns to reduce future returns.</p>
+                    <ul class="feature-list" style="margin-top: 1rem;">
+                        <li>Automated return eligibility checking</li>
+                        <li>Warranty validation & claims</li>
+                        <li>Fraud pattern detection</li>
+                        <li>Return reason analysis</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(249, 99, 2, 0.05); border-radius: 0.5rem;">
+                        <strong>Impact:</strong> 35% faster returns processing
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI & Business Impact -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Agent-Driven <span class="text-orange">ROI & Efficiency Gains</span></h2>
+            <p class="section-subtitle">Quantifiable business impact from deploying AI agents across your retail operations</p>
+
+            <div class="card" style="max-width: 1000px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #F96302, #E55A00); padding: 2rem; border-radius: 0.75rem; margin: -1.5rem -1.5rem 1.5rem -1.5rem; color: white;">
+                    <h3 style="color: white; margin-bottom: 1rem;">Total Annual Impact from AI Agents</h3>
+                    <div style="font-size: 3rem; font-weight: 700;">$185M+</div>
+                    <p style="opacity: 0.9; margin: 0;">From improved customer experience, operational efficiency, and supply chain optimization</p>
+                </div>
+
+                <div class="grid grid-cols-2" style="margin-bottom: 2rem;">
+                    <div>
+                        <h4 class="text-orange" style="margin-bottom: 1rem;">Revenue Enhancement</h4>
+                        <ul class="feature-list">
+                            <li><strong>E-commerce conversion lift:</strong> $42M/year</li>
+                            <li><strong>Increased basket size:</strong> $35M/year</li>
+                            <li><strong>Reduced abandoned carts:</strong> $18M/year</li>
+                            <li><strong>Improved product discovery:</strong> $22M/year</li>
+                            <li><strong>Dynamic pricing optimization:</strong> $15M/year</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-blue" style="margin-bottom: 1rem;">Cost Savings & Efficiency</h4>
+                        <ul class="feature-list">
+                            <li><strong>Customer service automation:</strong> $25M/year</li>
+                            <li><strong>Inventory optimization:</strong> $18M/year</li>
+                            <li><strong>Supply chain efficiency:</strong> $12M/year</li>
+                            <li><strong>Workforce optimization:</strong> $8M/year</li>
+                            <li><strong>Returns processing:</strong> $5M/year</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3" style="margin-bottom: 2rem;">
+                    <div style="text-align: center; padding: 1rem; background: rgba(249, 99, 2, 0.05); border-radius: 0.5rem;">
+                        <h3 class="text-orange" style="font-size: 2.5rem; margin: 0;">70%</h3>
+                        <p style="margin: 0; font-weight: 600;">Service Inquiries Automated</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(0, 115, 207, 0.05); border-radius: 0.5rem;">
+                        <h3 class="text-blue" style="font-size: 2.5rem; margin: 0;">45%</h3>
+                        <p style="margin: 0; font-weight: 600;">Search Conversion Increase</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(0, 168, 45, 0.05); border-radius: 0.5rem;">
+                        <h3 class="text-green" style="font-size: 2.5rem; margin: 0;">30%</h3>
+                        <p style="margin: 0; font-weight: 600;">Inventory Cost Reduction</p>
+                    </div>
+                </div>
+
+                <div style="background: rgba(249, 99, 2, 0.05); padding: 1rem; border-radius: 0.5rem; text-align: center;">
+                    <p style="margin: 0;"><strong>Implementation Timeline:</strong> 4-6 months for full deployment | Break-even in 6 months | 3-year ROI: 1,200%+</p>
+                </div>
+
+                <a href="mailto:dhartman@anthropic.com?subject=Home Depot AI Agents ROI Analysis" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">Get Detailed ROI Analysis →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Strategy -->
+    <section class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">Agent Deployment: <span class="text-orange">Phased Implementation</span></h2>
+            <p class="section-subtitle">Systematic rollout strategy delivering value at every stage</p>
+
+            <div class="grid grid-cols-3">
+                <!-- Phase 1 -->
+                <div class="card">
+                    <div style="background: linear-gradient(135deg, #F96302, #E55A00); color: white; padding: 1rem; border-radius: 0.75rem; text-align: center; margin-bottom: 1.5rem;">
+                        <h3 style="color: white; margin: 0; font-size: 2rem;">Phase 1</h3>
+                        <p style="margin: 0; opacity: 0.9;">Months 1-2</p>
+                    </div>
+                    <h4 class="card-title">Customer-Facing Agents</h4>
+                    <ul class="feature-list">
+                        <li>24/7 Customer Support Chatbot</li>
+                        <li>Intelligent Product Search</li>
+                        <li>DIY Project Advisor</li>
+                        <li>Order & Delivery Support</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(249, 99, 2, 0.05); border-radius: 0.5rem;">
+                        <strong class="text-orange">Quick Wins:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">Immediate customer satisfaction improvement & service cost reduction</p>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="card">
+                    <div style="background: linear-gradient(135deg, #0073CF, #005A9C); color: white; padding: 1rem; border-radius: 0.75rem; text-align: center; margin-bottom: 1.5rem;">
+                        <h3 style="color: white; margin: 0; font-size: 2rem;">Phase 2</h3>
+                        <p style="margin: 0; opacity: 0.9;">Months 3-4</p>
+                    </div>
+                    <h4 class="card-title">Store Operations Agents</h4>
+                    <ul class="feature-list">
+                        <li>Associate Knowledge Base</li>
+                        <li>Real-Time Inventory Assistant</li>
+                        <li>Smart Navigation & Planning</li>
+                        <li>Workforce Optimization</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 115, 207, 0.05); border-radius: 0.5rem;">
+                        <strong class="text-blue">Operational Impact:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">Enhanced associate productivity & in-store customer experience</p>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="card">
+                    <div style="background: linear-gradient(135deg, #00A82D, #008324); color: white; padding: 1rem; border-radius: 0.75rem; text-align: center; margin-bottom: 1.5rem;">
+                        <h3 style="color: white; margin: 0; font-size: 2rem;">Phase 3</h3>
+                        <p style="margin: 0; opacity: 0.9;">Months 5-6</p>
+                    </div>
+                    <h4 class="card-title">Supply Chain & Advanced Agents</h4>
+                    <ul class="feature-list">
+                        <li>Demand Forecasting</li>
+                        <li>Logistics Optimization</li>
+                        <li>Supplier Intelligence</li>
+                        <li>Dynamic Pricing</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 168, 45, 0.05); border-radius: 0.5rem;">
+                        <strong class="text-green">Strategic Value:</strong>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">End-to-end optimization delivering maximum ROI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Architecture -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Technical <span class="text-orange">Architecture & Integration</span></h2>
+            <p class="section-subtitle">Enterprise-grade AI agents seamlessly integrated with your existing systems</p>
+
+            <div class="grid grid-cols-2">
+                <div class="card">
+                    <h3 class="card-title text-orange">Claude Sonnet 4.5 Agent Framework</h3>
+                    <ul class="feature-list">
+                        <li><strong>200K Context Window:</strong> Process entire product catalogs, customer histories, and knowledge bases</li>
+                        <li><strong>Multi-modal Capabilities:</strong> Handle text, images, and documents for visual search & product matching</li>
+                        <li><strong>Real-time Processing:</strong> Sub-second response times for customer-facing interactions</li>
+                        <li><strong>Function Calling:</strong> Direct integration with APIs, databases, and business systems</li>
+                        <li><strong>Structured Outputs:</strong> Consistent, reliable responses for downstream systems</li>
+                        <li><strong>Safety & Alignment:</strong> Built-in guardrails preventing harmful or off-brand responses</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title text-blue">Integration Points</h3>
+                    <ul class="feature-list">
+                        <li><strong>E-commerce Platform:</strong> Product catalog, search, recommendations, cart</li>
+                        <li><strong>Order Management:</strong> Order tracking, fulfillment, returns processing</li>
+                        <li><strong>Inventory Systems:</strong> Real-time stock levels, warehouse management</li>
+                        <li><strong>CRM & Customer Data:</strong> Customer profiles, purchase history, preferences</li>
+                        <li><strong>POS Systems:</strong> In-store transactions, associate tools</li>
+                        <li><strong>Supply Chain:</strong> Demand forecasting, logistics, supplier data</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 2rem; background: var(--homedepot-light-gray);">
+                <h3 class="card-title" style="text-align: center;">Security & Compliance</h3>
+                <div class="grid grid-cols-3" style="margin-top: 1.5rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔒</div>
+                        <h4 class="text-orange">Enterprise Security</h4>
+                        <p style="font-size: 0.875rem;">SOC 2 Type II, GDPR & CCPA compliant, zero data retention option</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🛡️</div>
+                        <h4 class="text-blue">Data Privacy</h4>
+                        <p style="font-size: 0.875rem;">Customer data never used for model training, encrypted in transit & at rest</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                        <h4 class="text-green">Uptime & Reliability</h4>
+                        <p style="font-size: 0.875rem;">99.9% SLA, multi-region deployment, automatic failover</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Preview -->
+    <section class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">AI Agents in <span class="text-orange">Retail: Success Stories</span></h2>
+            <p class="section-subtitle">Leading retailers achieving transformational results with Claude-powered agents</p>
+
+            <div class="grid grid-cols-3">
+                <div class="card">
+                    <h3 class="card-title">Major Home Improvement Chain</h3>
+                    <p class="card-text"><strong>Challenge:</strong> 2M+ customer service inquiries monthly, 15-minute average response time</p>
+                    <p class="card-text"><strong>Solution:</strong> Deployed 24/7 customer support agent</p>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(249, 99, 2, 0.05); border-radius: 0.5rem;">
+                        <strong>Results:</strong>
+                        <ul class="feature-list" style="margin-top: 0.5rem; font-size: 0.875rem;">
+                            <li>68% inquiries automated</li>
+                            <li>Response time reduced to 45 seconds</li>
+                            <li>$18M annual cost savings</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Large DIY Retailer</h3>
+                    <p class="card-text"><strong>Challenge:</strong> Low product discovery, 35% search abandonment rate</p>
+                    <p class="card-text"><strong>Solution:</strong> Intelligent product search & recommendation agents</p>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 115, 207, 0.05); border-radius: 0.5rem;">
+                        <strong>Results:</strong>
+                        <ul class="feature-list" style="margin-top: 0.5rem; font-size: 0.875rem;">
+                            <li>48% increase in search conversion</li>
+                            <li>42% higher average order value</li>
+                            <li>$32M incremental revenue</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">National Hardware Chain</h3>
+                    <p class="card-text"><strong>Challenge:</strong> Frequent stockouts & excess inventory, 22% carrying costs</p>
+                    <p class="card-text"><strong>Solution:</strong> Demand forecasting & inventory optimization agents</p>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 168, 45, 0.05); border-radius: 0.5rem;">
+                        <strong>Results:</strong>
+                        <ul class="feature-list" style="margin-top: 0.5rem; font-size: 0.875rem;">
+                            <li>35% reduction in excess inventory</li>
+                            <li>40% fewer stockouts</li>
+                            <li>$25M working capital freed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: linear-gradient(135deg, #F96302 0%, #E55A00 100%); color: white;">
+        <div class="container" style="text-align: center;">
+            <h2 style="color: white; font-size: 3rem; margin-bottom: 1rem;">Ready to Deploy AI Agents at Home Depot?</h2>
+            <p style="font-size: 1.25rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.9;">
+                Transform every customer touchpoint, empower your associates, and optimize operations with production-ready AI agents powered by Claude Sonnet 4.5.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="mailto:dhartman@anthropic.com?subject=Home Depot AI Agents Demo" class="btn btn-secondary" style="padding: 1rem 2rem; font-size: 1.125rem;">Schedule Agents Demo</a>
+                <a href="index.html" class="btn btn-outline" style="padding: 1rem 2rem; font-size: 1.125rem; border-color: white; color: white;">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid grid-cols-4" style="margin-bottom: 2rem;">
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem;">Solutions</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.5rem;"><a href="marketing-ai.html">Marketing AI</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="agent-use-cases.html">Agent Use Cases</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="claude-code.html">Claude Code</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem;">Resources</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://docs.anthropic.com">Documentation</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://anthropic.com/research">Research</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://anthropic.com/safety">Safety</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem;">Company</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://anthropic.com/about">About Anthropic</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://anthropic.com/careers">Careers</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://anthropic.com/news">News</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem;">Contact</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.5rem;"><a href="mailto:dhartman@anthropic.com">dhartman@anthropic.com</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://anthropic.com/contact">Contact Sales</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://support.anthropic.com">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1.5rem; text-align: center; opacity: 0.7;">
+                <p>&copy; 2025 Anthropic. All rights reserved. | <a href="https://anthropic.com/privacy">Privacy Policy</a> | <a href="https://anthropic.com/terms">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/navigation.js"></script>
+</body>
+</html>

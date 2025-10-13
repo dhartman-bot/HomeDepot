@@ -1,0 +1,465 @@
+/* Home Depot Official Brand Guidelines - CSS Design System */
+
+:root {
+    /* Official Home Depot Brand Colors */
+    --homedepot-orange: #F96302;
+    --homedepot-dark-orange: #E55A00;
+
+    /* Supporting Colors */
+    --homedepot-black: #333333;
+    --homedepot-white: #FFFFFF;
+    --homedepot-light-gray: #F5F5F5;
+    --homedepot-medium-gray: #CCCCCC;
+    --homedepot-dark-gray: #666666;
+
+    /* Accent Colors for Data Visualization */
+    --homedepot-blue: #0073CF;
+    --homedepot-green: #00A82D;
+    --homedepot-yellow: #FFC72C;
+    --homedepot-red: #E3000B;
+
+    /* Typography */
+    --font-primary: 'Arial', 'Helvetica Neue', sans-serif;
+    --font-secondary: 'Arial Black', 'Helvetica Bold', sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    /* Font Sizes */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-6xl: 3.75rem;
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+    /* Transitions */
+    --transition-fast: 150ms ease-in-out;
+    --transition-base: 250ms ease-in-out;
+    --transition-slow: 350ms ease-in-out;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--homedepot-black);
+    background-color: var(--homedepot-white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+    color: var(--homedepot-black);
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+h5 { font-size: var(--text-xl); }
+h6 { font-size: var(--text-lg); }
+
+p {
+    margin-bottom: var(--spacing-md);
+    font-size: var(--text-base);
+}
+
+/* Container */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+}
+
+.container-fluid {
+    width: 100%;
+    padding: 0 var(--spacing-xl);
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--homedepot-white);
+    border-bottom: 1px solid var(--homedepot-medium-gray);
+    padding: var(--spacing-md) 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    text-decoration: none;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--homedepot-black);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--text-base);
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--homedepot-orange);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--homedepot-orange);
+    transition: width var(--transition-base);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--homedepot-orange) 0%, var(--homedepot-dark-orange) 100%);
+    color: var(--homedepot-white);
+    padding: var(--spacing-3xl) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    color: var(--homedepot-white);
+    font-size: var(--text-6xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero p {
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-xl);
+    max-width: 700px;
+}
+
+.hero-badge {
+    display: inline-block;
+    background-color: var(--homedepot-white);
+    color: var(--homedepot-orange);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    font-weight: 700;
+    font-size: var(--text-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: var(--text-base);
+}
+
+.btn-primary {
+    background-color: var(--homedepot-orange);
+    color: var(--homedepot-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--homedepot-dark-orange);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background-color: var(--homedepot-white);
+    color: var(--homedepot-orange);
+    border-color: var(--homedepot-white);
+}
+
+.btn-secondary:hover {
+    background-color: transparent;
+    color: var(--homedepot-white);
+    border-color: var(--homedepot-white);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--homedepot-orange);
+    border-color: var(--homedepot-orange);
+}
+
+.btn-outline:hover {
+    background-color: var(--homedepot-orange);
+    color: var(--homedepot-white);
+}
+
+/* Cards */
+.card {
+    background-color: var(--homedepot-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl);
+    transition: all var(--transition-base);
+    border: 1px solid var(--homedepot-light-gray);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--text-3xl);
+}
+
+.card-icon.orange {
+    background-color: rgba(249, 99, 2, 0.1);
+    color: var(--homedepot-orange);
+}
+
+.card-icon.blue {
+    background-color: rgba(0, 115, 207, 0.1);
+    color: var(--homedepot-blue);
+}
+
+.card-icon.green {
+    background-color: rgba(0, 168, 45, 0.1);
+    color: var(--homedepot-green);
+}
+
+.card-icon.yellow {
+    background-color: rgba(255, 199, 44, 0.1);
+    color: var(--homedepot-yellow);
+}
+
+.card-title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--spacing-md);
+    color: var(--homedepot-black);
+}
+
+.card-text {
+    color: var(--homedepot-dark-gray);
+    line-height: 1.6;
+}
+
+/* Grid System */
+.grid {
+    display: grid;
+    gap: var(--spacing-xl);
+}
+
+.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Sections */
+.section {
+    padding: var(--spacing-3xl) 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: var(--text-lg);
+    color: var(--homedepot-dark-gray);
+    max-width: 700px;
+    margin: 0 auto var(--spacing-2xl);
+}
+
+.section-gray {
+    background-color: var(--homedepot-light-gray);
+}
+
+/* Feature List */
+.feature-list {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-list li {
+    padding: var(--spacing-sm) 0;
+    padding-left: var(--spacing-xl);
+    position: relative;
+}
+
+.feature-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--homedepot-orange);
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--homedepot-black);
+    color: var(--homedepot-white);
+    padding: var(--spacing-3xl) 0 var(--spacing-xl);
+}
+
+.footer a {
+    color: var(--homedepot-white);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer a:hover {
+    color: var(--homedepot-orange);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+    .grid-cols-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: var(--text-4xl); }
+    .hero p { font-size: var(--text-lg); }
+
+    .grid-cols-4,
+    .grid-cols-3,
+    .grid-cols-2 { grid-template-columns: repeat(1, 1fr); }
+
+    .navbar-nav {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    h1 { font-size: var(--text-4xl); }
+    h2 { font-size: var(--text-3xl); }
+    h3 { font-size: var(--text-2xl); }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-orange { color: var(--homedepot-orange); }
+.text-blue { color: var(--homedepot-blue); }
+.text-green { color: var(--homedepot-green); }
+.text-white { color: var(--homedepot-white); }
+
+.bg-orange { background-color: var(--homedepot-orange); }
+.bg-gray { background-color: var(--homedepot-light-gray); }
+
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mt-4 { margin-top: var(--spacing-xl); }
+
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+.mb-4 { margin-bottom: var(--spacing-xl); }
+
+.p-1 { padding: var(--spacing-sm); }
+.p-2 { padding: var(--spacing-md); }
+.p-3 { padding: var(--spacing-lg); }
+.p-4 { padding: var(--spacing-xl); }
