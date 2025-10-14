@@ -631,10 +631,10 @@ module.exports = router;</pre>
     <!-- Deployment Options -->
     <section id="deployment" class="section">
         <div class="container">
-            <h2 class="section-title">Two Flexible <span class="text-orange">Deployment Options</span></h2>
+            <h2 class="section-title">Three Flexible <span class="text-orange">Deployment Options</span></h2>
             <p class="section-subtitle">Choose the deployment model that fits Home Depot's security and compliance requirements</p>
 
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-3">
                 <div class="card" style="border: 3px solid var(--homedepot-orange);">
                     <div style="background: linear-gradient(135deg, #F96302, #E55A00); padding: 2rem; border-radius: 0.75rem; margin: -1.5rem -1.5rem 1.5rem -1.5rem; color: white;">
                         <h3 style="color: white; margin: 0; font-size: 1.5rem;">🌐 Direct API Access</h3>
@@ -733,6 +733,62 @@ const response = await model.generateContent({
                         <strong>Setup Time:</strong> 1-2 weeks | <strong>Cost:</strong> GCP billing
                     </div>
                 </div>
+
+                <div class="card" style="border: 3px solid var(--homedepot-green);">
+                    <div style="background: linear-gradient(135deg, #00A82D, #008324); padding: 2rem; border-radius: 0.75rem; margin: -1.5rem -1.5rem 1.5rem -1.5rem; color: white;">
+                        <h3 style="color: white; margin: 0; font-size: 1.5rem;">☁️ AWS Bedrock</h3>
+                        <p style="color: white; opacity: 0.9; margin: 0.5rem 0 0 0;">Deploy via Amazon Web Services</p>
+                    </div>
+
+                    <h4 class="card-title">Best For:</h4>
+                    <ul class="feature-list">
+                        <li>Existing AWS infrastructure</li>
+                        <li>Unified AWS billing</li>
+                        <li>VPC network integration</li>
+                        <li>Enterprise compliance needs</li>
+                        <li>Regional data residency</li>
+                    </ul>
+
+                    <h4 class="card-title" style="margin-top: 1.5rem;">Features:</h4>
+                    <ul class="feature-list">
+                        <li><strong>Security:</strong> AWS security + Anthropic AI safety</li>
+                        <li><strong>Data Privacy:</strong> Data stays in your AWS environment</li>
+                        <li><strong>Availability:</strong> AWS SLA (99.99%)</li>
+                        <li><strong>Scaling:</strong> Integrated with AWS autoscaling</li>
+                        <li><strong>Pricing:</strong> AWS Bedrock pricing model</li>
+                    </ul>
+
+                    <h4 class="card-title" style="margin-top: 1.5rem;">Implementation:</h4>
+                    <div style="background: var(--homedepot-light-gray); padding: 1rem; border-radius: 0.5rem;">
+                        <pre style="font-size: 0.75rem; overflow-x: auto; margin: 0;">// AWS Bedrock integration
+const {
+  BedrockRuntimeClient,
+  InvokeModelCommand
+} = require('@aws-sdk/client-bedrock-runtime');
+
+const client = new BedrockRuntimeClient({
+  region: 'us-east-1'
+});
+
+const response = await client.send(
+  new InvokeModelCommand({
+    modelId: 'anthropic.claude-sonnet-4-5',
+    body: JSON.stringify({
+      anthropic_version: 'bedrock-2023-05-31',
+      messages: [{
+        role: 'user',
+        content: 'Generate API for cart checkout'
+      }],
+      max_tokens: 4096
+    })
+  })
+);</pre>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 168, 45, 0.05); border-radius: 0.5rem; text-align: center;">
+                        <strong>Setup Time:</strong> 1-2 weeks | <strong>Cost:</strong> AWS billing
+                    </div>
+                </div>
             </div>
 
             <div class="card" style="margin-top: 2rem; background: white;">
@@ -743,6 +799,7 @@ const response = await model.generateContent({
                             <th style="text-align: left; padding: 1rem;">Feature</th>
                             <th style="text-align: center; padding: 1rem;">Direct API</th>
                             <th style="text-align: center; padding: 1rem;">Google Vertex AI</th>
+                            <th style="text-align: center; padding: 1rem;">AWS Bedrock</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -750,31 +807,37 @@ const response = await model.generateContent({
                             <td style="padding: 1rem;"><strong>Setup Time</strong></td>
                             <td style="text-align: center; padding: 1rem; color: var(--homedepot-green);">1-2 days</td>
                             <td style="text-align: center; padding: 1rem;">1-2 weeks</td>
+                            <td style="text-align: center; padding: 1rem;">1-2 weeks</td>
                         </tr>
                         <tr style="border-bottom: 1px solid var(--homedepot-light-gray);">
                             <td style="padding: 1rem;"><strong>Latest Features</strong></td>
                             <td style="text-align: center; padding: 1rem; color: var(--homedepot-green);">Immediate</td>
+                            <td style="text-align: center; padding: 1rem;">Slight delay</td>
                             <td style="text-align: center; padding: 1rem;">Slight delay</td>
                         </tr>
                         <tr style="border-bottom: 1px solid var(--homedepot-light-gray);">
                             <td style="padding: 1rem;"><strong>Data Residency</strong></td>
                             <td style="text-align: center; padding: 1rem;">US/EU regions</td>
                             <td style="text-align: center; padding: 1rem; color: var(--homedepot-green);">Full GCP control</td>
+                            <td style="text-align: center; padding: 1rem; color: var(--homedepot-green);">Full AWS control</td>
                         </tr>
                         <tr style="border-bottom: 1px solid var(--homedepot-light-gray);">
                             <td style="padding: 1rem;"><strong>Integration Complexity</strong></td>
                             <td style="text-align: center; padding: 1rem; color: var(--homedepot-green);">Simple (REST API)</td>
                             <td style="text-align: center; padding: 1rem;">Moderate (GCP SDK)</td>
+                            <td style="text-align: center; padding: 1rem;">Moderate (AWS SDK)</td>
                         </tr>
                         <tr style="border-bottom: 1px solid var(--homedepot-light-gray);">
                             <td style="padding: 1rem;"><strong>Billing</strong></td>
                             <td style="text-align: center; padding: 1rem;">Direct Anthropic</td>
                             <td style="text-align: center; padding: 1rem; color: var(--homedepot-green);">Unified GCP billing</td>
+                            <td style="text-align: center; padding: 1rem; color: var(--homedepot-green);">Unified AWS billing</td>
                         </tr>
                         <tr style="border-bottom: 1px solid var(--homedepot-light-gray);">
                             <td style="padding: 1rem;"><strong>Best For</strong></td>
                             <td style="text-align: center; padding: 1rem;">Speed, simplicity</td>
                             <td style="text-align: center; padding: 1rem;">GCP ecosystem, compliance</td>
+                            <td style="text-align: center; padding: 1rem;">AWS ecosystem, compliance</td>
                         </tr>
                     </tbody>
                 </table>
@@ -963,7 +1026,7 @@ const response = await model.generateContent({
                 <div class="card">
                     <div style="width: 60px; height: 60px; margin: 0 auto 1rem; background: rgba(249, 99, 2, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; color: var(--homedepot-orange);">1</div>
                     <h3 class="card-title" style="text-align: center;">Choose Deployment</h3>
-                    <p class="card-text" style="text-align: center;">Select Direct API or Google Vertex AI based on your infrastructure and compliance needs.</p>
+                    <p class="card-text" style="text-align: center;">Select Direct API, Google Vertex AI, or AWS Bedrock based on your infrastructure and compliance needs.</p>
                     <ul class="feature-list">
                         <li>Evaluate deployment options</li>
                         <li>Review security requirements</li>
