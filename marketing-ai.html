@@ -6,6 +6,31 @@
     <meta name="description" content="Home Depot Marketing AI: Content Creation, Customer Insights, and Campaign Orchestration">
     <title>Marketing AI Solutions | Home Depot x Anthropic</title>
     <link rel="stylesheet" href="assets/css/homedepot-brand.css">
+    <style>
+        /* Deployment Status Badges */
+        .deploy-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+        }
+        .deploy-today {
+            background: linear-gradient(135deg, #00A82D, #008324);
+            color: white;
+        }
+        .deploy-phase2 {
+            background: linear-gradient(135deg, #0073CF, #005A9C);
+            color: white;
+        }
+        .deploy-integration {
+            background: linear-gradient(135deg, #F96302, #E55A00);
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -31,9 +56,9 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge">Marketing AI Solutions</div>
+                <div class="hero-badge">Content Creation Ready Today | Advanced Features Phase 2</div>
                 <h1>Transform Marketing<br>from 30 Days to Hours</h1>
-                <p>Claude Sonnet 4.5 revolutionizes retail marketing with AI-powered content creation, customer insights, and campaign orchestration—eliminating bottlenecks and accelerating time-to-market.</p>
+                <p>Claude Sonnet 4.5 revolutionizes retail marketing with <strong>AI-powered content creation ready to deploy immediately</strong>, plus advanced customer insights and campaign orchestration capabilities available with additional integration.</p>
                 <div style="display: flex; gap: 1rem; margin-top: 2rem;">
                     <a href="#content-creation" class="btn btn-secondary">Content AI</a>
                     <a href="#customer-insights" class="btn btn-secondary">Customer Insights</a>
@@ -78,8 +103,13 @@
 
             <h3 class="section-title" style="margin-top: 3rem;">Content Creation Use Cases</h3>
 
+            <div class="card" style="margin-bottom: 2rem; background: rgba(0, 168, 45, 0.05); border-left: 4px solid var(--homedepot-green);">
+                <p style="margin: 0;"><strong>100% Ready to Deploy:</strong> All content creation features below are immediately available via Claude API integration. No additional infrastructure or ML models required.</p>
+            </div>
+
             <div class="grid grid-cols-3">
                 <div class="card">
+                    <span class="deploy-badge deploy-today">✓ Deploy Today</span>
                     <div class="card-icon orange">📝</div>
                     <h3 class="card-title">Product Descriptions</h3>
                     <p class="card-text">Generate thousands of product descriptions optimized for SEO, conversion, and brand voice.</p>
@@ -96,6 +126,7 @@
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-today">✓ Deploy Today</span>
                     <div class="card-icon blue">📧</div>
                     <h3 class="card-title">Email Campaigns</h3>
                     <p class="card-text">Create personalized email campaigns with dynamic content for millions of customers.</p>
@@ -112,6 +143,7 @@
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-today">✓ Deploy Today</span>
                     <div class="card-icon green">📱</div>
                     <h3 class="card-title">Social Media</h3>
                     <p class="card-text">Generate engaging social content across platforms with consistent brand voice.</p>
@@ -128,6 +160,7 @@
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-today">✓ Deploy Today</span>
                     <div class="card-icon orange">🖼️</div>
                     <h3 class="card-title">Visual Merchandising</h3>
                     <p class="card-text">AI-powered copy for in-store displays, signage, and promotional materials.</p>
@@ -144,6 +177,7 @@
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-today">✓ Deploy Today</span>
                     <div class="card-icon blue">🎬</div>
                     <h3 class="card-title">Video Scripts</h3>
                     <p class="card-text">Generate scripts for product demos, DIY tutorials, and promotional videos.</p>
@@ -160,6 +194,7 @@
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-today">✓ Deploy Today</span>
                     <div class="card-icon green">🎯</div>
                     <h3 class="card-title">A/B Test Variations</h3>
                     <p class="card-text">Instantly generate dozens of content variations for testing and optimization.</p>
@@ -240,6 +275,7 @@ Target: DIY homeowners</pre>
 
             <div class="grid grid-cols-3">
                 <div class="card">
+                    <span class="deploy-badge deploy-today">✓ Deploy Today</span>
                     <div class="card-icon blue">👤</div>
                     <h3 class="card-title">Synthetic Personas</h3>
                     <p class="card-text">Generate realistic customer personas for testing personalization strategies without using real customer data.</p>
@@ -256,6 +292,7 @@ Target: DIY homeowners</pre>
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-phase2">Phase 2: ML Models</span>
                     <div class="card-icon orange">🎯</div>
                     <h3 class="card-title">Behavioral Prediction</h3>
                     <p class="card-text">Predict customer behavior and purchase intent based on browsing patterns and past interactions.</p>
@@ -272,6 +309,7 @@ Target: DIY homeowners</pre>
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-today">✓ Deploy Today</span>
                     <div class="card-icon green">🛠️</div>
                     <h3 class="card-title">Project-Based Recommendations</h3>
                     <p class="card-text">Understand customer projects and recommend complete product bundles for DIY success.</p>
@@ -288,6 +326,7 @@ Target: DIY homeowners</pre>
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-today">✓ Deploy Today</span>
                     <div class="card-icon blue">💬</div>
                     <h3 class="card-title">Sentiment Analysis</h3>
                     <p class="card-text">Real-time analysis of customer feedback, reviews, and social mentions to understand brand perception.</p>
@@ -304,6 +343,7 @@ Target: DIY homeowners</pre>
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-phase2">Phase 2: ML Models</span>
                     <div class="card-icon orange">📊</div>
                     <h3 class="card-title">Customer Segmentation</h3>
                     <p class="card-text">Automatically segment customers into meaningful groups for targeted marketing campaigns.</p>
@@ -320,6 +360,7 @@ Target: DIY homeowners</pre>
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-phase2">Phase 2: ML Models</span>
                     <div class="card-icon green">🔮</div>
                     <h3 class="card-title">Lifetime Value Prediction</h3>
                     <p class="card-text">Predict customer lifetime value to optimize acquisition spend and retention efforts.</p>
@@ -409,8 +450,13 @@ Target: DIY homeowners</pre>
 
             <h3 class="section-title" style="margin-top: 3rem;">Campaign Orchestration Use Cases</h3>
 
+            <div class="card" style="margin-bottom: 2rem; background: rgba(249, 99, 2, 0.05); border-left: 4px solid var(--homedepot-orange);">
+                <p style="margin: 0;"><strong>Integration Note:</strong> Campaign orchestration features marked "Ready to Integrate" can be deployed immediately with Claude generating all content and strategies. Automation requires integration with your existing Marketing Automation Platform (MAP) or Customer Data Platform (CDP) like Salesforce Marketing Cloud, Adobe Campaign, or similar systems.</p>
+            </div>
+
             <div class="grid grid-cols-3">
                 <div class="card">
+                    <span class="deploy-badge deploy-integration">Ready to Integrate</span>
                     <div class="card-icon green">🎯</div>
                     <h3 class="card-title">Intelligent Audience Segmentation</h3>
                     <p class="card-text">Automatically create and update audience segments based on real-time behavior and intent.</p>
@@ -427,6 +473,7 @@ Target: DIY homeowners</pre>
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-integration">Ready to Integrate</span>
                     <div class="card-icon orange">📧</div>
                     <h3 class="card-title">Multi-Channel Automation</h3>
                     <p class="card-text">Coordinate campaigns across email, SMS, push, social, and in-store with unified messaging.</p>
@@ -443,6 +490,7 @@ Target: DIY homeowners</pre>
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-integration">Ready to Integrate</span>
                     <div class="card-icon blue">⚡</div>
                     <h3 class="card-title">Real-Time Optimization</h3>
                     <p class="card-text">Continuously optimize campaign performance with AI-driven adjustments during flight.</p>
@@ -459,6 +507,7 @@ Target: DIY homeowners</pre>
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-integration">Ready to Integrate</span>
                     <div class="card-icon green">🔄</div>
                     <h3 class="card-title">Triggered Campaigns</h3>
                     <p class="card-text">Launch automated campaigns based on customer behaviors and lifecycle events.</p>
@@ -475,6 +524,7 @@ Target: DIY homeowners</pre>
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-integration">Ready to Integrate</span>
                     <div class="card-icon orange">💰</div>
                     <h3 class="card-title">Dynamic Offer Optimization</h3>
                     <p class="card-text">Personalize offers and promotions based on customer value, purchase history, and predicted behavior.</p>
@@ -491,6 +541,7 @@ Target: DIY homeowners</pre>
                 </div>
 
                 <div class="card">
+                    <span class="deploy-badge deploy-today">✓ Deploy Today</span>
                     <div class="card-icon blue">📊</div>
                     <h3 class="card-title">Performance Analytics</h3>
                     <p class="card-text">Deep campaign analytics with AI-powered insights and recommendations for future campaigns.</p>
@@ -560,6 +611,95 @@ Target: DIY homeowners</pre>
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deployment Timeline -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Deployment <span class="text-orange">Timeline</span></h2>
+            <p class="section-subtitle">Clear path from immediate deployment to advanced capabilities</p>
+
+            <div class="grid grid-cols-3">
+                <div class="card">
+                    <div style="background: linear-gradient(135deg, #00A82D, #008324); color: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; text-align: center;">
+                        <h3 style="color: white; margin: 0;">Phase 1</h3>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.875rem;">✓ Deploy Today</p>
+                    </div>
+                    <h4>Content Creation (100% Ready)</h4>
+                    <ul class="feature-list">
+                        <li>Product descriptions at scale</li>
+                        <li>Email campaign content</li>
+                        <li>Social media posts</li>
+                        <li>Visual merchandising copy</li>
+                        <li>Video scripts</li>
+                        <li>A/B test variations</li>
+                        <li>Synthetic customer personas</li>
+                        <li>Project-based recommendations</li>
+                        <li>Sentiment analysis</li>
+                        <li>Performance analytics</li>
+                    </ul>
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(0, 168, 45, 0.1); border-radius: 0.5rem;">
+                        <strong>Ready Now:</strong> API integration only
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div style="background: linear-gradient(135deg, #F96302, #E55A00); color: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; text-align: center;">
+                        <h3 style="color: white; margin: 0;">Phase 2</h3>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.875rem;">Ready to Integrate</p>
+                    </div>
+                    <h4>Campaign Orchestration (Requires MAP/CDP)</h4>
+                    <ul class="feature-list">
+                        <li>Intelligent audience segmentation</li>
+                        <li>Multi-channel automation</li>
+                        <li>Real-time optimization</li>
+                        <li>Triggered campaigns</li>
+                        <li>Dynamic offer optimization</li>
+                    </ul>
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(249, 99, 2, 0.1); border-radius: 0.5rem;">
+                        <strong>Requirements:</strong> Integration with Salesforce Marketing Cloud, Adobe Campaign, or similar MAP/CDP
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div style="background: linear-gradient(135deg, #0073CF, #005A9C); color: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; text-align: center;">
+                        <h3 style="color: white; margin: 0;">Phase 3</h3>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.875rem;">3-6 Months</p>
+                    </div>
+                    <h4>Advanced ML Analytics</h4>
+                    <ul class="feature-list">
+                        <li>Behavioral prediction models</li>
+                        <li>Customer segmentation (AI clustering)</li>
+                        <li>Lifetime value prediction</li>
+                    </ul>
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(0, 115, 207, 0.1); border-radius: 0.5rem;">
+                        <strong>Requirements:</strong> ML infrastructure, data science team, historical customer data
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 2rem; background: white;">
+                <h3 class="card-title" style="text-align: center;">Recommended Rollout Strategy</h3>
+                <div style="margin-top: 1.5rem;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem; padding: 1rem; background: var(--homedepot-light-gray); border-radius: 0.5rem;">
+                        <div style="min-width: 120px; font-weight: 700; color: var(--homedepot-green);">Week 1-2</div>
+                        <div>Deploy Claude API for content creation. Start generating product descriptions, email content, and social media posts.</div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem; padding: 1rem; background: var(--homedepot-light-gray); border-radius: 0.5rem;">
+                        <div style="min-width: 120px; font-weight: 700; color: var(--homedepot-green);">Week 3-4</div>
+                        <div>Scale to full content operations: video scripts, A/B testing, synthetic personas, sentiment analysis.</div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem; padding: 1rem; background: var(--homedepot-light-gray); border-radius: 0.5rem;">
+                        <div style="min-width: 120px; font-weight: 700; color: var(--homedepot-orange);">Month 2-3</div>
+                        <div>Integrate with MAP/CDP for campaign orchestration. Enable multi-channel automation and triggered campaigns.</div>
+                    </div>
+                    <div style="display: flex; align-items: center; padding: 1rem; background: var(--homedepot-light-gray); border-radius: 0.5rem;">
+                        <div style="min-width: 120px; font-weight: 700; color: var(--homedepot-blue);">Month 4-6</div>
+                        <div>Build ML models for behavioral prediction, advanced segmentation, and lifetime value forecasting.</div>
                     </div>
                 </div>
             </div>
