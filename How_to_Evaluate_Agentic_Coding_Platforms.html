@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Evaluate Agentic Coding Platforms</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path fill="rgba(255,255,255,0.1)" d="M0,0 Q300,60 600,40 T1200,20 L1200,120 L0,120 Z"/></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.4em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .content {
+            padding: 60px 40px;
+        }
+
+        .intro-section {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 45px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            border-left: 6px solid #667eea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .intro-section h2 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            margin-top: 0;
+        }
+
+        .intro-section p {
+            font-size: 1.15em;
+            line-height: 1.8;
+            color: #2d3748;
+        }
+
+        .intro-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        section:last-of-type {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #667eea;
+            position: relative;
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: #764ba2;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.7em;
+            margin: 40px 0 20px;
+            font-weight: 600;
+        }
+
+        h4 {
+            color: #2d3748;
+            font-size: 1.3em;
+            margin: 30px 0 15px;
+            font-weight: 600;
+        }
+
+        section > h3:first-of-type {
+            margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            color: #4a5568;
+            font-size: 1.05em;
+        }
+
+        ul, ol {
+            margin: 20px 0 20px 35px;
+            color: #4a5568;
+        }
+
+        li {
+            margin-bottom: 14px;
+            line-height: 1.8;
+            padding-left: 5px;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        strong {
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f7fafc 0%, #fff 100%);
+            border: 2px solid #e2e8f0;
+            border-left: 6px solid #667eea;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border-left: 6px solid #f56565;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(245, 101, 101, 0.1);
+        }
+
+        .warning-box h4 {
+            color: #c53030;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            border-left: 6px solid #48bb78;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.1);
+        }
+
+        .success-box h4 {
+            color: #2f855a;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #f5f3ff 0%, #e9d8fd 100%);
+            border-left: 6px solid #805ad5;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(128, 90, 213, 0.1);
+        }
+
+        .info-box h4 {
+            color: #553c9a;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+
+        td {
+            padding: 16px 18px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 1em;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        tbody tr:hover {
+            background: #edf2f7;
+            transition: background 0.2s ease;
+        }
+
+        tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li {
+            padding-left: 35px;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 1.4em;
+            width: 25px;
+            height: 25px;
+            background: #c6f6d5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 30px 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 5px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+            z-index: 1;
+        }
+
+        .timeline-item:after {
+            content: "";
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            width: 3px;
+            height: calc(100% + 16px);
+            background: linear-gradient(180deg, #667eea 0%, #e2e8f0 100%);
+        }
+
+        .timeline-item:last-child:after {
+            display: none;
+        }
+
+        .phase-card {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .phase-card:hover {
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .phase-card h4 {
+            margin-top: 0;
+        }
+
+        .phase-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 900px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .metric-card {
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 12px;
+            padding: 35px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .metric-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(102, 126, 234, 0.3);
+            border-color: #764ba2;
+        }
+
+        .metric-value {
+            font-size: 3.2em;
+            color: #667eea;
+            font-weight: 700;
+            margin: 20px 0 15px;
+            line-height: 1;
+        }
+
+        .metric-label {
+            color: #4a5568;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .metric-description {
+            color: #718096;
+            font-size: 0.95em;
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #e2e8f0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 45px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent);
+            pointer-events: none;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+            font-size: 2em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.15em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-box ul,
+        .cta-box li {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-box strong {
+            color: white;
+        }
+
+        @media (max-width: 1024px) {
+            .content {
+                padding: 40px 30px;
+            }
+
+            table {
+                font-size: 0.95em;
+            }
+
+            th, td {
+                padding: 12px 14px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 20px;
+            }
+
+            header {
+                padding: 50px 20px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1.1em;
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            h3 {
+                font-size: 1.4em;
+            }
+
+            .card, .warning-box, .success-box, .info-box, .phase-card {
+                padding: 20px;
+            }
+
+            .cta-box {
+                padding: 30px 20px;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 10px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .metric-value {
+                font-size: 2.5em;
+            }
+
+            .phase-number {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>How to Evaluate Agentic Coding Platforms</h1>
+            <p>A Comprehensive Guide to Getting Executive Buy-In at Your Organization</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#why-evaluate">Why Now</a></li>
+                <li><a href="#stakeholders">Stakeholder Alignment</a></li>
+                <li><a href="#evaluation-criteria">Evaluation Criteria</a></li>
+                <li><a href="#use-cases">Use Cases to Test</a></li>
+                <li><a href="#poc-framework">POC Framework</a></li>
+                <li><a href="#business-case">Building the Business Case</a></li>
+                <li><a href="#common-pitfalls">Common Pitfalls</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <div class="intro-section">
+                <h2>Introduction</h2>
+                <p>AI-powered coding assistants are rapidly transforming software development. But evaluating and adopting these tools effectively requires more than just technical testing—it demands organizational alignment, clear success criteria, and executive sponsorship from day one.</p>
+                <p><strong>This guide will help you:</strong> Design a rigorous evaluation process, align stakeholders across your organization, select the right use cases for testing, and build a compelling business case that secures executive buy-in.</p>
+            </div>
+
+            <section id="why-evaluate">
+                <h2>Why Evaluate Agentic Coding Platforms Now?</h2>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Developer Productivity Gains</div>
+                        <div class="metric-value">30-50%</div>
+                        <div class="metric-description">Typical improvement in coding task completion time</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">ROI Payback Period</div>
+                        <div class="metric-value">3-6</div>
+                        <div class="metric-description">Months to positive return on investment</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Code Quality Improvement</div>
+                        <div class="metric-value">20-40%</div>
+                        <div class="metric-description">Reduction in bugs and production incidents</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Developer Satisfaction</div>
+                        <div class="metric-value">+25</div>
+                        <div class="metric-description">Points improvement in NPS scores</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>The Strategic Imperative</h3>
+                    <p>Organizations that successfully adopt agentic coding platforms are seeing transformative results:</p>
+                    <ul>
+                        <li><strong>Accelerated Time-to-Market:</strong> Ship features 30-50% faster, enabling revenue acceleration</li>
+                        <li><strong>Developer Retention:</strong> Eliminate tedious work, improve job satisfaction, reduce turnover</li>
+                        <li><strong>Quality at Scale:</strong> Maintain high code standards even as teams grow</li>
+                        <li><strong>Competitive Advantage:</strong> Early adopters are outpacing competitors in innovation velocity</li>
+                        <li><strong>Beyond Autocomplete:</strong> First-generation tools (code completion, copilots) provided incremental gains—agentic platforms handle complex, multi-step tasks autonomously, delivering 3-5x greater impact</li>
+                        <li><strong>The Innovation Gap:</strong> Organizations still using basic autocomplete tools are falling behind. Modern agentic platforms represent a generational leap—staying on outdated technology means sacrificing competitive positioning</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>💡 From Code Completion to Autonomous Agents: The Evolution</h4>
+                    <p><strong>Generation 1 (2021-2023):</strong> Code completion tools like GitHub Copilot provided single-line or function-level suggestions. Useful, but limited to incremental productivity gains (10-15%).</p>
+                    <p><strong>Generation 2 (2024+):</strong> Agentic coding platforms autonomously handle complex tasks—debugging across multiple files, refactoring entire modules, generating comprehensive tests, and modernizing legacy systems. This isn't an upgrade—it's a paradigm shift delivering 30-50% productivity gains.</p>
+                    <p><strong>The Risk:</strong> Organizations that deployed first-generation tools and declared "mission accomplished" are now locked into inferior technology while competitors leapfrog ahead with agentic platforms. Don't let early adoption of outdated tools prevent you from capturing transformative value.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ The Cost of Waiting</h4>
+                    <p>For a 4,500-developer organization, delaying adoption by just 6 months represents $62M in lost productivity gains. Your competitors are evaluating these tools now—the question isn't whether to adopt, but how to evaluate and implement effectively.</p>
+                </div>
+            </section>
+
+            <section id="stakeholders">
+                <h2>Step 1: Align Stakeholders BEFORE You Start</h2>
+
+                <div class="info-box">
+                    <h4>🎯 Critical Success Factor</h4>
+                    <p><strong>The #1 reason evaluations fail is lack of executive sponsorship and stakeholder alignment from day one.</strong> Before you install any software or run any tests, you must align your organization on what success looks like and who owns the decision.</p>
+                </div>
+
+                <h3>Key Stakeholders to Engage (In Order of Priority)</h3>
+
+                <div class="phase-card">
+                    <h4><span class="phase-number">1</span>Executive Sponsor (CTO / VP Engineering)</h4>
+                    <p><strong>Role:</strong> Owns the budget, makes the final decision, provides organizational mandate</p>
+                    <p><strong>What They Care About:</strong> Business impact (revenue, cost, risk), ROI payback period, competitive positioning</p>
+                    <p><strong>How to Engage:</strong></p>
+                    <ul>
+                        <li>Schedule 30-minute alignment meeting BEFORE evaluation starts</li>
+                        <li>Present hypothesis: "We believe AI coding tools can improve productivity by 30-50%"</li>
+                        <li>Get commitment: "If we prove X metric, will you approve the budget?"</li>
+                        <li>Agree on success criteria and decision timeline</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h4><span class="phase-number">2</span>Technical Champion(s) (Senior/Staff Engineer(s) or Eng Manager(s))</h4>
+                    <p><strong>Role:</strong> Lead the evaluation, test the tools, present results to leadership</p>
+                    <p><strong>What They Care About:</strong> Developer experience, code quality, integration with existing workflows</p>
+                    <p><strong>How to Engage:</strong></p>
+                    <ul>
+                        <li>Select one or more people with credibility and 5+ years at the company</li>
+                        <li>Ensure they have the time and mandate to run a proper evaluation</li>
+                        <li>Provide them with evaluation framework and success criteria</li>
+                        <li>Make them the "heroes" by giving them visibility with executives</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h4><span class="phase-number">3</span>Finance/Procurement (CFO / Procurement Lead)</h4>
+                    <p><strong>Role:</strong> Validates ROI model, manages vendor onboarding, negotiates contract</p>
+                    <p><strong>What They Care About:</strong> Total cost of ownership, contract terms, vendor stability, compliance</p>
+                    <p><strong>How to Engage:</strong></p>
+                    <ul>
+                        <li>Brief them early on expected investment ($500K-$2M+ annually)</li>
+                        <li>Share ROI model template so they can validate assumptions</li>
+                        <li>Start procurement/legal review during POC (not after)</li>
+                        <li>Align on procurement timeline (typically 30-60 days)</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h4><span class="phase-number">4</span>Security/Compliance (CISO / InfoSec Lead)</h4>
+                    <p><strong>Role:</strong> Validates security posture, approves data handling, clears compliance requirements</p>
+                    <p><strong>What They Care About:</strong> Data privacy, SOC2/HIPAA compliance, code security, vendor risk</p>
+                    <p><strong>How to Engage:</strong></p>
+                    <ul>
+                        <li>Request security documentation from vendors upfront (SOC2, pentest reports)</li>
+                        <li>Schedule security review during POC (parallel to testing)</li>
+                        <li>Discuss deployment options (cloud vs. private cloud vs. on-prem)</li>
+                        <li>Clarify data usage policies (training data, retention, etc.)</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h4><span class="phase-number">5</span>Development Teams (Pilot Users)</h4>
+                    <p><strong>Role:</strong> Test the tools on real work, provide feedback, become advocates</p>
+                    <p><strong>What They Care About:</strong> Does this make my job easier? Is it accurate? Does it integrate well?</p>
+                    <p><strong>How to Engage:</strong></p>
+                    <ul>
+                        <li>Select 25-50 pilot users across different seniority levels</li>
+                        <li>Choose teams working on active projects (not sandbox work)</li>
+                        <li>Provide training and best practices upfront</li>
+                        <li>Collect feedback weekly through surveys and 1:1s</li>
+                    </ul>
+                </div>
+
+                <div class="success-box">
+                    <h4>✅ Pre-POC Alignment Checklist</h4>
+                    <ul class="checklist">
+                        <li>Executive sponsor identified and committed to 30-min kickoff + 30-min readout</li>
+                        <li>Technical champion assigned and has 20% time allocation for evaluation</li>
+                        <li>Success criteria agreed upon and documented (signed POC charter)</li>
+                        <li>Budget range confirmed ($10M-$25M annually for 4,500+ developers)</li>
+                        <li>Decision timeline established (typically 90 days from kickoff to contract)</li>
+                        <li>Security/legal review initiated in parallel with POC</li>
+                        <li>Finance has reviewed and validated ROI model assumptions</li>
+                    </ul>
+                </div>
+
+                <div class="cta-box">
+                    <h3>🔑 The Golden Rule</h3>
+                    <p><strong>Never start a POC until your executive sponsor commits to this statement:</strong></p>
+                    <p style="font-size: 1.3em; margin-top: 20px;">"If this evaluation proves [specific metric], and security/legal clears the vendor, we will move forward with procurement within 30 days."</p>
+                </div>
+            </section>
+
+            <section id="evaluation-criteria">
+                <h2>Step 2: Define Your Evaluation Criteria</h2>
+
+                <p>Before testing any tools, establish clear, measurable criteria that align with your business priorities. These criteria should be socialized up (to executives) and down (to developer teams) before the evaluation begins.</p>
+
+                <h3>Technical Evaluation Criteria</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Criteria</th>
+                            <th>What to Measure</th>
+                            <th>Why It Matters</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Code Quality & Accuracy</strong></td>
+                            <td>
+                                • SWE-bench score or similar benchmark<br>
+                                • Pass rate on your test suites<br>
+                                • Code review feedback quality
+                            </td>
+                            <td>Poor quality suggestions waste time and erode trust. Look for 70%+ accuracy on industry benchmarks.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Context Understanding</strong></td>
+                            <td>
+                                • Context window size (tokens)<br>
+                                • Ability to navigate large codebases<br>
+                                • Cross-file reference accuracy
+                            </td>
+                            <td>Large codebases require 200K+ token windows. Tools with small context windows miss critical dependencies.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Developer Workflow Integration</strong></td>
+                            <td>
+                                • IDE support (VS Code, JetBrains, etc.)<br>
+                                • Git/GitHub integration<br>
+                                • CLI and automation capabilities
+                            </td>
+                            <td>Tools must fit into existing workflows, not force new ones. Friction kills adoption.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Agentic Capabilities</strong></td>
+                            <td>
+                                • Multi-step task completion<br>
+                                • Autonomous debugging<br>
+                                • Test generation & documentation
+                            </td>
+                            <td>Simple autocomplete is table stakes. Agentic tools handle complex, multi-file tasks autonomously.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Language & Framework Support</strong></td>
+                            <td>
+                                • Coverage of your tech stack<br>
+                                • Performance on domain-specific code<br>
+                                • Legacy code handling
+                            </td>
+                            <td>Test on YOUR codebase, not generic examples. Performance varies widely by language and domain.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Business Evaluation Criteria</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Criteria</th>
+                            <th>What to Measure</th>
+                            <th>Why It Matters</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Productivity Impact</strong></td>
+                            <td>
+                                • Time to complete coding tasks<br>
+                                • Hours saved per developer per week<br>
+                                • Feature delivery velocity
+                            </td>
+                            <td>The core ROI driver. Look for 30-50% time savings on well-defined tasks.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Code Quality Improvement</strong></td>
+                            <td>
+                                • Bug rate in production<br>
+                                • Code review cycle time<br>
+                                • Test coverage %
+                            </td>
+                            <td>Productivity means nothing if quality suffers. Measure defect rates before/after.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Developer Satisfaction</strong></td>
+                            <td>
+                                • NPS score (before/after)<br>
+                                • Weekly usage rate (%)<br>
+                                • Qualitative feedback
+                            </td>
+                            <td>Low adoption = failed investment. Target 80%+ weekly active usage by week 4.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ROI & Payback Period</strong></td>
+                            <td>
+                                • Annual cost savings<br>
+                                • Total cost of ownership<br>
+                                • Time to positive ROI
+                            </td>
+                            <td>CFO cares about dollars. Model showing 3-6 month payback is compelling.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Security & Compliance</strong></td>
+                            <td>
+                                • SOC2 Type II certification<br>
+                                • Data usage policies<br>
+                                • HIPAA/GDPR compliance
+                            </td>
+                            <td>Non-negotiable for enterprise. Verify certifications, don't just trust marketing claims.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vendor Stability & Support</strong></td>
+                            <td>
+                                • Company funding & runway<br>
+                                • Enterprise customer base<br>
+                                • SLA guarantees
+                            </td>
+                            <td>Avoid vendor risk. Look for well-funded companies with proven enterprise track record.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <h4>💡 Socialize Criteria Early and Often</h4>
+                    <p><strong>Up the chain:</strong> Present criteria to executive sponsor and get sign-off. Ask: "If we prove these metrics, will you approve the investment?"</p>
+                    <p><strong>Down the chain:</strong> Share criteria with pilot users so they know what to focus on during testing. Make it clear: this is a structured evaluation, not just "try it and see if you like it."</p>
+                </div>
+            </section>
+
+            <section id="use-cases">
+                <h2>Step 3: Select Use Cases Where Agentic Tools Excel</h2>
+
+                <p>Not all coding tasks benefit equally from AI assistance. The key to a successful POC is testing use cases where agentic coding platforms demonstrably outperform traditional workflows.</p>
+
+                <div class="warning-box">
+                    <h4>⚠️ Common Mistake: Testing the Wrong Use Cases</h4>
+                    <p>Many evaluations fail because they test trivial tasks (e.g., "write a hello world function") or tasks where AI provides minimal value. Instead, focus on high-impact, time-consuming tasks that directly tie to business outcomes.</p>
+                </div>
+
+                <h3>Tier 1 Use Cases: Highest ROI, Fastest Wins</h3>
+
+                <div class="card">
+                    <h4>Use Case 1: Feature Development Acceleration</h4>
+                    <p><strong>What to Test:</strong> Have pilot users build a new customer-facing feature using the agentic coding platform. Compare time-to-completion against historical baseline for similar features.</p>
+
+                    <p><strong>Why This Works:</strong></p>
+                    <ul>
+                        <li>Feature development is the core of software engineering—if AI can't help here, it's not worth buying</li>
+                        <li>Easy to measure (time tracking, story points, commit velocity)</li>
+                        <li>Directly ties to revenue (faster features = faster time-to-market)</li>
+                    </ul>
+
+                    <p><strong>Success Metrics:</strong></p>
+                    <ul class="checklist">
+                        <li>40%+ reduction in development time vs. baseline</li>
+                        <li>Feature delivered on time (vs. projected delay)</li>
+                        <li>Code passes all tests and review on first submission</li>
+                        <li>Developer satisfaction 8+/10</li>
+                    </ul>
+
+                    <p><strong>Expected ROI:</strong> For a 3-person, 2-week feature → Save 96 hours = $9,600. Annualized across 20 features = $192K savings.</p>
+                </div>
+
+                <div class="card">
+                    <h4>Use Case 2: Bug Fixes & Debugging</h4>
+                    <p><strong>What to Test:</strong> Track all bugs and incidents over 2 weeks. Measure time to identify root cause, time to implement fix, and regression rate.</p>
+
+                    <p><strong>Why This Works:</strong></p>
+                    <ul>
+                        <li>Debugging is notoriously time-consuming (often 50% of engineering time)</li>
+                        <li>Agentic tools excel at analyzing complex codebases to find root causes</li>
+                        <li>Reducing MTTR (Mean Time To Repair) has direct customer satisfaction impact</li>
+                    </ul>
+
+                    <p><strong>Success Metrics:</strong></p>
+                    <ul class="checklist">
+                        <li>50%+ reduction in time to identify root cause</li>
+                        <li>30%+ reduction in time to implement fix</li>
+                        <li>20%+ reduction in regression bugs introduced</li>
+                        <li>Faster MTTR for production incidents</li>
+                    </ul>
+
+                    <p><strong>Expected ROI:</strong> 5 engineers × 20 hrs/week on bugs → 30% savings = 30 hrs/week = $156K annually.</p>
+                </div>
+
+                <div class="card">
+                    <h4>Use Case 3: Code Review Optimization</h4>
+                    <p><strong>What to Test:</strong> Have developers use AI to clean up code, add documentation, and address common review comments BEFORE submitting PRs. Track PR cycle time and review iterations.</p>
+
+                    <p><strong>Why This Works:</strong></p>
+                    <ul>
+                        <li>Code review is a major bottleneck (2-3 days is common)</li>
+                        <li>AI can catch style issues, missing docs, and simple bugs before human review</li>
+                        <li>Reduces reviewer burden and speeds up delivery pipeline</li>
+                    </ul>
+
+                    <p><strong>Success Metrics:</strong></p>
+                    <ul class="checklist">
+                        <li>50%+ reduction in code review time (reviewer side)</li>
+                        <li>40%+ fewer review cycles per PR</li>
+                        <li>Increased code consistency and style adherence</li>
+                        <li>Developer satisfaction with review process +20 points</li>
+                    </ul>
+
+                    <p><strong>Expected ROI:</strong> 10 devs, 20 PRs/week → Save 2 hrs per PR = 40 hrs/week = $208K annually.</p>
+                </div>
+
+                <div class="card">
+                    <h4>Use Case 4: Legacy Code Modernization</h4>
+                    <p><strong>What to Test:</strong> Select one legacy module to migrate (e.g., Java → Spring Boot, Python 2 → Python 3). Track time, quality, and documentation.</p>
+
+                    <p><strong>Why This Works:</strong></p>
+                    <ul>
+                        <li>Legacy migrations are expensive, risky, and often deprioritized</li>
+                        <li>Agentic tools can automate 60-80% of migration work</li>
+                        <li>Huge strategic value: reduce technical debt, improve maintainability</li>
+                    </ul>
+
+                    <p><strong>Success Metrics:</strong></p>
+                    <ul class="checklist">
+                        <li>60%+ reduction in migration time vs. manual estimate</li>
+                        <li>Zero regressions or functional changes</li>
+                        <li>Auto-generated documentation for new code</li>
+                        <li>50%+ reduction in ongoing maintenance effort</li>
+                    </ul>
+
+                    <p><strong>Expected ROI:</strong> Typical module: 2,000 hrs estimated → Save 800 hrs = $80K. Full system: 10 modules = $800K total.</p>
+                </div>
+
+                <div class="card">
+                    <h4>Use Case 5: Test Automation & Coverage</h4>
+                    <p><strong>What to Test:</strong> Use AI to generate unit tests for existing code. Track coverage increase, time to write tests, and bugs caught.</p>
+
+                    <p><strong>Why This Works:</strong></p>
+                    <ul>
+                        <li>Low test coverage is a common problem (many codebases <60%)</li>
+                        <li>Writing tests is tedious—developers often skip it</li>
+                        <li>AI-generated tests can achieve 80%+ coverage quickly</li>
+                    </ul>
+
+                    <p><strong>Success Metrics:</strong></p>
+                    <ul class="checklist">
+                        <li>Increase test coverage from 60% → 80%+ in 2-3 weeks</li>
+                        <li>50%+ reduction in time to write tests</li>
+                        <li>Tests catch 30%+ more bugs before production</li>
+                        <li>Cultural shift: developers write tests proactively</li>
+                    </ul>
+
+                    <p><strong>Expected ROI:</strong> Prevent 6 production bugs/year × $5K avg cost = $30K. Plus 50% faster test writing = $26K. Total: $56K.</p>
+                </div>
+
+                <h3>How to Select the Right Use Case for YOUR Organization</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>If Your Pain Point Is...</th>
+                            <th>Test This Use Case</th>
+                            <th>Expected Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>We can't ship features fast enough to hit revenue targets</td>
+                            <td>Feature Development Acceleration</td>
+                            <td>30-50% faster delivery → Revenue acceleration</td>
+                        </tr>
+                        <tr>
+                            <td>We spend too much time on bug fixes and incidents</td>
+                            <td>Bug Fixes & Debugging</td>
+                            <td>50% faster root cause analysis → Lower MTTR</td>
+                        </tr>
+                        <tr>
+                            <td>Code reviews are a bottleneck (2-3 day turnaround)</td>
+                            <td>Code Review Optimization</td>
+                            <td>50% faster review cycles → Unblock delivery pipeline</td>
+                        </tr>
+                        <tr>
+                            <td>Legacy systems are holding us back but migration is too expensive</td>
+                            <td>Legacy Code Modernization</td>
+                            <td>60% migration time reduction → $800K+ savings</td>
+                        </tr>
+                        <tr>
+                            <td>Test coverage is low and bugs escape to production</td>
+                            <td>Test Automation & Coverage</td>
+                            <td>80%+ coverage in weeks → 30% fewer production bugs</td>
+                        </tr>
+                        <tr>
+                            <td>New developers take 6+ months to ramp up</td>
+                            <td>Developer Onboarding</td>
+                            <td>80% productivity by week 4 vs. week 12 → 66% faster ramp</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="success-box">
+                    <h4>✅ Best Practice: Test Multiple Use Cases in Parallel</h4>
+                    <p>Don't put all your eggs in one basket. Run 2-3 use case pilots simultaneously with different teams. This provides:</p>
+                    <ul>
+                        <li><strong>Broader validation:</strong> Proves value across multiple workflows, not just one niche</li>
+                        <li><strong>Risk mitigation:</strong> If one use case underperforms, you have others to lean on</li>
+                        <li><strong>Stakeholder engagement:</strong> More developers involved = more champions and advocates</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="poc-framework">
+                <h2>Step 4: Execute a Rigorous POC</h2>
+
+                <p>A successful POC is structured, time-boxed, and tied to clear go/no-go criteria. This isn't "let developers play with a new tool"—it's a formal evaluation with measurable outcomes and executive accountability.</p>
+
+                <h3>POC Timeline: 4-Week Structured Evaluation</h3>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Week 0: Pre-POC Setup & Alignment</h4>
+                        <p><strong>Goals:</strong></p>
+                        <ul>
+                            <li>Executive sponsor signs off on POC charter with success criteria</li>
+                            <li>Technical champion selects pilot team (25-50 users) and use cases</li>
+                            <li>Baseline metrics documented (time, quality, satisfaction)</li>
+                        </ul>
+                        <p><strong>Deliverables:</strong></p>
+                        <ul>
+                            <li>POC Charter (1-pager signed by executive sponsor)</li>
+                            <li>Pilot team identified and committed</li>
+                            <li>Baseline data collected (time to complete similar tasks historically)</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Week 1: Onboarding & Training</h4>
+                        <p><strong>Goals:</strong></p>
+                        <ul>
+                            <li>Install tools and get pilot users up and running</li>
+                            <li>Provide training and best practices</li>
+                            <li>Fix blockers quickly (daily check-ins first 3 days)</li>
+                        </ul>
+                        <p><strong>Deliverables:</strong></p>
+                        <ul>
+                            <li>100% of pilot users successfully installed and trained</li>
+                            <li>First tasks completed by each user</li>
+                            <li>Early feedback collected and addressed</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Week 2-3: Active Usage & Data Collection</h4>
+                        <p><strong>Goals:</strong></p>
+                        <ul>
+                            <li>Pilot users working on real projects full-time with the tool</li>
+                            <li>Track metrics daily: time savings, completions, quality</li>
+                            <li>Mid-POC check-in to course-correct if needed</li>
+                        </ul>
+                        <p><strong>Deliverables:</strong></p>
+                        <ul>
+                            <li>Daily usage logs and time tracking data</li>
+                            <li>Weekly surveys on developer satisfaction</li>
+                            <li>Early wins shared with exec sponsor (email updates)</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Week 4: Results Analysis & Business Case</h4>
+                        <p><strong>Goals:</strong></p>
+                        <ul>
+                            <li>Compile all data: quantitative metrics + qualitative feedback</li>
+                            <li>Build ROI model showing projected savings at scale</li>
+                            <li>Create executive presentation (10 slides max)</li>
+                        </ul>
+                        <p><strong>Deliverables:</strong></p>
+                        <ul>
+                            <li>Executive summary (1-pager) with results vs. success criteria</li>
+                            <li>ROI calculator showing 3-year financial impact</li>
+                            <li>User testimonials and quotes</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Week 5: Executive Readout & Decision</h4>
+                        <p><strong>Goals:</strong></p>
+                        <ul>
+                            <li>Present results to executive sponsor and decision committee</li>
+                            <li>Get clear go/no-go decision</li>
+                            <li>If yes: Move to procurement and pilot expansion</li>
+                        </ul>
+                        <p><strong>Deliverables:</strong></p>
+                        <ul>
+                            <li>30-minute executive presentation</li>
+                            <li>Q&A and objection handling</li>
+                            <li>Decision: Approve, reject, or request additional testing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Critical Success Factors for POC Execution</h3>
+
+                <div class="card">
+                    <h4>1. Measure the Right Metrics</h4>
+                    <p><strong>Quantitative Metrics (Required):</strong></p>
+                    <ul>
+                        <li>Time to complete tasks (% reduction vs. baseline)</li>
+                        <li>Code quality (bug rate, test coverage, review cycles)</li>
+                        <li>Adoption rate (% of users actively using weekly)</li>
+                    </ul>
+                    <p><strong>Qualitative Metrics (Important):</strong></p>
+                    <ul>
+                        <li>Developer satisfaction (NPS before/after)</li>
+                        <li>User testimonials and quotes</li>
+                        <li>Pain points and feature requests</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>2. Test on Real Work, Not Toy Examples</h4>
+                    <p><strong>Good:</strong> Team building actual customer-facing feature with hard deadline</p>
+                    <p><strong>Bad:</strong> Developers testing on side projects or contrived examples</p>
+                    <p><strong>Why:</strong> Executives won't be convinced by toy examples. Use real projects with real stakes.</p>
+                </div>
+
+                <div class="card">
+                    <h4>3. Provide Training and Support</h4>
+                    <p>Even the best tools fail if users don't know how to use them effectively.</p>
+                    <ul>
+                        <li><strong>Week 1:</strong> 1-hour live training session covering best practices</li>
+                        <li><strong>Ongoing:</strong> Slack channel for Q&A, daily check-ins first week</li>
+                        <li><strong>Resources:</strong> Best practices guide, example prompts, video tutorials</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>4. Communicate Progress Weekly</h4>
+                    <p><strong>To pilot users:</strong> Weekly surveys + office hours to address issues</p>
+                    <p><strong>To champion:</strong> Weekly 1:1 to review metrics and adjust course</p>
+                    <p><strong>To exec sponsor:</strong> Brief email updates with early wins and key metrics</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Common POC Pitfalls to Avoid</h4>
+                    <ul>
+                        <li><strong>No baseline data:</strong> Can't prove ROI if you don't know performance before POC</li>
+                        <li><strong>Testing edge cases:</strong> Focus on high-volume, high-impact workflows, not rare edge cases</li>
+                        <li><strong>Too short (1 week):</strong> Not enough time for real usage patterns to emerge</li>
+                        <li><strong>Too long (3+ months):</strong> Urgency is lost, people move on, momentum dies</li>
+                        <li><strong>No exec involvement:</strong> Champion presents results to exec who has no context or commitment</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="business-case">
+                <h2>Step 5: Build a Compelling Business Case</h2>
+
+                <p>You've run the POC, collected data, and proven value. Now comes the critical step: translating those results into a business case that executives can't refuse.</p>
+
+                <h3>ROI Model: Show the Money</h3>
+
+                <div class="card" style="background: linear-gradient(135deg, #f7fafc 0%, #fff 100%); border-left: 6px solid #48bb78;">
+                    <h4 style="color: #2f855a; margin-bottom: 20px;">🧮 Interactive ROI Calculator</h4>
+                    <p style="margin-bottom: 30px;">Enter your organization's data to calculate your potential ROI:</p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #2d3748;">Number of Developers</label>
+                            <input type="number" id="numDevelopers" value="4500" min="1" style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1.1em; font-weight: 600;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #2d3748;">Hours Saved per Developer per Week</label>
+                            <input type="number" id="hoursSaved" value="8" min="0" step="0.5" style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1.1em; font-weight: 600;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #2d3748;">Fully-Loaded Cost per Developer per Year ($)</label>
+                            <input type="number" id="devCost" value="150000" min="0" step="1000" style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1.1em; font-weight: 600;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #2d3748;">Tool Cost per Developer per Month ($)</label>
+                            <input type="number" id="toolCost" value="200" min="0" step="50" style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1.1em; font-weight: 600;">
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 30px; border-radius: 12px; border: 3px solid #48bb78; box-shadow: 0 4px 12px rgba(72, 187, 120, 0.15);">
+                        <h4 style="color: #2f855a; margin-bottom: 20px; text-align: center;">📊 Your ROI Results</h4>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                            <div style="text-align: center; padding: 20px; background: #f0fff4; border-radius: 8px;">
+                                <div style="font-size: 0.9em; color: #2f855a; font-weight: 600; margin-bottom: 8px;">ANNUAL SAVINGS</div>
+                                <div id="annualSavings" style="font-size: 2em; font-weight: 700; color: #48bb78;">$5,760,000</div>
+                            </div>
+                            <div style="text-align: center; padding: 20px; background: #fef5e7; border-radius: 8px;">
+                                <div style="font-size: 0.9em; color: #b7791f; font-weight: 600; margin-bottom: 8px;">ANNUAL TOOL COST</div>
+                                <div id="annualCost" style="font-size: 2em; font-weight: 700; color: #d69e2e;">$1,200,000</div>
+                            </div>
+                            <div style="text-align: center; padding: 20px; background: #f0fff4; border-radius: 8px;">
+                                <div style="font-size: 0.9em; color: #2f855a; font-weight: 600; margin-bottom: 8px;">NET SAVINGS (Year 1)</div>
+                                <div id="netSavings" style="font-size: 2em; font-weight: 700; color: #48bb78;">$4,560,000</div>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                            <div style="text-align: center; padding: 20px; background: #ebf8ff; border-radius: 8px;">
+                                <div style="font-size: 0.9em; color: #2c5282; font-weight: 600; margin-bottom: 8px;">ROI PERCENTAGE</div>
+                                <div id="roiPercent" style="font-size: 2em; font-weight: 700; color: #4299e1;">380%</div>
+                            </div>
+                            <div style="text-align: center; padding: 20px; background: #ebf8ff; border-radius: 8px;">
+                                <div style="font-size: 0.9em; color: #2c5282; font-weight: 600; margin-bottom: 8px;">PAYBACK PERIOD</div>
+                                <div id="paybackPeriod" style="font-size: 2em; font-weight: 700; color: #4299e1;">2.5 months</div>
+                            </div>
+                            <div style="text-align: center; padding: 20px; background: #ebf8ff; border-radius: 8px;">
+                                <div style="font-size: 0.9em; color: #2c5282; font-weight: 600; margin-bottom: 8px;">3-YEAR SAVINGS</div>
+                                <div id="threeYearSavings" style="font-size: 2em; font-weight: 700; color: #4299e1;">$13.7M</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f7fafc; border-radius: 8px; border-left: 4px solid #4299e1;">
+                            <p style="margin: 0; font-size: 0.95em; color: #2d3748;">
+                                <strong>Hours saved per developer per year:</strong> <span id="hoursPerDev">384</span> hours<br>
+                                <strong>Cost per developer per hour:</strong> $<span id="hourlyRate">75</span><br>
+                                <strong>Savings per developer per year:</strong> $<span id="savingsPerDev">28,800</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                function formatCurrency(value) {
+                    if (value >= 1000000) {
+                        return '$' + (value / 1000000).toFixed(1) + 'M';
+                    } else if (value >= 1000) {
+                        return '$' + (value / 1000).toFixed(0) + 'K';
+                    }
+                    return '$' + value.toLocaleString('en-US', { maximumFractionDigits: 0 });
+                }
+
+                function formatCurrencyFull(value) {
+                    return '$' + value.toLocaleString('en-US', { maximumFractionDigits: 0 });
+                }
+
+                function calculateROI() {
+                    const numDevelopers = parseInt(document.getElementById('numDevelopers').value) || 0;
+                    const hoursSaved = parseFloat(document.getElementById('hoursSaved').value) || 0;
+                    const devCost = parseInt(document.getElementById('devCost').value) || 0;
+                    const toolCost = parseInt(document.getElementById('toolCost').value) || 0;
+
+                    const hourlyRate = devCost / 2080; // 52 weeks × 40 hours
+                    const hoursPerDevPerYear = hoursSaved * 48; // 48 work weeks
+                    const savingsPerDev = hoursPerDevPerYear * hourlyRate;
+                    const annualSavings = savingsPerDev * numDevelopers;
+                    const annualCost = toolCost * 12 * numDevelopers;
+                    const netSavings = annualSavings - annualCost;
+                    const roiPercent = annualCost > 0 ? ((netSavings / annualCost) * 100) : 0;
+                    const paybackMonths = annualCost > 0 ? (annualCost / (annualSavings / 12)) : 0;
+                    const threeYearSavings = netSavings * 3;
+
+                    document.getElementById('annualSavings').textContent = formatCurrency(annualSavings);
+                    document.getElementById('annualCost').textContent = formatCurrency(annualCost);
+                    document.getElementById('netSavings').textContent = formatCurrency(netSavings);
+                    document.getElementById('roiPercent').textContent = roiPercent.toFixed(0) + '%';
+                    document.getElementById('paybackPeriod').textContent = paybackMonths.toFixed(1) + ' months';
+                    document.getElementById('threeYearSavings').textContent = formatCurrency(threeYearSavings);
+                    document.getElementById('hoursPerDev').textContent = hoursPerDevPerYear.toFixed(0);
+                    document.getElementById('hourlyRate').textContent = hourlyRate.toFixed(0);
+                    document.getElementById('savingsPerDev').textContent = savingsPerDev.toLocaleString('en-US', { maximumFractionDigits: 0 });
+                }
+
+                // Add event listeners
+                document.getElementById('numDevelopers').addEventListener('input', calculateROI);
+                document.getElementById('hoursSaved').addEventListener('input', calculateROI);
+                document.getElementById('devCost').addEventListener('input', calculateROI);
+                document.getElementById('toolCost').addEventListener('input', calculateROI);
+
+                // Initial calculation
+                calculateROI();
+                </script>
+
+                <div class="success-box">
+                    <h4>✅ Additional Benefits (Not Quantified in ROI Model)</h4>
+                    <p>These are harder to quantify but equally important to highlight:</p>
+                    <ul>
+                        <li><strong>Revenue Acceleration:</strong> 30% faster feature delivery → Earlier revenue recognition</li>
+                        <li><strong>Developer Retention:</strong> Eliminate tedious work → Reduce $100K+ replacement costs</li>
+                        <li><strong>Competitive Advantage:</strong> Outpace competitors in innovation velocity</li>
+                        <li><strong>Code Quality:</strong> Fewer production incidents → Lower customer churn</li>
+                        <li><strong>Employer Brand:</strong> Cutting-edge tools → Easier talent recruitment</li>
+                    </ul>
+                </div>
+
+                <h3>Executive Presentation Structure (30 Minutes)</h3>
+
+                <div class="phase-card">
+                    <h4><span class="phase-number">1</span>Slides 1-2: Business Context (3 minutes)</h4>
+                    <ul>
+                        <li>Remind them of the original pain point (slow delivery, quality issues, etc.)</li>
+                        <li>Restate success criteria agreed upon at POC kickoff</li>
+                        <li>Frame as: "We set out to prove X, here's what we found"</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h4><span class="phase-number">2</span>Slides 3-5: POC Results (10 minutes)</h4>
+                    <ul>
+                        <li>Quantitative metrics: Time savings, quality improvements, adoption rate</li>
+                        <li>Qualitative feedback: User quotes, satisfaction scores</li>
+                        <li>Comparison to success criteria: Did we hit our targets? (Spoiler: yes)</li>
+                        <li>Use charts and graphs—executives are visual learners</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h4><span class="phase-number">3</span>Slides 6-7: Scaled Business Case (5 minutes)</h4>
+                    <ul>
+                        <li>ROI model: Show annual savings at full scale (all 200 developers)</li>
+                        <li>Payback period: Emphasize 3-6 month timeframe (fast ROI is compelling)</li>
+                        <li>3-year NPV: $13M+ total savings over 3 years</li>
+                        <li>Comparison to alternatives: What happens if we do nothing? (Cost of inaction)</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h4><span class="phase-number">4</span>Slides 8-9: Risks & Mitigation (5 minutes)</h4>
+                    <ul>
+                        <li><strong>Adoption risk:</strong> "90% of POC users actively using by week 2—low risk"</li>
+                        <li><strong>Security risk:</strong> "Vendor is SOC2 certified, legal cleared, AWS deployment option available"</li>
+                        <li><strong>Vendor risk:</strong> "Company is well-funded, has 500+ enterprise customers"</li>
+                        <li>Be proactive: Address objections before they come up</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h4><span class="phase-number">5</span>Slide 10: Recommendation & Ask (7 minutes)</h4>
+                    <ul>
+                        <li><strong>Clear recommendation:</strong> "We recommend moving forward with 100-user pilot, then full rollout"</li>
+                        <li><strong>Timeline:</strong> "Pilot in Q2, full deployment Q3, ROI positive by Q4"</li>
+                        <li><strong>The ask:</strong> "We need approval to proceed with procurement. Can we get a decision today?"</li>
+                        <li><strong>Q&A:</strong> Prepare for objections (see next section)</li>
+                    </ul>
+                </div>
+
+                <div class="cta-box">
+                    <h3>🎯 Make It Easy to Say Yes</h3>
+                    <p>Executives are busy. Remove friction by doing the work for them:</p>
+                    <ul style="text-align: left; max-width: 800px; margin: 20px auto; color: white;">
+                        <li><strong style="color: white;">Pre-clear legal and security:</strong> Have approvals in hand before the meeting</li>
+                        <li><strong style="color: white;">Standard pricing:</strong> No complex negotiations—standard per-seat pricing is easiest</li>
+                        <li><strong style="color: white;">Phased rollout:</strong> Start with 50-100 users, expand after 90 days (reduces perceived risk)</li>
+                        <li><strong style="color: white;">Exit clause:</strong> Offer quarterly renewal option for first year (low commitment)</li>
+                    </ul>
+                </div>
+
+                <h3>Handling Common Objections</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Objection</th>
+                            <th>Response</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"We need to evaluate other vendors"</td>
+                            <td>"That's reasonable. Can we do a side-by-side POC on the same use cases over 2 weeks? We're confident [Claude Code] will outperform on the criteria you care about."</td>
+                        </tr>
+                        <tr>
+                            <td>"Budget is tight this quarter"</td>
+                            <td>"I understand. Based on our POC, we're losing $110K per week by not having this tool. Payback is 2.5 months. Can we start with 50 users this quarter and scale next quarter?"</td>
+                        </tr>
+                        <tr>
+                            <td>"We're worried about adoption"</td>
+                            <td>"Great point. In our POC, 90% of users were actively using the tool by week 2, with an 8.5/10 satisfaction score. We'll provide onboarding, training, and a dedicated CSM to ensure success."</td>
+                        </tr>
+                        <tr>
+                            <td>"We already have GitHub Copilot"</td>
+                            <td>"Many organizations start with Copilot and upgrade to [Claude Code] for higher accuracy (73% vs. 50% on SWE-bench), autonomous agents, and enterprise security. Would you be open to a 2-week comparison?"</td>
+                        </tr>
+                        <tr>
+                            <td>"We want to build our own solution"</td>
+                            <td>"We've seen companies try this. It typically takes 18-24 months and $2M+ in engineering cost. [Claude Code] delivers results in 30 days. Can we show you the time-to-value difference?"</td>
+                        </tr>
+                        <tr>
+                            <td>"What if the vendor goes out of business?"</td>
+                            <td>"[Vendor] is well-funded (latest funding round, valuation), has 500+ enterprise customers, and offers AWS Bedrock deployment option that runs on your infrastructure."</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="common-pitfalls">
+                <h2>Common Pitfalls to Avoid</h2>
+
+                <div class="warning-box">
+                    <h4>❌ Pitfall #1: Starting POC Without Executive Buy-In</h4>
+                    <p><strong>Symptom:</strong> Engineers test tools, love them, build business case—then exec says "interesting, but not a priority."</p>
+                    <p><strong>Solution:</strong> Get executive sponsor commitment BEFORE POC. Ask: "If we prove 40% productivity improvement, will you approve the budget?" If answer is not a clear yes, don't start.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>❌ Pitfall #2: Undefined Success Criteria</h4>
+                    <p><strong>Symptom:</strong> POC ends, team presents results, exec says "this is interesting but I need to see more."</p>
+                    <p><strong>Solution:</strong> Define clear, measurable criteria upfront and get sign-off. Example: "40% time savings, 80% adoption, 8/10 satisfaction." Document in POC charter.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>❌ Pitfall #3: Testing Toy Examples Instead of Real Work</h4>
+                    <p><strong>Symptom:</strong> POC results look great on simple tasks, but execs don't believe it will work on real code.</p>
+                    <p><strong>Solution:</strong> Test on active projects with real deadlines and real stakes. Use historical baseline for comparison.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>❌ Pitfall #4: Ignoring Security/Legal Until After POC</h4>
+                    <p><strong>Symptom:</strong> POC succeeds, exec approves, then security review takes 6 months and kills momentum.</p>
+                    <p><strong>Solution:</strong> Start security/legal review in parallel with POC. Have approvals in hand before executive readout.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>❌ Pitfall #5: Not Socializing Criteria Across Stakeholders</h4>
+                    <p><strong>Symptom:</strong> Engineering says "success," but CFO says "ROI isn't clear" and CTO says "not a priority."</p>
+                    <p><strong>Solution:</strong> Share evaluation criteria with ALL stakeholders (up and down) before POC. Get alignment on what "success" means.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>❌ Pitfall #6: POC Drags On for 6+ Months</h4>
+                    <p><strong>Symptom:</strong> "Let's test a bit longer" becomes "we've been testing for 9 months and still no decision."</p>
+                    <p><strong>Solution:</strong> Time-box POC to 4 weeks max. Urgency drives adoption. Set hard deadline for executive readout at POC kickoff.</p>
+                </div>
+            </section>
+
+            <section id="final-checklist">
+                <h2>Final Pre-Evaluation Checklist</h2>
+
+                <div class="success-box">
+                    <h3>✅ Before You Start Your Evaluation</h3>
+                    <ul class="checklist">
+                        <li><strong>Executive sponsor identified</strong> (CTO/VP Eng) and committed to kickoff + readout meetings</li>
+                        <li><strong>Success criteria defined</strong> and documented in POC charter (signed by sponsor)</li>
+                        <li><strong>Budget range confirmed</strong> and accessible this fiscal year ($10M-$25M+)</li>
+                        <li><strong>Technical champion assigned</strong> with 20% time allocation and credibility</li>
+                        <li><strong>Pilot team selected</strong> (25-50 users) working on active projects</li>
+                        <li><strong>Use cases chosen</strong> that align with business pain and where AI excels</li>
+                        <li><strong>Baseline metrics collected</strong> (time, quality, satisfaction) for comparison</li>
+                        <li><strong>Security/legal review initiated</strong> in parallel with POC (not after)</li>
+                        <li><strong>Finance briefed</strong> on expected investment and ROI model validated</li>
+                        <li><strong>Decision timeline established</strong> (typically 90 days from kickoff to contract)</li>
+                        <li><strong>Evaluation criteria socialized</strong> up (to execs) and down (to pilot users)</li>
+                        <li><strong>POC timeline set</strong> (4 weeks) with hard deadline for executive readout</li>
+                    </ul>
+                </div>
+
+                <div class="cta-box">
+                    <h3>Ready to Get Started?</h3>
+                    <p>If you've checked all the boxes above, you're ready to run a successful evaluation that will lead to executive buy-in and rapid adoption.</p>
+                    <p style="margin-top: 20px;"><strong>Remember:</strong> The goal isn't just to test tools—it's to build organizational conviction that AI-powered coding is a strategic imperative. With proper stakeholder alignment, rigorous testing, and a compelling business case, you'll secure the buy-in needed to transform your engineering organization.</p>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p style="font-size: 1.2em; margin-bottom: 20px; color: white;"><strong>Questions about evaluating Claude Code?</strong></p>
+            <p style="color: #e2e8f0;">Contact: Dan Hartman (dhartman@anthropic.com)</p>
+            <p style="margin-top: 30px; color: #cbd5e0;">© 2025 Anthropic - How to Evaluate Agentic Coding Platforms</p>
+        </footer>
+    </div>
+</body>
+</html>
