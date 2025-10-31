@@ -403,6 +403,27 @@
             <code>brew install claude</code>
         </div>
 
+        <h3>Windows Installation</h3>
+        <p>Open <strong>PowerShell</strong> (right-click and "Run as Administrator" recommended) and run:</p>
+        <div class="code-block">
+            <code>irm https://api.claude.com/install.ps1 | iex</code>
+        </div>
+
+        <div class="info-box">
+            <strong>Note:</strong> You may need to adjust your PowerShell execution policy. If you encounter an error, run:<br>
+            <code>Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</code><br>
+            Then try the installation command again.
+        </div>
+
+        <div class="warning-box">
+            <strong>Windows-Specific Notes:</strong>
+            <ul style="margin: 10px 0 0 20px;">
+                <li>After installation, close and reopen PowerShell or Command Prompt</li>
+                <li>If using Windows Terminal, restart it to refresh the PATH</li>
+                <li>Some antivirus software may flag the installer - add an exception if needed</li>
+            </ul>
+        </div>
+
         <h3>Verify Installation</h3>
         <div class="code-block">
             <code>claude --version</code>
