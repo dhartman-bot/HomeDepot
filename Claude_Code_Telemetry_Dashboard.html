@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code - Telemetry & Usage Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f6f7;
+            color: #1a1a1a;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .date-range {
+            display: inline-block;
+            background: #e8f4f8;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .metric-card h3 {
+            font-size: 0.9em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .metric-change {
+            font-size: 0.9em;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .metric-change.up {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .metric-change.down {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .chart-card h2 {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .bar-chart {
+            height: 250px;
+            display: flex;
+            align-items: flex-end;
+            gap: 15px;
+            padding: 20px 0;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .bar {
+            flex: 1;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            min-height: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+        }
+
+        .bar-label {
+            text-align: center;
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            font-size: 0.9em;
+            color: #1a1a1a;
+        }
+
+        .usage-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .usage-table th {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #666;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .usage-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .usage-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .user-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .tag.high {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .tag.medium {
+            background: #e8f4f8;
+            color: #004085;
+        }
+
+        .tag.low {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .feature-item .feature-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .feature-item .feature-count {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .alert-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .alert-box h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .alert-box p {
+            color: #856404;
+            margin: 5px 0;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+        }
+
+        .info-note {
+            background: #e8f4f8;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .info-note h3 {
+            color: #004085;
+            margin-bottom: 10px;
+        }
+
+        .info-note ul {
+            margin-left: 20px;
+            color: #004085;
+        }
+
+        .info-note li {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bar-chart {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Claude Code - Usage & Telemetry Dashboard</h1>
+        <div class="subtitle">Organization: Home Depot Engineering</div>
+        <div class="date-range">📅 Last 30 Days (Oct 1 - Oct 31, 2025)</div>
+    </div>
+
+    <div class="alert-box">
+        <h3>⚠️ Budget Alert</h3>
+        <p><strong>Engineering Team A</strong> has exceeded 80% of monthly budget ($8,450 / $10,000)</p>
+        <p>Consider reviewing usage patterns or adjusting budget for next month.</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="metric-card">
+            <h3>Total Active Users</h3>
+            <div class="metric-value">127</div>
+            <span class="metric-change up">↑ 23% from last month</span>
+        </div>
+
+        <div class="metric-card">
+            <h3>Total API Requests</h3>
+            <div class="metric-value">45,283</div>
+            <span class="metric-change up">↑ 18% from last month</span>
+        </div>
+
+        <div class="metric-card">
+            <h3>Total Tokens Used</h3>
+            <div class="metric-value">2.8B</div>
+            <span class="metric-change up">↑ 15% from last month</span>
+        </div>
+
+        <div class="metric-card">
+            <h3>Total Cost (USD)</h3>
+            <div class="metric-value">$42,187</div>
+            <span class="metric-change down">↓ 5% from last month</span>
+        </div>
+    </div>
+
+    <div class="chart-card">
+        <h2>Daily API Requests - Last 7 Days</h2>
+        <div class="bar-chart">
+            <div style="flex-direction: column; display: flex; align-items: center; flex: 1;">
+                <div class="bar" style="height: 65%;">
+                    <span class="bar-value">1,845</span>
+                </div>
+                <div class="bar-label">Oct 25</div>
+            </div>
+            <div style="flex-direction: column; display: flex; align-items: center; flex: 1;">
+                <div class="bar" style="height: 78%;">
+                    <span class="bar-value">2,156</span>
+                </div>
+                <div class="bar-label">Oct 26</div>
+            </div>
+            <div style="flex-direction: column; display: flex; align-items: center; flex: 1;">
+                <div class="bar" style="height: 45%;">
+                    <span class="bar-value">1,234</span>
+                </div>
+                <div class="bar-label">Oct 27</div>
+            </div>
+            <div style="flex-direction: column; display: flex; align-items: center; flex: 1;">
+                <div class="bar" style="height: 85%;">
+                    <span class="bar-value">2,387</span>
+                </div>
+                <div class="bar-label">Oct 28</div>
+            </div>
+            <div style="flex-direction: column; display: flex; align-items: center; flex: 1;">
+                <div class="bar" style="height: 92%;">
+                    <span class="bar-value">2,567</span>
+                </div>
+                <div class="bar-label">Oct 29</div>
+            </div>
+            <div style="flex-direction: column; display: flex; align-items: center; flex: 1;">
+                <div class="bar" style="height: 35%;">
+                    <span class="bar-value">978</span>
+                </div>
+                <div class="bar-label">Oct 30</div>
+            </div>
+            <div style="flex-direction: column; display: flex; align-items: center; flex: 1;">
+                <div class="bar" style="height: 100%;">
+                    <span class="bar-value">2,789</span>
+                </div>
+                <div class="bar-label">Oct 31</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chart-card">
+        <h2>Feature Usage Breakdown</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-name">Code Generation</div>
+                <div class="feature-count">18,542</div>
+                <div style="font-size: 0.8em; color: #666; margin-top: 5px;">41% of requests</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-name">Code Review</div>
+                <div class="feature-count">12,876</div>
+                <div style="font-size: 0.8em; color: #666; margin-top: 5px;">28% of requests</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-name">Debugging</div>
+                <div class="feature-count">8,234</div>
+                <div style="font-size: 0.8em; color: #666; margin-top: 5px;">18% of requests</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-name">Refactoring</div>
+                <div class="feature-count">3,421</div>
+                <div style="font-size: 0.8em; color: #666; margin-top: 5px;">8% of requests</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-name">Documentation</div>
+                <div class="feature-count">1,645</div>
+                <div style="font-size: 0.8em; color: #666; margin-top: 5px;">4% of requests</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-name">Testing</div>
+                <div class="feature-count">565</div>
+                <div style="font-size: 0.8em; color: #666; margin-top: 5px;">1% of requests</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chart-card">
+        <h2>Top Users by Activity - Last 30 Days</h2>
+        <table class="usage-table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Team</th>
+                    <th>Requests</th>
+                    <th>Tokens</th>
+                    <th>Cost</th>
+                    <th>Usage Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="user-badge">
+                            <div class="user-avatar">SM</div>
+                            <span>Sarah Martinez</span>
+                        </div>
+                    </td>
+                    <td>Backend Services</td>
+                    <td>2,847</td>
+                    <td>185.4M</td>
+                    <td>$3,142</td>
+                    <td><span class="tag high">High</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="user-badge">
+                            <div class="user-avatar">JC</div>
+                            <span>James Chen</span>
+                        </div>
+                    </td>
+                    <td>Frontend Platform</td>
+                    <td>2,534</td>
+                    <td>167.2M</td>
+                    <td>$2,876</td>
+                    <td><span class="tag high">High</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="user-badge">
+                            <div class="user-avatar">AP</div>
+                            <span>Anika Patel</span>
+                        </div>
+                    </td>
+                    <td>Infrastructure</td>
+                    <td>1,987</td>
+                    <td>143.8M</td>
+                    <td>$2,234</td>
+                    <td><span class="tag medium">Medium</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="user-badge">
+                            <div class="user-avatar">MJ</div>
+                            <span>Marcus Johnson</span>
+                        </div>
+                    </td>
+                    <td>Mobile Apps</td>
+                    <td>1,756</td>
+                    <td>128.3M</td>
+                    <td>$1,987</td>
+                    <td><span class="tag medium">Medium</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="user-badge">
+                            <div class="user-avatar">EK</div>
+                            <span>Emily Kim</span>
+                        </div>
+                    </td>
+                    <td>Data Engineering</td>
+                    <td>1,432</td>
+                    <td>98.7M</td>
+                    <td>$1,543</td>
+                    <td><span class="tag medium">Medium</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="user-badge">
+                            <div class="user-avatar">RG</div>
+                            <span>Raj Gupta</span>
+                        </div>
+                    </td>
+                    <td>Security</td>
+                    <td>876</td>
+                    <td>62.4M</td>
+                    <td>$987</td>
+                    <td><span class="tag low">Low</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="chart-card">
+        <h2>Cost by Team - Monthly Breakdown</h2>
+        <div style="margin-top: 20px;">
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Backend Services</span>
+                    <span style="font-weight: bold; color: #667eea;">$12,450</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%;"></div>
+                </div>
+                <div style="font-size: 0.85em; color: #666; margin-top: 5px;">85% of $15,000 budget</div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Frontend Platform</span>
+                    <span style="font-weight: bold; color: #667eea;">$9,876</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 70%;"></div>
+                </div>
+                <div style="font-size: 0.85em; color: #666; margin-top: 5px;">70% of $14,000 budget</div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Infrastructure</span>
+                    <span style="font-weight: bold; color: #667eea;">$7,234</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%;"></div>
+                </div>
+                <div style="font-size: 0.85em; color: #666; margin-top: 5px;">60% of $12,000 budget</div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Mobile Apps</span>
+                    <span style="font-weight: bold; color: #667eea;">$6,543</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 55%;"></div>
+                </div>
+                <div style="font-size: 0.85em; color: #666; margin-top: 5px;">55% of $12,000 budget</div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Data Engineering</span>
+                    <span style="font-weight: bold; color: #667eea;">$4,321</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 43%;"></div>
+                </div>
+                <div style="font-size: 0.85em; color: #666; margin-top: 5px;">43% of $10,000 budget</div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Security</span>
+                    <span style="font-weight: bold; color: #667eea;">$1,763</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%;"></div>
+                </div>
+                <div style="font-size: 0.85em; color: #666; margin-top: 5px;">25% of $7,000 budget</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chart-card">
+        <h2>Model Usage Distribution</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+            <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                <div style="font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 10px;">89.3%</div>
+                <div style="font-weight: 600; margin-bottom: 5px;">Claude Sonnet 4.5</div>
+                <div style="font-size: 0.85em; color: #666;">40,432 requests</div>
+            </div>
+            <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                <div style="font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 10px;">8.7%</div>
+                <div style="font-weight: 600; margin-bottom: 5px;">Claude Opus 4.1</div>
+                <div style="font-size: 0.85em; color: #666;">3,941 requests</div>
+            </div>
+            <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                <div style="font-size: 2em; font-weight: bold; color: #667eea; margin-bottom: 10px;">2.0%</div>
+                <div style="font-weight: 600; margin-bottom: 5px;">Claude Haiku 4.5</div>
+                <div style="font-size: 0.85em; color: #666;">910 requests</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chart-card">
+        <h2>Export & Reports</h2>
+        <p style="margin-bottom: 20px; color: #666;">Download detailed usage reports for compliance, billing reconciliation, or executive summaries.</p>
+        <div class="export-buttons">
+            <button class="btn btn-primary">📊 Export to CSV</button>
+            <button class="btn btn-primary">📄 Generate PDF Report</button>
+            <button class="btn btn-secondary">📧 Schedule Monthly Report</button>
+        </div>
+    </div>
+
+    <div class="info-note">
+        <h3>📍 Available via Anthropic Console</h3>
+        <p style="margin-bottom: 10px;"><strong>Access this dashboard at:</strong> console.anthropic.com/organization/usage</p>
+        <p style="margin-bottom: 15px;">Enterprise customers get access to:</p>
+        <ul>
+            <li><strong>Real-time usage tracking</strong> - Monitor API calls, tokens, and costs as they happen</li>
+            <li><strong>Team-level insights</strong> - Break down usage by team, project, or department</li>
+            <li><strong>Budget controls</strong> - Set spending limits and get alerts when thresholds are reached</li>
+            <li><strong>User activity audit</strong> - Track which users are using Claude Code and how</li>
+            <li><strong>Feature analytics</strong> - Understand which Claude Code capabilities deliver the most value</li>
+            <li><strong>Cost optimization</strong> - Identify opportunities to optimize model selection and usage patterns</li>
+            <li><strong>Compliance reporting</strong> - Export detailed logs for security audits and compliance reviews</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; padding: 20px; color: #666; font-size: 0.9em;">
+        <p><strong>Demo Dashboard</strong> - This is a mockup for demonstration purposes</p>
+        <p>Actual telemetry dashboard available at console.anthropic.com for enterprise customers</p>
+        <p style="margin-top: 10px;">Contact: dhartman@anthropic.com</p>
+    </div>
+</body>
+</html>
