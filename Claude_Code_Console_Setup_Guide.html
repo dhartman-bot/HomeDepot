@@ -11,12 +11,17 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #1a1a1a;
             background: #f8f9fa;
             padding: 20px;
+            padding-top: 80px;
         }
 
         .container {
@@ -266,6 +271,241 @@
             font-size: 0.9em;
         }
 
+        /* Progress Indicator */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 10px 20px;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto;
+            gap: 5px;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            padding: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .progress-step.active {
+            background: #c48c4d;
+            color: white;
+        }
+
+        .progress-step.completed {
+            background: #28a745;
+            color: white;
+        }
+
+        /* Code Copy Button */
+        .code-block {
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #c48c4d;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            font-weight: 600;
+            transition: all 0.2s;
+            opacity: 0.8;
+        }
+
+        .copy-btn:hover {
+            opacity: 1;
+            background: #9b6f3e;
+        }
+
+        .copy-btn.copied {
+            background: #28a745;
+        }
+
+        /* OS Tabs */
+        .os-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .os-tab {
+            padding: 10px 20px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.2s;
+        }
+
+        .os-tab.active {
+            color: #c48c4d;
+            border-bottom-color: #c48c4d;
+        }
+
+        .os-tab:hover {
+            color: #c48c4d;
+        }
+
+        .os-content {
+            display: none;
+        }
+
+        .os-content.active {
+            display: block;
+        }
+
+        /* Collapsible Sections */
+        .collapsible-header {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            transition: all 0.2s;
+        }
+
+        .collapsible-header:hover {
+            background: #e9ecef;
+        }
+
+        .collapsible-header h2 {
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .collapsible-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .collapsible-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .collapsible-content.open {
+            max-height: 3000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: #f8f9fa;
+            border-left: 4px solid #c48c4d;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #c48c4d;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc li {
+            margin: 8px 0;
+        }
+
+        .toc a {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .toc a:hover {
+            background: white;
+            color: #c48c4d;
+            padding-left: 15px;
+        }
+
+        .toc .step-number {
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .quick-action-btn {
+            background: #c48c4d;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+
+        .quick-action-btn:hover {
+            background: #9b6f3e;
+            transform: scale(1.1);
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -278,16 +518,87 @@
             .do-dont {
                 grid-template-columns: 1fr;
             }
+
+            .progress-steps {
+                flex-wrap: wrap;
+            }
+
+            .progress-step {
+                font-size: 0.65em;
+                padding: 6px;
+            }
+
+            .os-tabs {
+                flex-wrap: wrap;
+            }
+
+            .os-tab {
+                font-size: 0.9em;
+                padding: 8px 15px;
+            }
+
+            .quick-actions {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .quick-action-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-steps">
+            <div class="progress-step" data-step="1" onclick="scrollToStep(1)">1. Console</div>
+            <div class="progress-step" data-step="2" onclick="scrollToStep(2)">2. API Key</div>
+            <div class="progress-step" data-step="3" onclick="scrollToStep(3)">3. Install</div>
+            <div class="progress-step" data-step="4" onclick="scrollToStep(4)">4. Configure</div>
+            <div class="progress-step" data-step="5" onclick="scrollToStep(5)">5. Verify</div>
+            <div class="progress-step" data-step="6" onclick="scrollToStep(6)">6. Explore</div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <button class="quick-action-btn" onclick="scrollToTop()" title="Back to top">↑</button>
+    </div>
+
     <div class="container">
         <div class="header">
             <h1>Claude Code</h1>
             <div class="subtitle">Console Setup Guide for Pilot Participants</div>
             <div class="time-badge">⏱️ Setup Time: 10-15 minutes</div>
         </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#step1"><span class="step-number">1</span>Access the Anthropic Console</a></li>
+                <li><a href="#step2"><span class="step-number">2</span>Generate Your API Key</a></li>
+                <li><a href="#step3"><span class="step-number">3</span>Install Claude Code</a></li>
+                <li><a href="#step4"><span class="step-number">4</span>Configure Claude Code</a></li>
+                <li><a href="#step5"><span class="step-number">5</span>Verify Your Setup</a></li>
+                <li><a href="#step6"><span class="step-number">6</span>Explore Basic Features</a></li>
+            </ul>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+                <a href="#troubleshooting" style="color: #c48c4d; font-weight: 600;">→ Jump to Troubleshooting</a><br>
+                <a href="#kickoff" style="color: #0066cc; font-weight: 600; margin-top: 8px; display: inline-block;">→ For Pilot Coordinators: Kickoff Guide</a>
+            </div>
+        </div>
+
+        <!-- Collapsible Kickoff Section -->
+        <div class="collapsible-section" id="kickoff">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <h2>For Pilot Coordinators: Making Your Kickoff Successful</h2>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
 
         <h2>Making Your Kickoff Successful</h2>
 
@@ -344,7 +655,11 @@
             <strong>💡 Pro Tip:</strong> Record the kickoff session so participants can reference the demos later.
         </div>
 
-        <h2><span class="step-number">1</span> Access the Anthropic Console</h2>
+            </div>
+        </div>
+        <!-- End Collapsible Kickoff Section -->
+
+        <h2 id="step1"><span class="step-number">1</span> Access the Anthropic Console</h2>
 
         <h3>Create Your Account</h3>
         <ol>
@@ -366,7 +681,7 @@
             <li>Log in to the console</li>
         </ul>
 
-        <h2><span class="step-number">2</span> Generate Your API Key</h2>
+        <h2 id="step2"><span class="step-number">2</span> Generate Your API Key</h2>
 
         <h3>Navigate to API Keys</h3>
         <ol>
@@ -391,43 +706,77 @@
             <code>sk-ant-api03-xxxxx...</code>
         </div>
 
-        <h2><span class="step-number">3</span> Install Claude Code</h2>
+        <h2 id="step3"><span class="step-number">3</span> Install Claude Code</h2>
 
-        <h3>macOS / Linux Installation</h3>
-        <div class="code-block">
-            <code>curl -fsSL https://claude.ai/install.sh | bash</code>
+        <!-- OS Tabs -->
+        <div class="os-tabs">
+            <button class="os-tab active" onclick="switchOS('macos')">macOS</button>
+            <button class="os-tab" onclick="switchOS('linux')">Linux</button>
+            <button class="os-tab" onclick="switchOS('windows')">Windows</button>
         </div>
 
-        <div class="info-box">
-            <strong>Alternative (using Homebrew on macOS/Linux):</strong><br>
-            <code>brew install --cask claude-code</code>
+        <!-- macOS Content -->
+        <div id="macos" class="os-content active">
+            <h3>macOS Installation</h3>
+            <p><strong>Option 1: Using Homebrew</strong> (Recommended)</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code>brew install --cask claude-code</code>
+            </div>
+
+            <p><strong>Option 2: Using curl</strong></p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code>curl -fsSL https://claude.ai/install.sh | bash</code>
+            </div>
         </div>
 
-        <h3>Windows Installation</h3>
+        <!-- Linux Content -->
+        <div id="linux" class="os-content">
+            <h3>Linux Installation</h3>
+            <p><strong>Using curl:</strong></p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code>curl -fsSL https://claude.ai/install.sh | bash</code>
+            </div>
 
-        <p><strong>Option 1: PowerShell</strong> (Recommended - right-click and "Run as Administrator")</p>
-        <div class="code-block">
-            <code>irm https://claude.ai/install.ps1 | iex</code>
+            <p><strong>Alternative (Homebrew on Linux):</strong></p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code>brew install --cask claude-code</code>
+            </div>
         </div>
 
-        <p><strong>Option 2: Command Prompt (CMD)</strong></p>
-        <div class="code-block">
-            <code>curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd</code>
-        </div>
+        <!-- Windows Content -->
+        <div id="windows" class="os-content">
+            <h3>Windows Installation</h3>
 
-        <div class="info-box">
-            <strong>Note:</strong> You may need to adjust your PowerShell execution policy. If you encounter an error, run:<br>
-            <code>Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</code><br>
-            Then try the installation command again.
-        </div>
+            <p><strong>Option 1: PowerShell</strong> (Recommended - right-click and "Run as Administrator")</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code>irm https://claude.ai/install.ps1 | iex</code>
+            </div>
 
-        <div class="warning-box">
-            <strong>Windows-Specific Notes:</strong>
-            <ul style="margin: 10px 0 0 20px;">
-                <li>After installation, close and reopen PowerShell or Command Prompt</li>
-                <li>If using Windows Terminal, restart it to refresh the PATH</li>
-                <li>Some antivirus software may flag the installer - add an exception if needed</li>
-            </ul>
+            <p><strong>Option 2: Command Prompt (CMD)</strong></p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code>curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd</code>
+            </div>
+
+            <div class="info-box">
+                <strong>Note:</strong> You may need to adjust your PowerShell execution policy. If you encounter an error, run:<br>
+                <code>Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</code><br>
+                Then try the installation command again.
+            </div>
+
+            <div class="warning-box">
+                <strong>Windows-Specific Notes:</strong>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li>After installation, close and reopen PowerShell or Command Prompt</li>
+                    <li>If using Windows Terminal, restart it to refresh the PATH</li>
+                    <li>Some antivirus software may flag the installer - add an exception if needed</li>
+                </ul>
+            </div>
         </div>
 
         <h3>Verify Installation</h3>
@@ -440,7 +789,7 @@
             <code>claude --version</code>
         </div>
 
-        <h2><span class="step-number">4</span> Configure Claude Code</h2>
+        <h2 id="step4"><span class="step-number">4</span> Configure Claude Code</h2>
 
         <h3>Set Up Your API Key</h3>
 
@@ -465,7 +814,7 @@ claude</code>
             <strong>Model Selection:</strong> Claude Sonnet 4.5 offers the best balance of performance and capability for coding tasks, with 1M token context window.
         </div>
 
-        <h2><span class="step-number">5</span> Verify Your Setup</h2>
+        <h2 id="step5"><span class="step-number">5</span> Verify Your Setup</h2>
 
         <h3>Test Claude Code</h3>
         <div class="code-block">
@@ -481,7 +830,7 @@ claude</code>
             <code>claude health</code>
         </div>
 
-        <h2><span class="step-number">6</span> Explore Basic Features</h2>
+        <h2 id="step6"><span class="step-number">6</span> Explore Basic Features</h2>
 
         <h3>Try These Commands</h3>
 
@@ -551,7 +900,7 @@ claude "Analyze the structure of this codebase"</code>
             </div>
         </div>
 
-        <h2>Common Issues & Solutions</h2>
+        <h2 id="troubleshooting">Common Issues & Solutions</h2>
 
         <h3>Authentication Failed</h3>
         <p>Re-authenticate by running <code>claude</code> in a new project directory or clearing credentials. Verify you copied the full key including the <code>sk-ant-api03-</code> prefix.</p>
@@ -718,9 +1067,137 @@ curl -fsSL https://claude.ai/install.sh | bash</code>
         </div>
 
         <div class="footer">
-            <p><strong>Last Updated:</strong> October 2025 | <strong>Version:</strong> 1.0</p>
+            <p><strong>Last Updated:</strong> November 2025 | <strong>Version:</strong> 2.0</p>
             <p>Prepared by Anthropic</p>
         </div>
     </div>
+
+    <script>
+        // Copy code to clipboard
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling;
+            const code = codeBlock.textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Switch OS tabs
+        function switchOS(os) {
+            // Hide all OS content
+            document.querySelectorAll('.os-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // Remove active class from all tabs
+            document.querySelectorAll('.os-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Show selected OS content
+            document.getElementById(os).classList.add('active');
+            // Activate selected tab
+            event.target.classList.add('active');
+        }
+
+        // Toggle collapsible sections
+        function toggleCollapsible(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.collapsible-icon');
+
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.classList.remove('open');
+            } else {
+                content.classList.add('open');
+                icon.classList.add('open');
+            }
+        }
+
+        // Scroll to step
+        function scrollToStep(stepNumber) {
+            const element = document.getElementById('step' + stepNumber);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Update progress indicator based on scroll position
+        function updateProgress() {
+            const steps = [1, 2, 3, 4, 5, 6];
+            const windowHeight = window.innerHeight;
+            const scrollPosition = window.scrollY + windowHeight / 2;
+
+            let currentStep = 1;
+
+            steps.forEach(step => {
+                const element = document.getElementById('step' + step);
+                if (element) {
+                    const elementPosition = element.offsetTop;
+                    if (scrollPosition >= elementPosition) {
+                        currentStep = step;
+                    }
+                }
+            });
+
+            // Update progress bar
+            document.querySelectorAll('.progress-step').forEach((progressStep, index) => {
+                const stepNum = index + 1;
+                if (stepNum < currentStep) {
+                    progressStep.classList.add('completed');
+                    progressStep.classList.remove('active');
+                } else if (stepNum === currentStep) {
+                    progressStep.classList.add('active');
+                    progressStep.classList.remove('completed');
+                } else {
+                    progressStep.classList.remove('active', 'completed');
+                }
+            });
+        }
+
+        // Detect user's OS and auto-select tab
+        function detectOS() {
+            const userAgent = window.navigator.userAgent.toLowerCase();
+            const macosPlatforms = /(macintosh|macintel|macppc|mac68k|macos)/i;
+            const windowsPlatforms = /(win32|win64|windows|wince)/i;
+            const linuxPlatforms = /(linux)/i;
+
+            if (macosPlatforms.test(userAgent)) {
+                switchOSAuto('macos');
+            } else if (windowsPlatforms.test(userAgent)) {
+                switchOSAuto('windows');
+            } else if (linuxPlatforms.test(userAgent)) {
+                switchOSAuto('linux');
+            }
+        }
+
+        function switchOSAuto(os) {
+            document.querySelectorAll('.os-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.os-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(os).classList.add('active');
+            document.querySelector(`.os-tab[onclick*="${os}"]`).classList.add('active');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            detectOS();
+            updateProgress();
+        });
+
+        // Update progress on scroll
+        window.addEventListener('scroll', updateProgress);
+    </script>
 </body>
 </html>
