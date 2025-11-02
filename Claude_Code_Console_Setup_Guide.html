@@ -395,18 +395,24 @@
 
         <h3>macOS / Linux Installation</h3>
         <div class="code-block">
-            <code>curl -sSL https://api.claude.com/install.sh | sh</code>
+            <code>curl -fsSL https://claude.ai/install.sh | bash</code>
         </div>
 
         <div class="info-box">
-            <strong>Alternative (using Homebrew on macOS):</strong><br>
-            <code>brew install claude</code>
+            <strong>Alternative (using Homebrew on macOS/Linux):</strong><br>
+            <code>brew install --cask claude-code</code>
         </div>
 
         <h3>Windows Installation</h3>
-        <p>Open <strong>PowerShell</strong> (right-click and "Run as Administrator" recommended) and run:</p>
+
+        <p><strong>Option 1: PowerShell</strong> (Recommended - right-click and "Run as Administrator")</p>
         <div class="code-block">
-            <code>irm https://api.claude.com/install.ps1 | iex</code>
+            <code>irm https://claude.ai/install.ps1 | iex</code>
+        </div>
+
+        <p><strong>Option 2: Command Prompt (CMD)</strong></p>
+        <div class="code-block">
+            <code>curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd</code>
         </div>
 
         <div class="info-box">
@@ -426,21 +432,34 @@
 
         <h3>Verify Installation</h3>
         <div class="code-block">
+            <code>claude doctor</code>
+        </div>
+
+        <p>This will show your installation type and version. You can also use:</p>
+        <div class="code-block">
             <code>claude --version</code>
         </div>
 
         <h2><span class="step-number">4</span> Configure Claude Code</h2>
 
         <h3>Set Up Your API Key</h3>
+
+        <p>Navigate to your project directory and launch Claude Code:</p>
         <div class="code-block">
-            <code>claude config</code>
+            <code>cd /path/to/your/project<br>
+claude</code>
         </div>
 
-        <p>You'll be prompted to:</p>
+        <p>On first launch, you'll be prompted to authenticate. Choose <strong>"Use API Key"</strong> and:</p>
         <ol>
             <li>Enter your API key (paste the key from Step 2)</li>
             <li>Select your preferred model (choose <strong>Claude Sonnet 4.5</strong> - recommended)</li>
         </ol>
+
+        <div class="info-box">
+            <strong>Alternative Authentication Methods:</strong><br>
+            Claude Code also supports authentication via Claude.ai subscription (Pro/Max) or enterprise platforms (AWS Bedrock, Google Vertex AI). For this pilot, use the API key method with your Claude Console credentials.
+        </div>
 
         <div class="info-box">
             <strong>Model Selection:</strong> Claude Sonnet 4.5 offers the best balance of performance and capability for coding tasks, with 1M token context window.
@@ -472,21 +491,40 @@
                 <code>claude</code>
             </div>
 
-            <strong>2. Code Analysis</strong>
+            <strong>2. Get Help Anytime</strong>
+            <div class="code-block">
+                <code>claude<br>
+/help</code>
+            </div>
+            <p>Use <code>/help</code> in interactive mode to see all available commands and shortcuts.</p>
+
+            <strong>3. Code Analysis</strong>
             <div class="code-block">
                 <code>cd /path/to/your/project<br>
 claude "Analyze the structure of this codebase"</code>
             </div>
 
-            <strong>3. Code Generation</strong>
+            <strong>4. Code Generation</strong>
             <div class="code-block">
                 <code>claude "Create a REST API endpoint for user authentication"</code>
             </div>
 
-            <strong>4. Code Modification</strong>
+            <strong>5. Code Modification</strong>
             <div class="code-block">
                 <code>claude "Add error handling to the database connection code"</code>
             </div>
+
+            <strong>6. Resume Previous Conversation</strong>
+            <div class="code-block">
+                <code>claude -c</code>
+            </div>
+            <p>Continue where you left off in your most recent session.</p>
+        </div>
+
+        <h3>Advanced Features</h3>
+
+        <div class="info-box">
+            <strong>Plugins & Skills:</strong> Claude Code supports plugins and skills that extend functionality with custom commands, agents, and integrations. Use <code>/plugin</code> and <code>/skill</code> commands in interactive mode to explore available extensions. These features allow you to customize Claude Code for your specific workflow needs.
         </div>
 
         <h2>Pilot Program Best Practices</h2>
@@ -516,10 +554,11 @@ claude "Analyze the structure of this codebase"</code>
         <h2>Common Issues & Solutions</h2>
 
         <h3>Authentication Failed</h3>
-        <div class="code-block">
-            <code>claude config</code>
+        <p>Re-authenticate by running <code>claude</code> in a new project directory or clearing credentials. Verify you copied the full key including the <code>sk-ant-api03-</code> prefix.</p>
+
+        <div class="info-box">
+            <strong>macOS Keychain Note:</strong> If you see keychain-related errors on macOS, you may need to unlock your keychain. Claude Code securely stores credentials in your system keychain.
         </div>
-        <p>Re-enter your API key. Verify you copied the full key including the <code>sk-ant-api03-</code> prefix.</p>
 
         <h3>Rate Limit Exceeded</h3>
         <p>Contact your pilot program coordinator to increase limits. Check your usage at: <strong>console.anthropic.com/settings/usage</strong></p>
@@ -529,7 +568,18 @@ claude "Analyze the structure of this codebase"</code>
             <code># Restart your terminal, then verify installation<br>
 which claude<br><br>
 # If not found, reinstall:<br>
-curl -sSL https://api.claude.com/install.sh | sh</code>
+curl -fsSL https://claude.ai/install.sh | bash</code>
+        </div>
+
+        <h3>Keeping Claude Code Updated</h3>
+        <p>Claude Code automatically updates by default. To manually check for updates:</p>
+        <div class="code-block">
+            <code>claude update</code>
+        </div>
+
+        <p>To disable auto-updates, set this environment variable in your shell configuration:</p>
+        <div class="code-block">
+            <code>export DISABLE_AUTOUPDATER=1</code>
         </div>
 
         <h2>Understanding Usage & Billing</h2>
