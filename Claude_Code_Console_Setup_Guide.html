@@ -587,7 +587,8 @@
                 <li><a href="#step6"><span class="step-number">6</span>Explore Basic Features</a></li>
             </ul>
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
-                <a href="#troubleshooting" style="color: #c48c4d; font-weight: 600;">→ Jump to Troubleshooting</a><br>
+                <a href="#ide-integration" style="color: #28a745; font-weight: 600;">→ IDE Integration (VS Code / JetBrains)</a><br>
+                <a href="#troubleshooting" style="color: #c48c4d; font-weight: 600; margin-top: 8px; display: inline-block;">→ Jump to Troubleshooting</a><br>
                 <a href="#kickoff" style="color: #0066cc; font-weight: 600; margin-top: 8px; display: inline-block;">→ For Pilot Coordinators: Kickoff Guide</a>
             </div>
         </div>
@@ -876,6 +877,118 @@ claude "Analyze the structure of this codebase"</code>
             <strong>Plugins & Skills:</strong> Claude Code supports plugins and skills that extend functionality with custom commands, agents, and integrations. Use <code>/plugin</code> and <code>/skill</code> commands in interactive mode to explore available extensions. These features allow you to customize Claude Code for your specific workflow needs.
         </div>
 
+        <h2 id="ide-integration">IDE Integration (Optional)</h2>
+
+        <p>Enhance your development workflow by integrating Claude Code directly into your IDE. Choose your preferred environment:</p>
+
+        <!-- IDE Tabs -->
+        <div class="os-tabs">
+            <button class="os-tab active" onclick="switchIDE('vscode')">VS Code</button>
+            <button class="os-tab" onclick="switchIDE('jetbrains')">JetBrains</button>
+        </div>
+
+        <!-- VS Code Integration -->
+        <div id="vscode" class="os-content active">
+            <h3>Visual Studio Code Extension</h3>
+
+            <div class="info-box">
+                <strong>Supported Editors:</strong> VS Code, Cursor, Windsurf, and VSCodium (requires v1.98.0 or higher)
+            </div>
+
+            <h4>Installation Methods</h4>
+
+            <p><strong>Option 1: VS Code Marketplace</strong> (Recommended)</p>
+            <ol>
+                <li>Open VS Code</li>
+                <li>Go to Extensions (Cmd+Shift+X / Ctrl+Shift+X)</li>
+                <li>Search for "Claude Code"</li>
+                <li>Click Install</li>
+            </ol>
+
+            <p><strong>Option 2: Command Palette</strong></p>
+            <ol>
+                <li>Open Command Palette (Cmd+Shift+P / Ctrl+Shift+P)</li>
+                <li>Type "Claude Code: Install Extension"</li>
+                <li>Press Enter</li>
+            </ol>
+
+            <h4>Key Features</h4>
+            <ul class="checklist">
+                <li>Dedicated sidebar panel showing Claude's changes in real-time</li>
+                <li>Review and edit plans before accepting modifications</li>
+                <li>Auto-accept mode for streamlined workflows</li>
+                <li>File management with @-mentions and image attachments</li>
+                <li>Multiple concurrent sessions</li>
+                <li>Keyboard shortcuts (Cmd+Option+K / Alt+Ctrl+K for file references)</li>
+            </ul>
+
+            <h4>Quick Start</h4>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code>claude</code>
+            </div>
+            <p>Running <code>claude</code> from VS Code's integrated terminal automatically activates IDE integration features.</p>
+        </div>
+
+        <!-- JetBrains Integration -->
+        <div id="jetbrains" class="os-content">
+            <h3>JetBrains Plugin</h3>
+
+            <div class="info-box">
+                <strong>Supported IDEs:</strong> IntelliJ IDEA, PyCharm, Android Studio, WebStorm, PhpStorm, GoLand, and more
+            </div>
+
+            <h4>Installation Methods</h4>
+
+            <p><strong>Option 1: JetBrains Marketplace</strong> (Recommended)</p>
+            <ol>
+                <li>Open your JetBrains IDE</li>
+                <li>Go to Settings → Plugins</li>
+                <li>Search for "Claude Code"</li>
+                <li>Click Install</li>
+                <li><strong>Restart your IDE completely</strong></li>
+            </ol>
+
+            <p><strong>Option 2: Auto-Installation</strong></p>
+            <ol>
+                <li>Run <code>claude</code> in the IDE's integrated terminal</li>
+                <li>Plugin will auto-install</li>
+                <li><strong>Restart your IDE completely</strong></li>
+            </ol>
+
+            <h4>Key Features</h4>
+            <ul class="checklist">
+                <li>Quick launch with keyboard shortcuts (Cmd+Esc / Ctrl+Esc)</li>
+                <li>Integrated diff viewing directly in the IDE</li>
+                <li>Selection context sharing (current selection auto-shared)</li>
+                <li>File reference shortcuts (Cmd+Option+K / Alt+Ctrl+K)</li>
+                <li>Diagnostic sharing (lint and syntax errors sent to Claude)</li>
+            </ul>
+
+            <h4>Configuration</h4>
+            <p>Access plugin settings: <strong>Settings → Tools → Claude Code [Beta]</strong></p>
+            <ul>
+                <li>Specify custom Claude command paths</li>
+                <li>Configure ESC key behavior</li>
+                <li>Enable automatic plugin updates</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>WSL Users:</strong> Set custom command as <code>wsl -d Ubuntu -- bash -lic "claude"</code> in plugin settings.
+            </div>
+
+            <h4>Quick Start</h4>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code>claude</code>
+            </div>
+            <p>Running <code>claude</code> from your JetBrains IDE's terminal activates all integration features.</p>
+        </div>
+
+        <div class="success-box">
+            <strong>💡 Pro Tip:</strong> IDE integration provides a more visual workflow with diff viewing and file management. Start with the CLI to learn the basics, then add IDE integration to boost productivity.
+        </div>
+
         <h2>Pilot Program Best Practices</h2>
 
         <div class="do-dont">
@@ -1101,6 +1214,25 @@ curl -fsSL https://claude.ai/install.sh | bash</code>
             document.getElementById(os).classList.add('active');
             // Activate selected tab
             event.target.classList.add('active');
+        }
+
+        // Switch IDE tabs
+        function switchIDE(ide) {
+            // Hide all IDE content sections
+            const ideSection = document.getElementById('ide-integration');
+            if (ideSection) {
+                ideSection.querySelectorAll('.os-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                // Remove active class from IDE tabs only
+                ideSection.querySelectorAll('.os-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                // Show selected IDE content
+                document.getElementById(ide).classList.add('active');
+                // Activate selected tab
+                event.target.classList.add('active');
+            }
         }
 
         // Toggle collapsible sections
