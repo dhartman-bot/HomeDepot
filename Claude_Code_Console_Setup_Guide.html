@@ -785,13 +785,39 @@
 
         <h2 id="step4"><span class="step-number">4</span> Configure Claude Code</h2>
 
-        <div class="info-box">
-            <strong>⚡ Recommended for Shared Console Setup:</strong> Use the environment variable method below to ensure Claude Code uses your provided API key.
+        <h3>Authenticate with Shared Console</h3>
+
+        <p>Launch Claude Code in interactive mode and use the <code>/login</code> command to authenticate:</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code>claude</code>
         </div>
 
-        <h3>Method 1: Environment Variable (Recommended)</h3>
+        <p>Once Claude Code starts, run the login command:</p>
 
-        <p>Set the API key as an environment variable in your shell profile. This ensures Claude Code always uses the shared console API key.</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code>/login</code>
+        </div>
+
+        <p><strong>Select "Console" as your authentication method</strong> when prompted, then:</p>
+        <ol>
+            <li>Paste the API key provided by your coordinator</li>
+            <li>Select <strong>Claude Sonnet 4.5</strong> as your default model</li>
+        </ol>
+
+        <div class="success-box">
+            <strong>✅ That's it!</strong> The <code>/login</code> command guides you through authentication and ensures you're using the Console (API key) method for the shared account.
+        </div>
+
+        <div class="info-box">
+            <strong>Model Selection:</strong> Claude Sonnet 4.5 offers the best balance of performance and capability for coding tasks, with 1M token context window.
+        </div>
+
+        <h3>Alternative: Environment Variable Method</h3>
+
+        <p>If you prefer to set your API key once and have it automatically used, you can set an environment variable:</p>
 
         <!-- OS Tabs for Environment Variable Setup -->
         <div class="os-tabs">
@@ -840,47 +866,6 @@ $env:ANTHROPIC_API_KEY = "sk-ant-api03-xxxxx..."</code>
             <div class="warning-box">
                 <strong>Windows Note:</strong> After setting environment variables, close and reopen your terminal or IDE completely.
             </div>
-        </div>
-
-        <h3>Method 2: Interactive Configuration</h3>
-
-        <p>If you don't see the "Use API Key" option when running Claude Code, you may need to clear existing credentials first:</p>
-
-        <div class="code-block">
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <code># Clear any existing authentication<br>
-claude logout<br><br>
-# Launch Claude Code<br>
-claude</code>
-        </div>
-
-        <p>When prompted, choose <strong>"Use API Key"</strong> and:</p>
-        <ol>
-            <li>Paste the API key provided by your coordinator</li>
-            <li>Select <strong>Claude Sonnet 4.5</strong> as your model</li>
-        </ol>
-
-        <h3>Troubleshooting: "Use API Key" Option Not Appearing</h3>
-
-        <div class="warning-box">
-            <strong>If you don't see the "Use API Key" option:</strong>
-            <ol style="margin: 10px 0 0 20px;">
-                <li><strong>Use Method 1 (Environment Variable)</strong> - This bypasses the interactive prompt entirely</li>
-                <li><strong>OR</strong> manually clear credentials:
-                    <div class="code-block" style="margin-top: 10px;">
-                        <code># macOS/Linux:<br>
-rm -rf ~/.claude/credentials<br><br>
-# Windows:<br>
-del %USERPROFILE%\.claude\credentials</code>
-                    </div>
-                </li>
-                <li>Restart your terminal completely</li>
-                <li>Run <code>claude</code> again</li>
-            </ol>
-        </div>
-
-        <div class="info-box">
-            <strong>Model Selection:</strong> Claude Sonnet 4.5 offers the best balance of performance and capability for coding tasks, with 1M token context window.
         </div>
 
         <h2 id="step5"><span class="step-number">5</span> Verify Your Setup</h2>
@@ -1083,45 +1068,44 @@ claude "Analyze the structure of this codebase"</code>
 
         <h2 id="troubleshooting">Common Issues & Solutions</h2>
 
-        <h3>"Use API Key" Option Not Appearing</h3>
-        <div class="warning-box">
-            <strong>🔧 COMMON ISSUE for Shared Console Setup:</strong> If Claude Code doesn't show the "Use API Key" option during setup, this is usually because it's detecting other authentication methods on your system.
+        <h3>Need to Re-authenticate or Switch Accounts</h3>
+        <div class="info-box">
+            <strong>💡 Quick Solution:</strong> Use the <code>/login</code> command to re-authenticate or switch authentication methods at any time.
         </div>
 
-        <p><strong>Solution:</strong> Use the environment variable method (recommended):</p>
+        <p>If you need to change your authentication or API key:</p>
         <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <code># For macOS/Linux (bash):<br>
-echo 'export ANTHROPIC_API_KEY="your-key-here"' >> ~/.bashrc<br>
-source ~/.bashrc<br><br>
-# For macOS/Linux (zsh):<br>
-echo 'export ANTHROPIC_API_KEY="your-key-here"' >> ~/.zshrc<br>
-source ~/.zshrc<br><br>
-# Then test:<br>
-claude "hello"</code>
-        </div>
-
-        <p><strong>Alternative:</strong> Clear existing credentials and retry:</p>
-        <div class="code-block">
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <code># Clear credentials<br>
-claude logout<br>
-rm -rf ~/.claude/credentials<br><br>
-# Restart terminal completely, then:<br>
-claude</code>
+            <code># Launch Claude Code<br>
+claude<br><br>
+# Run the login command<br>
+/login<br><br>
+# Select "Console" and enter your API key</code>
         </div>
 
         <h3>Authentication Failed or Invalid API Key</h3>
         <p>If you see authentication errors:</p>
-        <ul>
+        <ol>
+            <li>Run <code>claude</code> then <code>/login</code> to re-authenticate</li>
+            <li>Select <strong>"Console"</strong> as the authentication method</li>
             <li>Verify you copied the <strong>full key</strong> including the <code>sk-ant-api03-</code> prefix</li>
-            <li>Check for extra spaces or line breaks when pasting</li>
+            <li>Check for extra spaces or line breaks when pasting the key</li>
             <li>Confirm the key is still valid in the console (not revoked)</li>
-            <li>Try setting via environment variable instead of interactive prompt</li>
-        </ul>
+        </ol>
 
         <div class="info-box">
             <strong>macOS Keychain Note:</strong> If you see keychain-related errors on macOS, you may need to unlock your keychain. Claude Code securely stores credentials in your system keychain.
+        </div>
+
+        <h3>Console Option Not Appearing in /login</h3>
+        <p>If you don't see "Console" as an option when running <code>/login</code>:</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># Clear existing credentials first<br>
+claude logout<br><br>
+# Then try /login again<br>
+claude<br>
+/login</code>
         </div>
 
         <h3>Rate Limit Exceeded</h3>
