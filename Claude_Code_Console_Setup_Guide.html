@@ -554,7 +554,7 @@
     <!-- Progress Bar -->
     <div class="progress-bar">
         <div class="progress-steps">
-            <div class="progress-step" data-step="1" onclick="scrollToStep(1)">1. Console</div>
+            <div class="progress-step" data-step="1" onclick="scrollToStep(1)">1. Setup</div>
             <div class="progress-step" data-step="2" onclick="scrollToStep(2)">2. API Key</div>
             <div class="progress-step" data-step="3" onclick="scrollToStep(3)">3. Install</div>
             <div class="progress-step" data-step="4" onclick="scrollToStep(4)">4. Configure</div>
@@ -579,8 +579,8 @@
         <div class="toc">
             <h3>Quick Navigation</h3>
             <ul>
-                <li><a href="#step1"><span class="step-number">1</span>Access the Anthropic Console</a></li>
-                <li><a href="#step2"><span class="step-number">2</span>Generate Your API Key</a></li>
+                <li><a href="#step1"><span class="step-number">1</span>Shared Console Setup</a></li>
+                <li><a href="#step2"><span class="step-number">2</span>Receive Your API Key</a></li>
                 <li><a href="#step3"><span class="step-number">3</span>Install Claude Code</a></li>
                 <li><a href="#step4"><span class="step-number">4</span>Configure Claude Code</a></li>
                 <li><a href="#step5"><span class="step-number">5</span>Verify Your Setup</a></li>
@@ -660,46 +660,39 @@
         </div>
         <!-- End Collapsible Kickoff Section -->
 
-        <h2 id="step1"><span class="step-number">1</span> Access the Anthropic Console</h2>
+        <h2 id="step1"><span class="step-number">1</span> Shared Console Setup</h2>
 
-        <h3>Create Your Account</h3>
-        <ol>
-            <li>Navigate to <strong>https://console.anthropic.com</strong></li>
-            <li>Click <strong>"Sign Up"</strong> or <strong>"Log In"</strong> if you have an existing account</li>
-            <li>Complete authentication using:
-                <ul>
-                    <li>Email/password</li>
-                    <li>Google SSO</li>
-                    <li>GitHub SSO</li>
-                </ul>
-            </li>
-        </ol>
+        <div class="info-box">
+            <strong>📧 Your pilot program uses a shared console account.</strong> You will receive API keys from your coordinator - no individual account creation needed.
+        </div>
 
-        <h3>Verify Your Account</h3>
-        <ul class="checklist">
-            <li>Check your email for verification link (if using email/password)</li>
-            <li>Click the verification link to activate your account</li>
-            <li>Log in to the console</li>
+        <h3>Console Access (Optional)</h3>
+        <p>While you don't need console access to use Claude Code, you may optionally be provided with shared console credentials to:</p>
+        <ul>
+            <li>Monitor your usage and token consumption</li>
+            <li>View billing and credit information</li>
+            <li>Check API status and rate limits</li>
         </ul>
 
-        <h2 id="step2"><span class="step-number">2</span> Generate Your API Key</h2>
+        <div class="info-box">
+            <strong>Note:</strong> If console credentials are provided, treat them as confidential and follow your organization's security policies.
+        </div>
 
-        <h3>Navigate to API Keys</h3>
-        <ol>
-            <li>Once logged in, click on your profile/settings in the top right</li>
-            <li>Select <strong>"API Keys"</strong> from the navigation menu</li>
-            <li>Click <strong>"Create Key"</strong> or <strong>"New Key"</strong></li>
-        </ol>
+        <h2 id="step2"><span class="step-number">2</span> Receive Your API Key</h2>
 
-        <h3>Create and Secure Your Key</h3>
+        <div class="info-box">
+            <strong>📧 Your API key will be provided to you by your pilot program coordinator.</strong> You do not need to create one yourself.
+        </div>
+
+        <h3>Secure Your Key</h3>
         <ol>
-            <li><strong>Name your key</strong> (e.g., "Claude Code - [Your Name]")</li>
-            <li>Click <strong>"Create Key"</strong></li>
-            <li>Copy the key immediately and store it securely</li>
+            <li>You will receive your API key via secure communication from your coordinator</li>
+            <li><strong>Store it immediately</strong> in a password manager or secure note</li>
+            <li>Keep the key confidential - it's unique to you</li>
         </ol>
 
         <div class="warning-box">
-            <strong>⚠️ CRITICAL:</strong> This key will only be shown once. Store it in a password manager or secure note. Never commit it to version control or share it via email/Slack.
+            <strong>⚠️ CRITICAL:</strong> Treat your API key like a password. Never commit it to version control or share it via email/Slack.
         </div>
 
         <div class="code-block">
@@ -802,7 +795,7 @@ claude</code>
 
         <p>On first launch, you'll be prompted to authenticate. Choose <strong>"Use API Key"</strong> and:</p>
         <ol>
-            <li>Enter your API key (paste the key from Step 2)</li>
+            <li>Enter your API key (paste the key provided by your coordinator)</li>
             <li>Select your preferred model (choose <strong>Claude Sonnet 4.5</strong> - recommended)</li>
         </ol>
 
