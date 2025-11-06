@@ -785,23 +785,98 @@
 
         <h2 id="step4"><span class="step-number">4</span> Configure Claude Code</h2>
 
-        <h3>Set Up Your API Key</h3>
+        <div class="info-box">
+            <strong>⚡ Recommended for Shared Console Setup:</strong> Use the environment variable method below to ensure Claude Code uses your provided API key.
+        </div>
 
-        <p>Navigate to your project directory and launch Claude Code:</p>
+        <h3>Method 1: Environment Variable (Recommended)</h3>
+
+        <p>Set the API key as an environment variable in your shell profile. This ensures Claude Code always uses the shared console API key.</p>
+
+        <!-- OS Tabs for Environment Variable Setup -->
+        <div class="os-tabs">
+            <button class="os-tab active" onclick="switchEnvOS('env-macos')">macOS/Linux</button>
+            <button class="os-tab" onclick="switchEnvOS('env-windows')">Windows</button>
+        </div>
+
+        <!-- macOS/Linux Environment Setup -->
+        <div id="env-macos" class="os-content active">
+            <p><strong>For macOS/Linux (bash):</strong></p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code>echo 'export ANTHROPIC_API_KEY="sk-ant-api03-xxxxx..."' >> ~/.bashrc<br>
+source ~/.bashrc</code>
+            </div>
+
+            <p><strong>For macOS/Linux (zsh):</strong></p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code>echo 'export ANTHROPIC_API_KEY="sk-ant-api03-xxxxx..."' >> ~/.zshrc<br>
+source ~/.zshrc</code>
+            </div>
+
+            <div class="info-box">
+                <strong>Note:</strong> Replace <code>sk-ant-api03-xxxxx...</code> with your actual API key provided by your coordinator.
+            </div>
+        </div>
+
+        <!-- Windows Environment Setup -->
+        <div id="env-windows" class="os-content">
+            <p><strong>For Windows PowerShell:</strong></p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code># Add to your PowerShell profile<br>
+notepad $PROFILE<br><br>
+# Add this line to the file:<br>
+$env:ANTHROPIC_API_KEY = "sk-ant-api03-xxxxx..."</code>
+            </div>
+
+            <p><strong>For Windows Command Prompt:</strong></p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code>setx ANTHROPIC_API_KEY "sk-ant-api03-xxxxx..."</code>
+            </div>
+
+            <div class="warning-box">
+                <strong>Windows Note:</strong> After setting environment variables, close and reopen your terminal or IDE completely.
+            </div>
+        </div>
+
+        <h3>Method 2: Interactive Configuration</h3>
+
+        <p>If you don't see the "Use API Key" option when running Claude Code, you may need to clear existing credentials first:</p>
+
         <div class="code-block">
-            <code>cd /path/to/your/project<br>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># Clear any existing authentication<br>
+claude logout<br><br>
+# Launch Claude Code<br>
 claude</code>
         </div>
 
-        <p>On first launch, you'll be prompted to authenticate. Choose <strong>"Use API Key"</strong> and:</p>
+        <p>When prompted, choose <strong>"Use API Key"</strong> and:</p>
         <ol>
-            <li>Enter your API key (paste the key provided by your coordinator)</li>
-            <li>Select your preferred model (choose <strong>Claude Sonnet 4.5</strong> - recommended)</li>
+            <li>Paste the API key provided by your coordinator</li>
+            <li>Select <strong>Claude Sonnet 4.5</strong> as your model</li>
         </ol>
 
-        <div class="info-box">
-            <strong>Alternative Authentication Methods:</strong><br>
-            Claude Code also supports authentication via Claude.ai subscription (Pro/Max) or enterprise platforms (AWS Bedrock, Google Vertex AI). For this pilot, use the API key method with your Claude Console credentials.
+        <h3>Troubleshooting: "Use API Key" Option Not Appearing</h3>
+
+        <div class="warning-box">
+            <strong>If you don't see the "Use API Key" option:</strong>
+            <ol style="margin: 10px 0 0 20px;">
+                <li><strong>Use Method 1 (Environment Variable)</strong> - This bypasses the interactive prompt entirely</li>
+                <li><strong>OR</strong> manually clear credentials:
+                    <div class="code-block" style="margin-top: 10px;">
+                        <code># macOS/Linux:<br>
+rm -rf ~/.claude/credentials<br><br>
+# Windows:<br>
+del %USERPROFILE%\.claude\credentials</code>
+                    </div>
+                </li>
+                <li>Restart your terminal completely</li>
+                <li>Run <code>claude</code> again</li>
+            </ol>
         </div>
 
         <div class="info-box">
@@ -1008,8 +1083,42 @@ claude "Analyze the structure of this codebase"</code>
 
         <h2 id="troubleshooting">Common Issues & Solutions</h2>
 
-        <h3>Authentication Failed</h3>
-        <p>Re-authenticate by running <code>claude</code> in a new project directory or clearing credentials. Verify you copied the full key including the <code>sk-ant-api03-</code> prefix.</p>
+        <h3>"Use API Key" Option Not Appearing</h3>
+        <div class="warning-box">
+            <strong>🔧 COMMON ISSUE for Shared Console Setup:</strong> If Claude Code doesn't show the "Use API Key" option during setup, this is usually because it's detecting other authentication methods on your system.
+        </div>
+
+        <p><strong>Solution:</strong> Use the environment variable method (recommended):</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># For macOS/Linux (bash):<br>
+echo 'export ANTHROPIC_API_KEY="your-key-here"' >> ~/.bashrc<br>
+source ~/.bashrc<br><br>
+# For macOS/Linux (zsh):<br>
+echo 'export ANTHROPIC_API_KEY="your-key-here"' >> ~/.zshrc<br>
+source ~/.zshrc<br><br>
+# Then test:<br>
+claude "hello"</code>
+        </div>
+
+        <p><strong>Alternative:</strong> Clear existing credentials and retry:</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># Clear credentials<br>
+claude logout<br>
+rm -rf ~/.claude/credentials<br><br>
+# Restart terminal completely, then:<br>
+claude</code>
+        </div>
+
+        <h3>Authentication Failed or Invalid API Key</h3>
+        <p>If you see authentication errors:</p>
+        <ul>
+            <li>Verify you copied the <strong>full key</strong> including the <code>sk-ant-api03-</code> prefix</li>
+            <li>Check for extra spaces or line breaks when pasting</li>
+            <li>Confirm the key is still valid in the console (not revoked)</li>
+            <li>Try setting via environment variable instead of interactive prompt</li>
+        </ul>
 
         <div class="info-box">
             <strong>macOS Keychain Note:</strong> If you see keychain-related errors on macOS, you may need to unlock your keychain. Claude Code securely stores credentials in your system keychain.
@@ -1224,6 +1333,22 @@ curl -fsSL https://claude.ai/install.sh | bash</code>
                 // Show selected IDE content
                 document.getElementById(ide).classList.add('active');
                 // Activate selected tab
+                event.target.classList.add('active');
+            }
+        }
+
+        // Switch Environment Variable OS tabs
+        function switchEnvOS(os) {
+            // Find the parent section containing env tabs
+            const envSection = document.querySelector('[id^="env-"]').parentElement.parentElement;
+            if (envSection) {
+                envSection.querySelectorAll('.os-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                envSection.querySelectorAll('.os-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.getElementById(os).classList.add('active');
                 event.target.classList.add('active');
             }
         }
