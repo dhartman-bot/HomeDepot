@@ -1108,6 +1108,80 @@ claude<br>
 /login</code>
         </div>
 
+        <h3>Environment Variable Not Being Picked Up</h3>
+        <div class="warning-box">
+            <strong>🔧 COMMON ISSUE:</strong> If you set the <code>ANTHROPIC_API_KEY</code> environment variable but Claude Code isn't using it, follow these diagnostic steps.
+        </div>
+
+        <p><strong>Step 1: Verify the variable is actually set</strong></p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># Check if the variable exists:<br>
+echo $ANTHROPIC_API_KEY<br><br>
+# Should display your API key (sk-ant-api03-...)<br>
+# If it shows nothing, the variable is not set in this shell</code>
+        </div>
+
+        <p><strong>Step 2: Identify your shell</strong></p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code>echo $SHELL<br><br>
+# Output examples:<br>
+# /bin/zsh → use ~/.zshrc<br>
+# /bin/bash → use ~/.bashrc</code>
+        </div>
+
+        <p><strong>Step 3: Check the correct profile file</strong></p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># For zsh users:<br>
+cat ~/.zshrc | grep ANTHROPIC_API_KEY<br><br>
+# For bash users:<br>
+cat ~/.bashrc | grep ANTHROPIC_API_KEY<br><br>
+# Should show a line like:<br>
+# export ANTHROPIC_API_KEY="sk-ant-api03-..."</code>
+        </div>
+
+        <p><strong>Step 4: Ensure the variable is exported</strong></p>
+        <div class="info-box">
+            The variable must be <strong>exported</strong> to be available to Claude Code:<br><br>
+            ❌ Wrong: <code>ANTHROPIC_API_KEY="sk-ant-..."</code><br>
+            ✅ Correct: <code>export ANTHROPIC_API_KEY="sk-ant-..."</code>
+        </div>
+
+        <p><strong>Step 5: Reload your shell profile</strong></p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># For zsh:<br>
+source ~/.zshrc<br><br>
+# For bash:<br>
+source ~/.bashrc<br><br>
+# Then verify again:<br>
+echo $ANTHROPIC_API_KEY</code>
+        </div>
+
+        <p><strong>Step 6: If using an IDE (VS Code, JetBrains, etc.)</strong></p>
+        <ul>
+            <li><strong>Completely close and restart your IDE</strong> - not just the terminal window</li>
+            <li>IDEs only load environment variables when they first launch</li>
+            <li>Reloading the terminal within the IDE is not sufficient</li>
+        </ul>
+
+        <p><strong>Step 7: Clear any conflicting credentials</strong></p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># Claude Code may be using cached credentials<br>
+claude logout<br><br>
+# Verify env var is set:<br>
+echo $ANTHROPIC_API_KEY<br><br>
+# Try running Claude Code:<br>
+claude "hello"</code>
+        </div>
+
+        <div class="success-box">
+            <strong>✅ Quick Test:</strong> After setting the environment variable and restarting your terminal/IDE, run <code>echo $ANTHROPIC_API_KEY</code>. If it shows your key, Claude Code should pick it up automatically.
+        </div>
+
         <h3>Rate Limit Exceeded</h3>
         <p>Contact your pilot program coordinator to increase limits. Check your usage at: <strong>console.anthropic.com/settings/usage</strong></p>
 
