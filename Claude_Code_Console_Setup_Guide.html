@@ -1051,6 +1051,54 @@ claude<br><br>
             <strong>macOS Keychain Note:</strong> If you see keychain-related errors on macOS, you may need to unlock your keychain. Claude Code securely stores credentials in your system keychain.
         </div>
 
+        <h3>Unable to Connect to Anthropic Services</h3>
+
+        <div class="warning-box">
+            <strong>🔧 KNOWN ISSUE:</strong> Certificate Chain Errors (SELF_SIGNED_CERT_IN_CHAIN)
+        </div>
+
+        <p><strong>Symptoms:</strong> You see an error message like this when trying to connect:</p>
+
+        <div style="background: #1a1a1a; color: #ff6b6b; padding: 20px; border-radius: 8px; margin: 15px 0; font-family: 'Monaco', 'Courier New', monospace; font-size: 0.9em;">
+            <div style="text-align: center; margin-bottom: 15px;">
+                <pre style="color: #888;">
+    *
+                    *
+         *
+*                               </pre>
+            </div>
+            <p style="margin: 5px 0;">Unable to connect to Anthropic services</p>
+            <p style="margin: 5px 0; color: #ff8888;">Failed to connect to api.anthropic.com: SELF_SIGNED_CERT_IN_CHAIN</p>
+            <p style="margin: 5px 0; color: #ccc;">Please check your internet connection and network settings.</p>
+        </div>
+
+        <p><strong>Common Causes:</strong></p>
+        <ul>
+            <li>Corporate proxy or firewall performing SSL/TLS inspection</li>
+            <li>Network security software intercepting HTTPS traffic</li>
+            <li>Self-signed certificates in your organization's certificate chain</li>
+        </ul>
+
+        <p><strong>Temporary Workaround:</strong></p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code>NODE_TLS_REJECT_UNAUTHORIZED=0 claude</code>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ SECURITY WARNING:</strong> This workaround disables TLS certificate verification and should only be used temporarily in trusted network environments. This makes your connection vulnerable to man-in-the-middle attacks.
+            <br><br>
+            <strong>Recommended:</strong> Contact your IT department to add Anthropic's certificate to your organization's trusted certificate store, or configure your proxy to allow connections to <code>api.anthropic.com</code> and <code>claude.ai</code> without SSL inspection.
+        </div>
+
+        <p><strong>Permanent Solution:</strong></p>
+        <ol>
+            <li><strong>Contact your IT/Network team</strong> to whitelist Anthropic domains (<code>*.anthropic.com</code>, <code>*.claude.ai</code>)</li>
+            <li>Request they exclude these domains from SSL/TLS inspection</li>
+            <li>Alternatively, have them add your organization's root CA certificate to your system's trusted store</li>
+            <li>Once configured properly, you won't need the workaround command</li>
+        </ol>
+
         <h3>Wrong Login Option Selected</h3>
         <p>If you accidentally selected "Anthropic Console account" (Option 2) instead of "Claude account with subscription" (Option 1):</p>
         <div class="code-block">
