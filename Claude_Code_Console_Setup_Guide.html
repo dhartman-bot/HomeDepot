@@ -554,10 +554,10 @@
     <!-- Progress Bar -->
     <div class="progress-bar">
         <div class="progress-steps">
-            <div class="progress-step" data-step="1" onclick="scrollToStep(1)">1. Setup</div>
-            <div class="progress-step" data-step="2" onclick="scrollToStep(2)">2. API Key</div>
+            <div class="progress-step" data-step="1" onclick="scrollToStep(1)">1. Invite</div>
+            <div class="progress-step" data-step="2" onclick="scrollToStep(2)">2. Prerequisites</div>
             <div class="progress-step" data-step="3" onclick="scrollToStep(3)">3. Install</div>
-            <div class="progress-step" data-step="4" onclick="scrollToStep(4)">4. Configure</div>
+            <div class="progress-step" data-step="4" onclick="scrollToStep(4)">4. Authenticate</div>
             <div class="progress-step" data-step="5" onclick="scrollToStep(5)">5. Verify</div>
             <div class="progress-step" data-step="6" onclick="scrollToStep(6)">6. Explore</div>
         </div>
@@ -579,10 +579,10 @@
         <div class="toc">
             <h3>Quick Navigation</h3>
             <ul>
-                <li><a href="#step1"><span class="step-number">1</span>Shared Console Setup</a></li>
-                <li><a href="#step2"><span class="step-number">2</span>Receive Your API Key</a></li>
+                <li><a href="#step1"><span class="step-number">1</span>Accept Organization Invite</a></li>
+                <li><a href="#step2"><span class="step-number">2</span>Prerequisites</a></li>
                 <li><a href="#step3"><span class="step-number">3</span>Install Claude Code</a></li>
-                <li><a href="#step4"><span class="step-number">4</span>Configure Claude Code</a></li>
+                <li><a href="#step4"><span class="step-number">4</span>Configure & Authenticate</a></li>
                 <li><a href="#step5"><span class="step-number">5</span>Verify Your Setup</a></li>
                 <li><a href="#step6"><span class="step-number">6</span>Explore Basic Features</a></li>
             </ul>
@@ -660,44 +660,39 @@
         </div>
         <!-- End Collapsible Kickoff Section -->
 
-        <h2 id="step1"><span class="step-number">1</span> Shared Console Setup</h2>
+        <h2 id="step1"><span class="step-number">1</span> Accept Your Organization Invite</h2>
 
         <div class="info-box">
-            <strong>📧 Your pilot program uses a shared console account.</strong> You will receive API keys from your coordinator - no individual account creation needed.
+            <strong>📧 Your organization's administrator will send you an email invitation.</strong> This invite allows you to create your Claude account and join your organization's team.
         </div>
 
-        <h3>Console Access (Optional)</h3>
-        <p>While you don't need console access to use Claude Code, you may optionally be provided with shared console credentials to:</p>
-        <ul>
-            <li>Monitor your usage and token consumption</li>
-            <li>View billing and credit information</li>
-            <li>Check API status and rate limits</li>
+        <h3>What to Expect</h3>
+        <ol>
+            <li>Check your email for an invitation from your organization's Claude administrator</li>
+            <li>Click the invitation link to create your account</li>
+            <li>Follow the prompts to set up your Claude credentials</li>
+            <li>You'll be automatically added to your organization's team</li>
+        </ol>
+
+        <div class="success-box">
+            <strong>✅ Important:</strong> Complete this step before proceeding with the Claude Code installation. Your account needs to be active to authenticate Claude Code.
+        </div>
+
+        <h2 id="step2"><span class="step-number">2</span> Prerequisites</h2>
+
+        <div class="info-box">
+            <strong>Before installing Claude Code, ensure you have:</strong>
+        </div>
+
+        <ul class="checklist">
+            <li>Accepted and completed your organization's Claude invitation</li>
+            <li>Created your Claude account credentials</li>
+            <li>Command line access on your machine (Terminal, PowerShell, or Command Prompt)</li>
+            <li>Administrator/sudo privileges to install software (if required by your system)</li>
         </ul>
 
         <div class="info-box">
-            <strong>Note:</strong> If console credentials are provided, treat them as confidential and follow your organization's security policies.
-        </div>
-
-        <h2 id="step2"><span class="step-number">2</span> Receive Your API Key</h2>
-
-        <div class="info-box">
-            <strong>📧 Your API key will be provided to you by your pilot program coordinator.</strong> You do not need to create one yourself.
-        </div>
-
-        <h3>Secure Your Key</h3>
-        <ol>
-            <li>You will receive your API key via secure communication from your coordinator</li>
-            <li><strong>Store it immediately</strong> in a password manager or secure note</li>
-            <li>Keep the key confidential - it's unique to you</li>
-        </ol>
-
-        <div class="warning-box">
-            <strong>⚠️ CRITICAL:</strong> Treat your API key like a password. Never commit it to version control or share it via email/Slack.
-        </div>
-
-        <div class="code-block">
-            <strong>Example Key Format:</strong><br>
-            <code>sk-ant-api03-xxxxx...</code>
+            <strong>Note:</strong> You do NOT need to obtain an API key. Claude Code will authenticate using your organization's team account through your browser.
         </div>
 
         <h2 id="step3"><span class="step-number">3</span> Install Claude Code</h2>
@@ -785,87 +780,46 @@
 
         <h2 id="step4"><span class="step-number">4</span> Configure Claude Code</h2>
 
-        <h3>Authenticate with Shared Console</h3>
+        <h3>Accept Your Organization Invite</h3>
 
-        <p>Launch Claude Code in interactive mode and use the <code>/login</code> command to authenticate:</p>
+        <div class="info-box">
+            <strong>📧 Before you begin:</strong> Your organization's administrator will send you an invite to create your Claude account. Check your email and accept the invitation to join your organization's team.
+        </div>
+
+        <h3>Authenticate with Your Claude Account</h3>
+
+        <p>Launch Claude Code from your command line:</p>
 
         <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             <code>claude</code>
         </div>
 
-        <p>Once Claude Code starts, run the login command:</p>
+        <p>When prompted to select a login method, <strong>choose Option 1: Claude account with subscription</strong></p>
 
-        <div class="code-block">
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <code>/login</code>
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #c48c4d;">
+            <h4 style="margin-top: 0;">Login Method Selection:</h4>
+            <p><strong>Select option 1:</strong></p>
+            <div style="font-family: 'Monaco', 'Courier New', monospace; background: #1a1a1a; color: #d4d4d4; padding: 15px; border-radius: 4px; margin: 10px 0;">
+                <span style="color: #4ec9b0;">❯</span> <span style="color: #dcdcaa;">1. Claude account with subscription</span> <span style="color: #6a9955;">· Pro, Max, Team, or Enterprise</span><br>
+                <span style="color: #808080;">&nbsp;&nbsp;2. Anthropic Console account · API usage billing</span>
+            </div>
         </div>
 
-        <p><strong>Select "Console" as your authentication method</strong> when prompted, then:</p>
         <ol>
-            <li>Paste the API key provided by your coordinator</li>
-            <li>Select <strong>Claude Sonnet 4.5</strong> as your default model</li>
+            <li>Select <strong>Option 1: Claude account with subscription</strong></li>
+            <li>Your browser will open to authenticate</li>
+            <li>Log in with the account you created from your organization's invite</li>
+            <li>Authorize Claude Code to access your account</li>
+            <li>Return to your terminal to complete setup</li>
         </ol>
 
         <div class="success-box">
-            <strong>✅ That's it!</strong> The <code>/login</code> command guides you through authentication and ensures you're using the Console (API key) method for the shared account.
+            <strong>✅ That's it!</strong> Claude Code will now use your organization's team account for authentication.
         </div>
 
         <div class="info-box">
-            <strong>Model Selection:</strong> Claude Sonnet 4.5 offers the best balance of performance and capability for coding tasks, with 1M token context window.
-        </div>
-
-        <h3>Alternative: Environment Variable Method</h3>
-
-        <p>If you prefer to set your API key once and have it automatically used, you can set an environment variable:</p>
-
-        <!-- OS Tabs for Environment Variable Setup -->
-        <div class="os-tabs">
-            <button class="os-tab active" onclick="switchEnvOS('env-macos')">macOS/Linux</button>
-            <button class="os-tab" onclick="switchEnvOS('env-windows')">Windows</button>
-        </div>
-
-        <!-- macOS/Linux Environment Setup -->
-        <div id="env-macos" class="os-content active">
-            <p><strong>For macOS/Linux (bash):</strong></p>
-            <div class="code-block">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <code>echo 'export ANTHROPIC_API_KEY="sk-ant-api03-xxxxx..."' >> ~/.bashrc<br>
-source ~/.bashrc</code>
-            </div>
-
-            <p><strong>For macOS/Linux (zsh):</strong></p>
-            <div class="code-block">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <code>echo 'export ANTHROPIC_API_KEY="sk-ant-api03-xxxxx..."' >> ~/.zshrc<br>
-source ~/.zshrc</code>
-            </div>
-
-            <div class="info-box">
-                <strong>Note:</strong> Replace <code>sk-ant-api03-xxxxx...</code> with your actual API key provided by your coordinator.
-            </div>
-        </div>
-
-        <!-- Windows Environment Setup -->
-        <div id="env-windows" class="os-content">
-            <p><strong>For Windows PowerShell:</strong></p>
-            <div class="code-block">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <code># Add to your PowerShell profile<br>
-notepad $PROFILE<br><br>
-# Add this line to the file:<br>
-$env:ANTHROPIC_API_KEY = "sk-ant-api03-xxxxx..."</code>
-            </div>
-
-            <p><strong>For Windows Command Prompt:</strong></p>
-            <div class="code-block">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <code>setx ANTHROPIC_API_KEY "sk-ant-api03-xxxxx..."</code>
-            </div>
-
-            <div class="warning-box">
-                <strong>Windows Note:</strong> After setting environment variables, close and reopen your terminal or IDE completely.
-            </div>
+            <strong>Model Selection:</strong> Your organization's administrator has configured which models are available. Claude Sonnet 4.5 offers the best balance of performance and capability for coding tasks, with 1M token context window.
         </div>
 
         <h2 id="step5"><span class="step-number">5</span> Verify Your Setup</h2>
@@ -1070,117 +1024,55 @@ claude "Analyze the structure of this codebase"</code>
 
         <h3>Need to Re-authenticate or Switch Accounts</h3>
         <div class="info-box">
-            <strong>💡 Quick Solution:</strong> Use the <code>/login</code> command to re-authenticate or switch authentication methods at any time.
+            <strong>💡 Quick Solution:</strong> Run <code>claude logout</code> and then launch <code>claude</code> again to re-authenticate.
         </div>
 
-        <p>If you need to change your authentication or API key:</p>
+        <p>If you need to change your authentication:</p>
         <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <code># Launch Claude Code<br>
+            <code># Logout from current session<br>
+claude logout<br><br>
+# Launch Claude Code again<br>
 claude<br><br>
-# Run the login command<br>
-/login<br><br>
-# Select "Console" and enter your API key</code>
+# Select Option 1 when prompted</code>
         </div>
 
-        <h3>Authentication Failed or Invalid API Key</h3>
-        <p>If you see authentication errors:</p>
+        <h3>Authentication Failed or Browser Not Opening</h3>
+        <p>If you see authentication errors or the browser doesn't open:</p>
         <ol>
-            <li>Run <code>claude</code> then <code>/login</code> to re-authenticate</li>
-            <li>Select <strong>"Console"</strong> as the authentication method</li>
-            <li>Verify you copied the <strong>full key</strong> including the <code>sk-ant-api03-</code> prefix</li>
-            <li>Check for extra spaces or line breaks when pasting the key</li>
-            <li>Confirm the key is still valid in the console (not revoked)</li>
+            <li>Ensure you have accepted your organization's email invitation</li>
+            <li>Verify you created your Claude account successfully</li>
+            <li>Try logging out and back in: <code>claude logout</code> then <code>claude</code></li>
+            <li>Check that your default browser is set correctly</li>
+            <li>If behind a corporate firewall, ensure <code>claude.ai</code> and <code>anthropic.com</code> are accessible</li>
         </ol>
 
         <div class="info-box">
             <strong>macOS Keychain Note:</strong> If you see keychain-related errors on macOS, you may need to unlock your keychain. Claude Code securely stores credentials in your system keychain.
         </div>
 
-        <h3>Console Option Not Appearing in /login</h3>
-        <p>If you don't see "Console" as an option when running <code>/login</code>:</p>
+        <h3>Wrong Login Option Selected</h3>
+        <p>If you accidentally selected "Anthropic Console account" (Option 2) instead of "Claude account with subscription" (Option 1):</p>
         <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <code># Clear existing credentials first<br>
+            <code># Clear credentials and start over<br>
 claude logout<br><br>
-# Then try /login again<br>
-claude<br>
-/login</code>
+# Launch Claude Code again<br>
+claude<br><br>
+# This time, select Option 1: Claude account with subscription</code>
         </div>
 
-        <h3>Environment Variable Not Being Picked Up</h3>
+        <h3>Organization Access Issues</h3>
         <div class="warning-box">
-            <strong>🔧 COMMON ISSUE:</strong> If you set the <code>ANTHROPIC_API_KEY</code> environment variable but Claude Code isn't using it, follow these diagnostic steps.
+            <strong>🔧 COMMON ISSUE:</strong> If Claude Code says you don't have access or don't belong to an organization, verify the following:
         </div>
 
-        <p><strong>Step 1: Verify the variable is actually set</strong></p>
-        <div class="code-block">
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <code># Check if the variable exists:<br>
-echo $ANTHROPIC_API_KEY<br><br>
-# Should display your API key (sk-ant-api03-...)<br>
-# If it shows nothing, the variable is not set in this shell</code>
-        </div>
-
-        <p><strong>Step 2: Identify your shell</strong></p>
-        <div class="code-block">
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <code>echo $SHELL<br><br>
-# Output examples:<br>
-# /bin/zsh → use ~/.zshrc<br>
-# /bin/bash → use ~/.bashrc</code>
-        </div>
-
-        <p><strong>Step 3: Check the correct profile file</strong></p>
-        <div class="code-block">
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <code># For zsh users:<br>
-cat ~/.zshrc | grep ANTHROPIC_API_KEY<br><br>
-# For bash users:<br>
-cat ~/.bashrc | grep ANTHROPIC_API_KEY<br><br>
-# Should show a line like:<br>
-# export ANTHROPIC_API_KEY="sk-ant-api03-..."</code>
-        </div>
-
-        <p><strong>Step 4: Ensure the variable is exported</strong></p>
-        <div class="info-box">
-            The variable must be <strong>exported</strong> to be available to Claude Code:<br><br>
-            ❌ Wrong: <code>ANTHROPIC_API_KEY="sk-ant-..."</code><br>
-            ✅ Correct: <code>export ANTHROPIC_API_KEY="sk-ant-..."</code>
-        </div>
-
-        <p><strong>Step 5: Reload your shell profile</strong></p>
-        <div class="code-block">
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <code># For zsh:<br>
-source ~/.zshrc<br><br>
-# For bash:<br>
-source ~/.bashrc<br><br>
-# Then verify again:<br>
-echo $ANTHROPIC_API_KEY</code>
-        </div>
-
-        <p><strong>Step 6: If using an IDE (VS Code, JetBrains, etc.)</strong></p>
-        <ul>
-            <li><strong>Completely close and restart your IDE</strong> - not just the terminal window</li>
-            <li>IDEs only load environment variables when they first launch</li>
-            <li>Reloading the terminal within the IDE is not sufficient</li>
-        </ul>
-
-        <p><strong>Step 7: Clear any conflicting credentials</strong></p>
-        <div class="code-block">
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <code># Claude Code may be using cached credentials<br>
-claude logout<br><br>
-# Verify env var is set:<br>
-echo $ANTHROPIC_API_KEY<br><br>
-# Try running Claude Code:<br>
-claude "hello"</code>
-        </div>
-
-        <div class="success-box">
-            <strong>✅ Quick Test:</strong> After setting the environment variable and restarting your terminal/IDE, run <code>echo $ANTHROPIC_API_KEY</code>. If it shows your key, Claude Code should pick it up automatically.
-        </div>
+        <ol>
+            <li><strong>Verify you accepted the invite:</strong> Check your email for the organization invitation and ensure you completed the signup process</li>
+            <li><strong>Confirm your account status:</strong> Log in to <code>claude.ai</code> in your browser and verify you see your organization's name</li>
+            <li><strong>Clear cached credentials:</strong> Run <code>claude logout</code> then launch <code>claude</code> again</li>
+            <li><strong>Contact your administrator:</strong> They may need to resend the invitation or verify your account was added successfully</li>
+        </ol>
 
         <h3>Rate Limit Exceeded</h3>
         <p>Contact your pilot program coordinator to increase limits. Check your usage at: <strong>console.anthropic.com/settings/usage</strong></p>
@@ -1204,48 +1096,41 @@ curl -fsSL https://claude.ai/install.sh | bash</code>
             <code>export DISABLE_AUTOUPDATER=1</code>
         </div>
 
-        <h2>Understanding Usage & Billing</h2>
+        <h2>Understanding Usage & Monitoring</h2>
 
-        <h3>Check Your Pilot Credits</h3>
+        <h3>Check Your Usage</h3>
 
         <div class="info-box">
-            <p><strong>As a pilot program participant, you've been provided with credits to get started:</strong></p>
+            <p><strong>As part of your organization's team account, you can monitor your Claude Code usage:</strong></p>
             <ol>
-                <li>Visit <strong>https://console.anthropic.com/settings/billing</strong></li>
-                <li>Look for the <strong>"Credits"</strong> section at the top of the page</li>
-                <li>You'll see:
-                    <ul>
-                        <li><strong>Available Credits:</strong> Your current credit balance (e.g., "$100.00")</li>
-                        <li><strong>Credits Used:</strong> Amount consumed so far</li>
-                        <li><strong>Expiration Date:</strong> When your pilot credits expire</li>
-                    </ul>
-                </li>
+                <li>Log in to <strong>claude.ai</strong> with your credentials</li>
+                <li>Navigate to your organization's dashboard</li>
+                <li>View usage statistics and conversation history</li>
+                <li>Your administrator manages overall team limits and billing</li>
             </ol>
-            <p><strong>Where to find this:</strong><br>
-            Console → Settings (top right) → <strong>Billing</strong> tab → Credits section</p>
         </div>
 
-        <h3>Monitor Your Usage</h3>
-        <ol>
-            <li>Visit <strong>https://console.anthropic.com/settings/usage</strong></li>
-            <li>View your current billing period usage</li>
-            <li>Track API calls, tokens, and costs in real-time</li>
-            <li>See detailed breakdown by model and date</li>
-        </ol>
+        <h3>Usage Best Practices</h3>
+        <ul class="checklist">
+            <li><strong>Use Claude Code for real work:</strong> Focus on tasks that provide value to your projects</li>
+            <li><strong>Be mindful of context size:</strong> Large codebases can consume more tokens</li>
+            <li><strong>Close unused sessions:</strong> Exit Claude Code when not actively using it</li>
+            <li><strong>Report issues:</strong> If you notice unusual usage patterns, contact your administrator</li>
+        </ul>
 
-        <h3>Pricing Reference</h3>
+        <h3>Team Account Benefits</h3>
 
         <div class="metric-card">
-            <h3>Claude Sonnet 4.5 Pricing</h3>
+            <h3>What Your Team Account Includes</h3>
             <p>
-                <strong>Input:</strong> ~$3 per million tokens<br>
-                <strong>Output:</strong> ~$15 per million tokens<br>
-                <strong>Typical developer usage:</strong> $6-10 per day ($180-300/month for active daily use)<br>
-                <strong>Light usage:</strong> $50-100/month for occasional use
+                <strong>Shared usage pool:</strong> All team members share organization resources<br>
+                <strong>Centralized billing:</strong> Your administrator manages payment and limits<br>
+                <strong>Usage visibility:</strong> Track your individual contribution to team usage<br>
+                <strong>Enterprise support:</strong> Access to dedicated support channels
             </p>
         </div>
 
-        <p><strong>Note:</strong> Your pilot program may have different billing arrangements. Check with your coordinator.</p>
+        <p><strong>Note:</strong> Contact your organization's administrator if you have questions about usage limits or billing.</p>
 
         <h2>Next Steps - Week 1 Goals</h2>
 
@@ -1267,19 +1152,20 @@ curl -fsSL https://claude.ai/install.sh | bash</code>
             <div class="do-box">
                 <h4>✅ DO</h4>
                 <ul>
-                    <li>Store keys in password managers</li>
-                    <li>Use separate keys for different environments</li>
-                    <li>Rotate keys periodically</li>
-                    <li>Revoke unused keys immediately</li>
+                    <li>Keep your Claude credentials secure and private</li>
+                    <li>Log out from shared or public computers</li>
+                    <li>Use strong, unique passwords for your Claude account</li>
+                    <li>Report suspicious activity to your administrator</li>
+                    <li>Follow your organization's security policies</li>
                 </ul>
             </div>
             <div class="dont-box">
                 <h4>❌ NEVER</h4>
                 <ul>
-                    <li>Commit keys to Git repositories</li>
-                    <li>Share keys via email/Slack</li>
-                    <li>Hardcode keys in scripts</li>
-                    <li>Use production keys for testing</li>
+                    <li>Share your Claude account credentials with others</li>
+                    <li>Use Claude Code on untrusted or public computers</li>
+                    <li>Share sensitive company code without proper review</li>
+                    <li>Bypass your organization's security controls</li>
                 </ul>
             </div>
         </div>
