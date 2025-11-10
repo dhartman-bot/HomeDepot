@@ -1424,6 +1424,63 @@ $env:HTTPS_PROXY="http://proxy.company.com:8080"<br><br>
             </ol>
         </div>
 
+        <div style="background: #e8f4f8; border: 3px solid #0066cc; padding: 25px; border-radius: 8px; margin: 20px 0;">
+            <h4 style="margin-top: 0; color: #004085; font-size: 1.3em;">🏠 Home Depot-Specific Solution</h4>
+            <p style="color: #004085; font-weight: 600; margin: 10px 0;">
+                Home Depot has already deployed custom CA certificates to handle corporate SSL/TLS inspection. Configure Claude Code to use these certificates:
+            </p>
+
+            <p style="color: #004085; margin: 15px 0 10px 0;"><strong>Add these environment variables to your shell configuration:</strong></p>
+
+            <p style="color: #004085; margin: 10px 0;"><strong>macOS/Linux (add to ~/.zshrc or ~/.bashrc):</strong></p>
+            <div class="code-block" style="margin: 10px 0;">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code># Home Depot certificate bundle<br>
+export REQUESTS_CA_BUNDLE=/usr/local/munki/thd_certs.pem<br>
+export NODE_EXTRA_CA_CERTS=/usr/local/munki/thd_certs.pem</code>
+            </div>
+
+            <p style="color: #004085; margin: 15px 0 10px 0;"><strong>Windows PowerShell (add to $PROFILE):</strong></p>
+            <div class="code-block" style="margin: 10px 0;">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <code># Home Depot certificate bundle<br>
+$env:REQUESTS_CA_BUNDLE="C:\ProgramData\munki\thd_certs.pem"<br>
+$env:NODE_EXTRA_CA_CERTS="C:\ProgramData\munki\thd_certs.pem"<br><br>
+# Or set permanently (run as Administrator):<br>
+[System.Environment]::SetEnvironmentVariable("REQUESTS_CA_BUNDLE", "C:\ProgramData\munki\thd_certs.pem", "User")<br>
+[System.Environment]::SetEnvironmentVariable("NODE_EXTRA_CA_CERTS", "C:\ProgramData\munki\thd_certs.pem", "User")</code>
+            </div>
+
+            <p style="color: #004085; margin: 15px 0 10px 0;"><strong>What these do:</strong></p>
+            <ul style="color: #004085;">
+                <li><code>REQUESTS_CA_BUNDLE</code> - Used by Python-based tools (including parts of Claude Code) to trust Home Depot's certificates</li>
+                <li><code>NODE_EXTRA_CA_CERTS</code> - Used by Node.js (Claude Code's runtime) to trust Home Depot's certificates</li>
+            </ul>
+
+            <p style="color: #004085; margin: 15px 0 10px 0; font-weight: 600;"><strong>After adding:</strong></p>
+            <ol style="color: #004085;">
+                <li>Close and reopen your terminal/PowerShell</li>
+                <li>Verify the variables are set:
+                    <div class="code-block" style="margin: 10px 0;">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <code># macOS/Linux:<br>
+echo $REQUESTS_CA_BUNDLE<br>
+echo $NODE_EXTRA_CA_CERTS<br><br>
+# Windows PowerShell:<br>
+$env:REQUESTS_CA_BUNDLE<br>
+$env:NODE_EXTRA_CA_CERTS</code>
+                    </div>
+                </li>
+                <li>Test Claude Code: <code>claude "test connection"</code></li>
+            </ol>
+
+            <div style="background: rgba(0,102,204,0.1); padding: 15px; border-radius: 6px; margin: 15px 0;">
+                <p style="color: #004085; margin: 0; font-weight: 600;">
+                    ✅ <strong>This is the secure, proper solution</strong> that allows Claude Code to work with Home Depot's SSL/TLS inspection without disabling certificate verification.
+                </p>
+            </div>
+        </div>
+
         <div style="background: #f8d7da; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #dc3545;">
             <h4 style="margin-top: 0; color: #721c24;">⚠️ Do NOT Use Insecure Workarounds</h4>
             <p style="color: #721c24; margin: 10px 0; font-weight: 600;">
