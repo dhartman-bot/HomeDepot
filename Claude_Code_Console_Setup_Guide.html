@@ -814,6 +814,10 @@
             <li>Return to your terminal to complete setup</li>
         </ol>
 
+        <div class="warning-box">
+            <strong>⚠️ IMPORTANT - Organization Picker:</strong> If you have both a personal Claude.ai account AND access to Home Depot's Console organization, you will see an <strong>organization picker</strong> in the browser. You MUST select <strong>"Home Depot"</strong> or the work organization - NOT your personal account. <a href="#troubleshooting" style="color: #856404; text-decoration: underline;">See troubleshooting section</a> if you select the wrong organization.
+        </div>
+
         <div class="success-box">
             <strong>✅ That's it!</strong> Claude Code will now use your organization's team account for authentication.
         </div>
@@ -824,8 +828,21 @@
 
         <h2 id="step5"><span class="step-number">5</span> Verify Your Setup</h2>
 
+        <h3>Verify Your Organization</h3>
+        <p><strong>First, confirm you're authenticated to the correct organization:</strong></p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code>claude<br>
+/status</code>
+        </div>
+
+        <div class="success-box">
+            <strong>✅ Expected Result:</strong> You should see "Home Depot" or your Console organization name. If it shows your personal account instead, see the <a href="#troubleshooting" style="color: #155724; text-decoration: underline;">Organization Picker troubleshooting section</a>.
+        </div>
+
         <h3>Test Claude Code</h3>
         <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             <code>claude "Create a simple hello world Python script"</code>
         </div>
 
@@ -835,6 +852,7 @@
 
         <h3>Quick Health Check</h3>
         <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             <code>claude health</code>
         </div>
 
@@ -1049,6 +1067,65 @@ claude<br><br>
 
         <div class="info-box">
             <strong>macOS Keychain Note:</strong> If you see keychain-related errors on macOS, you may need to unlock your keychain. Claude Code securely stores credentials in your system keychain.
+        </div>
+
+        <h3>Organization Picker - Selecting the Correct Organization</h3>
+
+        <div class="warning-box">
+            <strong>🔧 CRITICAL ISSUE:</strong> Users with both personal Claude.ai accounts AND Console organization access must select the correct organization during authentication.
+        </div>
+
+        <p><strong>The Problem:</strong></p>
+        <p>When you run <code>claude login</code>, the browser opens and displays an <strong>organization picker</strong> showing multiple organizations. Users often instinctively select their personal Claude account (the one they use regularly) instead of the Home Depot Console organization.</p>
+
+        <div style="background: #fff3cd; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107;">
+            <h4 style="margin-top: 0; color: #856404;">⚠️ Critical Step During Login</h4>
+            <p style="margin: 10px 0;"><strong>When the browser opens during authentication:</strong></p>
+            <ul style="margin: 10px 0 10px 20px;">
+                <li>You will see an <strong>organization picker</strong> with multiple options</li>
+                <li>You MUST select <strong>"Home Depot"</strong> or your <strong>work/Console organization</strong></li>
+                <li><strong>DO NOT select your personal Claude account</strong> (even if you use it regularly)</li>
+                <li>Look carefully - the organizations may have similar names</li>
+            </ul>
+        </div>
+
+        <p><strong>If you've already authenticated to the wrong organization:</strong></p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># Step 1: Logout completely<br>
+claude logout<br><br>
+# Step 2: Clear cached authentication<br>
+rm -rf ~/.config/claude-code/auth.json<br><br>
+# Step 3: Login again<br>
+claude login<br><br>
+# Step 4: When browser opens, SELECT THE HOME DEPOT ORGANIZATION<br>
+# (not your personal account)<br><br>
+# Step 5: Verify correct authentication<br>
+claude<br>
+/status</code>
+        </div>
+
+        <p><strong>How to verify you're authenticated to the correct organization:</strong></p>
+        <ol>
+            <li>Run <code>claude</code> to start interactive mode</li>
+            <li>Type <code>/status</code> to see authentication details</li>
+            <li>Verify it shows "Home Depot" or your Console organization name</li>
+            <li>If it shows your personal account, repeat the logout/login process</li>
+        </ol>
+
+        <div class="success-box">
+            <strong>✅ Common Mistakes to Avoid:</strong>
+            <ul style="margin: 10px 0 0 20px;">
+                <li>Clicking on personal account out of habit</li>
+                <li>Not realizing there are multiple organizations to choose from</li>
+                <li>Completing authentication successfully, but to the wrong organization</li>
+                <li>Not verifying which organization you're connected to after login</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <strong>💡 Pro Tip:</strong> If you frequently switch between personal and work accounts, consider using different email addresses for each to avoid confusion during authentication.
         </div>
 
         <h3>Wrong Login Option Selected</h3>
