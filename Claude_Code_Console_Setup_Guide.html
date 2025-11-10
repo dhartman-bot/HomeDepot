@@ -579,6 +579,27 @@
             <div class="time-badge">⏱️ Setup Time: 10-15 minutes</div>
         </div>
 
+        <!-- Critical Prerequisites Warning -->
+        <div style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); color: white; padding: 30px; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 12px rgba(220,53,69,0.3);">
+            <h2 style="color: white; border: none; margin: 0 0 15px 0; font-size: 1.8em;">⚠️ BEFORE YOU BEGIN</h2>
+            <p style="font-size: 1.2em; font-weight: 600; margin: 15px 0;">
+                Step 1 is NOT optional - you MUST accept your organization's email invitation first!
+            </p>
+            <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p style="margin: 10px 0; font-size: 1.05em;">
+                    <strong>✋ If you skip the organization invite acceptance:</strong>
+                </p>
+                <ul style="margin: 10px 0 10px 30px; font-size: 1.05em;">
+                    <li>You will see a billing page asking you to purchase a subscription ($150/month)</li>
+                    <li>You will NOT have access to your organization's account</li>
+                    <li>You will need to uninstall and start over from scratch</li>
+                </ul>
+            </div>
+            <p style="font-size: 1.1em; margin: 15px 0 0 0;">
+                👉 <strong>Go to <a href="#step1" style="color: #fff; text-decoration: underline;">Step 1</a> and complete it BEFORE installing anything.</strong>
+            </p>
+        </div>
+
         <!-- Table of Contents -->
         <div class="toc">
             <h3>Quick Navigation</h3>
@@ -611,10 +632,26 @@
 
         <h3>Before the Kickoff</h3>
 
+        <div style="background: #f8d7da; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #dc3545;">
+            <h4 style="margin-top: 0; color: #721c24;">⚠️ CRITICAL: Send Invitations FIRST</h4>
+            <p style="color: #721c24; font-weight: 600; margin: 10px 0;">
+                Before your team starts ANY setup steps, ensure ALL participants have:
+            </p>
+            <ul style="color: #721c24;">
+                <li><strong>Received organization invitation emails</strong></li>
+                <li><strong>Accepted the invitation and created their Claude accounts</strong></li>
+                <li><strong>Verified they can log in to claude.ai and see your organization name</strong></li>
+            </ul>
+            <p style="color: #721c24; margin: 15px 0 0 0; font-weight: 600;">
+                🚨 Common failure mode: Users install Claude Code BEFORE accepting invites, then see a billing page and get confused.
+            </p>
+        </div>
+
         <div style="background: #d4edda; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #28a745;">
-            <h4 style="margin-top: 0; color: #155724;">1. Everyone Installs Claude Code (Complete Steps 1-5 Below)</h4>
+            <h4 style="margin-top: 0; color: #155724;">1. Everyone Completes Setup (Steps 1-5 Below)</h4>
             <ul>
-                <li>Have all participants complete the installation and setup <strong>before</strong> the kickoff meeting</li>
+                <li>Send invitations at least <strong>48 hours before</strong> the kickoff</li>
+                <li>Have all participants complete the full installation and setup <strong>before</strong> the kickoff meeting</li>
                 <li>This ensures the kickoff focuses on usage, not troubleshooting installations</li>
                 <li><strong>Target:</strong> 100% of participants have Claude Code working by kickoff time</li>
             </ul>
@@ -666,20 +703,58 @@
 
         <h2 id="step1"><span class="step-number">1</span> Accept Your Organization Invite</h2>
 
-        <div class="info-box">
-            <strong>📧 Your organization's administrator will send you an email invitation.</strong> This invite allows you to create your Claude account and join your organization's team.
+        <div style="background: #f8d7da; border: 3px solid #dc3545; padding: 25px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #721c24; margin-top: 0; font-size: 1.5em;">⛔ STOP - DO NOT SKIP THIS STEP</h3>
+            <p style="color: #721c24; font-size: 1.1em; font-weight: 600; margin: 15px 0;">
+                You MUST accept your organization's email invitation and create your Claude account BEFORE installing Claude Code.
+            </p>
+            <p style="color: #721c24; margin: 10px 0;">
+                <strong>❌ If you skip this step, you will:</strong>
+            </p>
+            <ul style="color: #721c24; margin: 10px 0 10px 30px;">
+                <li>See a billing/payment page asking you to purchase a subscription</li>
+                <li>Not have access to Home Depot's organizational account</li>
+                <li>Be unable to authenticate Claude Code correctly</li>
+                <li>Need to restart the entire setup process</li>
+            </ul>
         </div>
 
-        <h3>What to Expect</h3>
+        <div class="info-box">
+            <strong>📧 What You're Looking For:</strong> Your organization's administrator will send you an email invitation from Anthropic/Claude. The email will have a subject line like <strong>"You've been invited to join [Organization Name] on Claude"</strong> or similar.
+        </div>
+
+        <h3>Step-by-Step: Accept Your Invite</h3>
         <ol>
-            <li>Check your email for an invitation from your organization's Claude administrator</li>
-            <li>Click the invitation link to create your account</li>
-            <li>Follow the prompts to set up your Claude credentials</li>
-            <li>You'll be automatically added to your organization's team</li>
+            <li><strong>Check your email inbox</strong> (and spam/junk folder) for the invitation from your organization's Claude administrator</li>
+            <li><strong>Click the invitation link</strong> in the email - this will open your browser</li>
+            <li><strong>Create your Claude account:</strong>
+                <ul>
+                    <li>Enter your name and password</li>
+                    <li>Complete any verification steps</li>
+                    <li>Accept the terms of service</li>
+                </ul>
+            </li>
+            <li><strong>Verify you see your organization's name</strong> (e.g., "Home Depot") in the Claude interface</li>
+            <li><strong>You'll be automatically added</strong> to your organization's team</li>
         </ol>
 
+        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h4 style="margin-top: 0; color: #856404;">✋ CHECKPOINT: Verify Before Proceeding</h4>
+            <p style="color: #856404; margin: 10px 0;"><strong>Before moving to Step 2, confirm ALL of these:</strong></p>
+            <ul style="color: #856404; margin: 10px 0 10px 30px;">
+                <li>✅ I received and opened the organization invitation email</li>
+                <li>✅ I clicked the invitation link and completed account creation</li>
+                <li>✅ I can log in to <strong>claude.ai</strong> in my browser</li>
+                <li>✅ I see my organization's name (Home Depot) when logged into claude.ai</li>
+                <li>✅ I did NOT see a billing/payment page</li>
+            </ul>
+            <p style="color: #856404; margin: 15px 0 0 0; font-weight: 600;">
+                ⚠️ If you cannot check all these boxes, STOP and contact your administrator. Do NOT proceed to installation.
+            </p>
+        </div>
+
         <div class="success-box">
-            <strong>✅ Important:</strong> Complete this step before proceeding with the Claude Code installation. Your account needs to be active to authenticate Claude Code.
+            <strong>✅ Success!</strong> Once you can log in to claude.ai and see your organization name, you're ready to install Claude Code.
         </div>
 
         <h2 id="step2"><span class="step-number">2</span> Prerequisites</h2>
@@ -1043,6 +1118,47 @@ claude "Analyze the structure of this codebase"</code>
         </div>
 
         <h2 id="troubleshooting">Common Issues & Solutions</h2>
+
+        <h3>🚨 I See a Billing Page Asking Me to Pay $150/Month</h3>
+
+        <div style="background: #f8d7da; border: 3px solid #dc3545; padding: 25px; border-radius: 8px; margin: 20px 0;">
+            <h4 style="color: #721c24; margin-top: 0; font-size: 1.3em;">This means you did NOT accept your organization invite before installing</h4>
+            <p style="color: #721c24; font-size: 1.05em; margin: 15px 0;">
+                <strong>Why this happened:</strong> You installed and authenticated Claude Code without first accepting your organization's email invitation. Claude Code thinks you're a personal user trying to buy a subscription.
+            </p>
+        </div>
+
+        <p><strong>How to fix this (complete reset required):</strong></p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># Step 1: Logout and clear authentication<br>
+claude logout<br>
+rm -rf ~/.config/claude-code/auth.json<br><br>
+# Step 2: Close your browser and clear claude.ai cookies<br>
+# (or use an incognito/private window for next steps)<br><br>
+# Step 3: Check your email for the organization invitation<br>
+# Look for: "You've been invited to join [Organization] on Claude"<br>
+# Click the link and complete account creation<br><br>
+# Step 4: Verify you can log in to claude.ai<br>
+# Make sure you see your organization name (Home Depot)<br>
+# NOT a billing/payment page<br><br>
+# Step 5: Now authenticate Claude Code<br>
+claude login<br>
+# Select Option 1: Claude account with subscription<br>
+# In browser, SELECT YOUR ORGANIZATION (not personal account)<br><br>
+# Step 6: Verify<br>
+claude<br>
+/status</code>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ Critical:</strong> Do NOT proceed with payment. Contact your administrator if you haven't received an organization invitation email. Check your spam/junk folder first.
+        </div>
+
+        <div class="info-box">
+            <strong>Prevention for next time:</strong> Always complete <a href="#step1" style="color: #004085; text-decoration: underline;">Step 1 (Accept Organization Invite)</a> BEFORE installing Claude Code.
+        </div>
 
         <h3>Need to Re-authenticate or Switch Accounts</h3>
         <div class="info-box">
