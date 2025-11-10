@@ -874,27 +874,28 @@
             <code>claude</code>
         </div>
 
-        <p>When prompted to select a login method, <strong>choose Option 1: Claude account with subscription</strong></p>
+        <p>When prompted to select a login method, <strong>choose Option 2: Anthropic Console account</strong></p>
 
         <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #c48c4d;">
             <h4 style="margin-top: 0;">Login Method Selection:</h4>
-            <p><strong>Select option 1:</strong></p>
+            <p><strong>Select option 2:</strong></p>
             <div style="font-family: 'Monaco', 'Courier New', monospace; background: #1a1a1a; color: #d4d4d4; padding: 15px; border-radius: 4px; margin: 10px 0;">
-                <span style="color: #4ec9b0;">❯</span> <span style="color: #dcdcaa;">1. Claude account with subscription</span> <span style="color: #6a9955;">· Pro, Max, Team, or Enterprise</span><br>
-                <span style="color: #808080;">&nbsp;&nbsp;2. Anthropic Console account · API usage billing</span>
+                <span style="color: #808080;">&nbsp;&nbsp;1. Claude account with subscription</span> <span style="color: #6a9955;">· Pro, Max, Team, or Enterprise</span><br>
+                <span style="color: #4ec9b0;">❯</span> <span style="color: #dcdcaa;">2. Anthropic Console account · API usage billing</span>
             </div>
         </div>
 
         <ol>
-            <li>Select <strong>Option 1: Claude account with subscription</strong></li>
+            <li>Select <strong>Option 2: Anthropic Console account</strong> (this is for enterprise/organizational access)</li>
             <li>Your browser will open to authenticate</li>
             <li>Log in with the account you created from your organization's invite</li>
+            <li>Select your organization (Home Depot) when prompted</li>
             <li>Authorize Claude Code to access your account</li>
             <li>Return to your terminal to complete setup</li>
         </ol>
 
         <div class="warning-box">
-            <strong>⚠️ IMPORTANT - Organization Picker:</strong> If you have both a personal Claude.ai account AND access to Home Depot's Console organization, you will see an <strong>organization picker</strong> in the browser. You MUST select <strong>"Home Depot"</strong> or the work organization - NOT your personal account. <a href="#troubleshooting" style="color: #856404; text-decoration: underline;">See troubleshooting section</a> if you select the wrong organization.
+            <strong>⚠️ CRITICAL:</strong> Select <strong>Option 2</strong> (not Option 1). Option 1 is for personal Pro/Max subscribers. Your enterprise organization requires Option 2 (Console account). When the browser opens, you'll then select your organization (Home Depot) from the list.
         </div>
 
         <div class="success-box">
@@ -1145,8 +1146,8 @@ rm -rf ~/.config/claude-code/auth.json<br><br>
 # NOT a billing/payment page<br><br>
 # Step 5: Now authenticate Claude Code<br>
 claude login<br>
-# Select Option 1: Claude account with subscription<br>
-# In browser, SELECT YOUR ORGANIZATION (not personal account)<br><br>
+# Select Option 2: Anthropic Console account<br>
+# In browser, SELECT YOUR ORGANIZATION (Home Depot)<br><br>
 # Step 6: Verify<br>
 claude<br>
 /status</code>
@@ -1172,7 +1173,7 @@ claude<br>
 claude logout<br><br>
 # Launch Claude Code again<br>
 claude<br><br>
-# Select Option 1 when prompted</code>
+# Select Option 2: Anthropic Console account when prompted</code>
         </div>
 
         <h3>Authentication Failed or Browser Not Opening</h3>
@@ -1189,27 +1190,34 @@ claude<br><br>
             <strong>macOS Keychain Note:</strong> If you see keychain-related errors on macOS, you may need to unlock your keychain. Claude Code securely stores credentials in your system keychain.
         </div>
 
-        <h3>Organization Picker - Selecting the Correct Organization</h3>
+        <h3>Authentication Issues - Selecting the Correct Option & Organization</h3>
 
         <div class="warning-box">
-            <strong>🔧 CRITICAL ISSUE:</strong> Users with both personal Claude.ai accounts AND Console organization access must select the correct organization during authentication.
+            <strong>🔧 CRITICAL ISSUE:</strong> You must select BOTH the correct login option (Option 2) AND the correct organization (Home Depot).
         </div>
 
-        <p><strong>The Problem:</strong></p>
-        <p>When you run <code>claude login</code>, the browser opens and displays an <strong>organization picker</strong> showing multiple organizations. Users often instinctively select their personal Claude account (the one they use regularly) instead of the Home Depot Console organization.</p>
+        <p><strong>The Two-Step Authentication Process:</strong></p>
+        <ol>
+            <li><strong>In Terminal:</strong> Select <strong>Option 2: Anthropic Console account</strong> (NOT Option 1)</li>
+            <li><strong>In Browser:</strong> Select <strong>your organization (Home Depot)</strong> from the organization picker</li>
+        </ol>
 
         <div style="background: #fff3cd; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107;">
-            <h4 style="margin-top: 0; color: #856404;">⚠️ Critical Step During Login</h4>
-            <p style="margin: 10px 0;"><strong>When the browser opens during authentication:</strong></p>
+            <h4 style="margin-top: 0; color: #856404;">⚠️ Critical Steps During Login</h4>
+            <p style="margin: 10px 0;"><strong>Step 1 - In your terminal when running <code>claude login</code>:</strong></p>
+            <ul style="margin: 10px 0 10px 20px;">
+                <li>Select <strong>Option 2: Anthropic Console account</strong></li>
+                <li>Do NOT select Option 1 (that's for personal Pro/Max subscribers)</li>
+            </ul>
+            <p style="margin: 15px 0 10px 0;"><strong>Step 2 - When browser opens:</strong></p>
             <ul style="margin: 10px 0 10px 20px;">
                 <li>You will see an <strong>organization picker</strong> with multiple options</li>
                 <li>You MUST select <strong>"Home Depot"</strong> or your <strong>work/Console organization</strong></li>
-                <li><strong>DO NOT select your personal Claude account</strong> (even if you use it regularly)</li>
-                <li>Look carefully - the organizations may have similar names</li>
+                <li><strong>DO NOT select your personal Claude account</strong> (if you have one)</li>
             </ul>
         </div>
 
-        <p><strong>If you've already authenticated to the wrong organization:</strong></p>
+        <p><strong>If you've already authenticated incorrectly:</strong></p>
 
         <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
@@ -1219,9 +1227,9 @@ claude logout<br><br>
 rm -rf ~/.config/claude-code/auth.json<br><br>
 # Step 3: Login again<br>
 claude login<br><br>
-# Step 4: When browser opens, SELECT THE HOME DEPOT ORGANIZATION<br>
-# (not your personal account)<br><br>
-# Step 5: Verify correct authentication<br>
+# Step 4: In terminal, select Option 2: Anthropic Console account<br>
+# Step 5: In browser, SELECT YOUR ORGANIZATION (Home Depot)<br><br>
+# Step 6: Verify correct authentication<br>
 claude<br>
 /status</code>
         </div>
@@ -1249,14 +1257,18 @@ claude<br>
         </div>
 
         <h3>Wrong Login Option Selected</h3>
-        <p>If you accidentally selected "Anthropic Console account" (Option 2) instead of "Claude account with subscription" (Option 1):</p>
+        <p>If you accidentally selected "Claude account with subscription" (Option 1) instead of "Anthropic Console account" (Option 2):</p>
         <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             <code># Clear credentials and start over<br>
 claude logout<br><br>
 # Launch Claude Code again<br>
 claude<br><br>
-# This time, select Option 1: Claude account with subscription</code>
+# This time, select Option 2: Anthropic Console account</code>
+        </div>
+
+        <div class="info-box">
+            <strong>Remember:</strong> Option 1 is for personal Pro/Max subscribers. Enterprise users with organizational Console access need Option 2.
         </div>
 
         <h3>Organization Access Issues</h3>
