@@ -1451,6 +1451,15 @@ $env:NODE_EXTRA_CA_CERTS="C:\ProgramData\munki\thd_certs.pem"<br><br>
 [System.Environment]::SetEnvironmentVariable("NODE_EXTRA_CA_CERTS", "C:\ProgramData\munki\thd_certs.pem", "User")</code>
             </div>
 
+            <div class="info-box" style="margin: 15px 0; padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107; color: #856404;">
+                <strong>📝 Windows Note:</strong> The certificate path on Windows may vary based on your IT department's Munki configuration. If the path above doesn't exist, check with IT for the exact location of <code>thd_certs.pem</code> on your Windows machine. Common alternatives include:
+                <ul style="margin: 10px 0 0 20px;">
+                    <li><code>C:\Program Files\munki\thd_certs.pem</code></li>
+                    <li><code>C:\munki\thd_certs.pem</code></li>
+                    <li>IT can also provide the exact path for your organization</li>
+                </ul>
+            </div>
+
             <p style="color: #004085; margin: 15px 0 10px 0;"><strong>What these do:</strong></p>
             <ul style="color: #004085;">
                 <li><code>REQUESTS_CA_BUNDLE</code> - Used by Python-based tools (including parts of Claude Code) to trust Home Depot's certificates</li>
