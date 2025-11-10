@@ -1406,10 +1406,19 @@ claude<br><br>
                 <li><strong>Exclude from SSL/TLS inspection:</strong> Configure your proxy to bypass SSL inspection for Anthropic domains (allows direct encrypted connection)</li>
                 <li><strong>Add root CA certificate to trust store:</strong> If SSL inspection is required, have IT add your organization's root CA certificate to your system's trusted certificate store</li>
                 <li><strong>Configure proxy settings:</strong> Set <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> environment variables if needed:
+                    <p style="margin: 10px 0;"><strong>macOS/Linux (add to ~/.zshrc or ~/.bashrc):</strong></p>
                     <div class="code-block" style="margin: 10px 0;">
-                        <code># Add to ~/.zshrc or ~/.bashrc<br>
-export HTTP_PROXY="http://proxy.company.com:8080"<br>
+                        <code>export HTTP_PROXY="http://proxy.company.com:8080"<br>
 export HTTPS_PROXY="http://proxy.company.com:8080"</code>
+                    </div>
+                    <p style="margin: 10px 0;"><strong>Windows PowerShell (add to $PROFILE):</strong></p>
+                    <div class="code-block" style="margin: 10px 0;">
+                        <code># Set for current session:<br>
+$env:HTTP_PROXY="http://proxy.company.com:8080"<br>
+$env:HTTPS_PROXY="http://proxy.company.com:8080"<br><br>
+# Or set permanently (run as Administrator):<br>
+[System.Environment]::SetEnvironmentVariable("HTTP_PROXY", "http://proxy.company.com:8080", "User")<br>
+[System.Environment]::SetEnvironmentVariable("HTTPS_PROXY", "http://proxy.company.com:8080", "User")</code>
                     </div>
                 </li>
             </ol>
@@ -1434,24 +1443,53 @@ export HTTPS_PROXY="http://proxy.company.com:8080"</code>
         <p><strong>Quick diagnostic steps:</strong></p>
         <ol>
             <li><strong>Test basic connectivity:</strong>
+                <p><strong>macOS/Linux (Terminal):</strong></p>
                 <div class="code-block">
                     <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                     <code>curl -I https://api.anthropic.com/v1/messages</code>
                 </div>
+                <p><strong>Windows (PowerShell):</strong></p>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <code>Invoke-WebRequest -Uri "https://api.anthropic.com/v1/messages" -Method Head</code>
+                </div>
                 <p>You should see HTTP response headers. If you get connection refused or timeout, network is blocking.</p>
             </li>
             <li><strong>Check if proxy is in use:</strong>
+                <p><strong>macOS/Linux (Terminal):</strong></p>
                 <div class="code-block">
                     <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                     <code>echo $HTTP_PROXY<br>
 echo $HTTPS_PROXY</code>
                 </div>
+                <p><strong>Windows (PowerShell):</strong></p>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <code>$env:HTTP_PROXY<br>
+$env:HTTPS_PROXY<br>
+# Also check system proxy settings:<br>
+netsh winhttp show proxy</code>
+                </div>
             </li>
             <li><strong>Test from different network:</strong> Try from home WiFi or mobile hotspot to confirm if it's enterprise network-specific</li>
             <li><strong>Check certificate errors:</strong>
+                <p><strong>macOS/Linux (Terminal):</strong></p>
                 <div class="code-block">
                     <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                     <code>openssl s_client -connect api.anthropic.com:443 -servername api.anthropic.com</code>
+                </div>
+                <p><strong>Windows (PowerShell):</strong></p>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <code># Test TLS connection and view certificate<br>
+$url = "https://api.anthropic.com"<br>
+$req = [System.Net.HttpWebRequest]::Create($url)<br>
+try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$req.GetResponse() | Out-Null<br>
+} catch {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Write-Host "Error: $_" -ForegroundColor Red<br>
+}<br>
+$req.ServicePoint.Certificate | Format-List *</code>
                 </div>
                 <p>Look for certificate chain issues or self-signed certificates in the output.</p>
             </li>
@@ -1558,11 +1596,30 @@ claude<br><br>
         <p>Contact your pilot program coordinator to increase limits. Check your usage at: <strong>console.anthropic.com/settings/usage</strong></p>
 
         <h3>Claude Code Command Not Found</h3>
+
+        <p><strong>macOS/Linux:</strong></p>
         <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             <code># Restart your terminal, then verify installation<br>
 which claude<br><br>
 # If not found, reinstall:<br>
 curl -fsSL https://claude.ai/install.sh | bash</code>
+        </div>
+
+        <p><strong>Windows PowerShell:</strong></p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># Verify installation<br>
+Get-Command claude<br><br>
+# Check PATH includes Claude Code<br>
+$env:PATH -split ';' | Select-String "claude"<br><br>
+# If not found, close and reopen PowerShell, then try again<br>
+# If still not found, reinstall:<br>
+irm https://claude.ai/install.ps1 | iex</code>
+        </div>
+
+        <div class="info-box">
+            <strong>Windows Note:</strong> After installation, you must close and reopen PowerShell/Command Prompt for the PATH to update. If using Windows Terminal, restart the entire application.
         </div>
 
         <h3>Keeping Claude Code Updated</h3>
