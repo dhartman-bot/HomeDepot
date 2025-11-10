@@ -1366,6 +1366,101 @@ claude<br><br>
             <strong>macOS Keychain Note:</strong> If you see keychain-related errors on macOS, you may need to unlock your keychain. Claude Code securely stores credentials in your system keychain.
         </div>
 
+        <h3>Network Connectivity Issues - Proxy, VPN, or Firewall</h3>
+
+        <div class="warning-box">
+            <strong>🌐 COMMON IN ENTERPRISE:</strong> Corporate networks often block or intercept connections to external APIs like Anthropic's services.
+        </div>
+
+        <p><strong>Symptoms of network blocking:</strong></p>
+        <ul>
+            <li>Connection timeouts when running <code>claude</code></li>
+            <li>SSL/TLS certificate errors (SELF_SIGNED_CERT_IN_CHAIN, UNABLE_TO_VERIFY_LEAF_SIGNATURE)</li>
+            <li>"Unable to connect to Anthropic services" errors</li>
+            <li>Authentication fails despite correct credentials</li>
+            <li>Works on home network but not corporate network</li>
+        </ul>
+
+        <p><strong>Common causes:</strong></p>
+        <ul>
+            <li><strong>Corporate proxy</strong> performing SSL/TLS inspection (man-in-the-middle)</li>
+            <li><strong>Firewall rules</strong> blocking outbound connections to <code>*.anthropic.com</code> or <code>*.claude.ai</code></li>
+            <li><strong>VPN restrictions</strong> preventing API access</li>
+            <li><strong>Network security software</strong> intercepting HTTPS traffic</li>
+            <li><strong>Self-signed certificates</strong> in your organization's certificate chain</li>
+        </ul>
+
+        <div style="background: #d4edda; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #28a745;">
+            <h4 style="margin-top: 0; color: #155724;">✅ Recommended Solutions (Contact Your IT Department)</h4>
+            <p style="color: #155724; margin: 10px 0;">
+                Work with your IT/Network team to implement these proper solutions:
+            </p>
+            <ol style="color: #155724;">
+                <li><strong>Whitelist Anthropic domains:</strong>
+                    <ul>
+                        <li><code>*.anthropic.com</code></li>
+                        <li><code>*.claude.ai</code></li>
+                        <li><code>api.anthropic.com</code> (specifically)</li>
+                    </ul>
+                </li>
+                <li><strong>Exclude from SSL/TLS inspection:</strong> Configure your proxy to bypass SSL inspection for Anthropic domains (allows direct encrypted connection)</li>
+                <li><strong>Add root CA certificate to trust store:</strong> If SSL inspection is required, have IT add your organization's root CA certificate to your system's trusted certificate store</li>
+                <li><strong>Configure proxy settings:</strong> Set <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> environment variables if needed:
+                    <div class="code-block" style="margin: 10px 0;">
+                        <code># Add to ~/.zshrc or ~/.bashrc<br>
+export HTTP_PROXY="http://proxy.company.com:8080"<br>
+export HTTPS_PROXY="http://proxy.company.com:8080"</code>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <div style="background: #f8d7da; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #dc3545;">
+            <h4 style="margin-top: 0; color: #721c24;">⚠️ Do NOT Use Insecure Workarounds</h4>
+            <p style="color: #721c24; margin: 10px 0; font-weight: 600;">
+                Avoid disabling SSL certificate verification (e.g., <code>NODE_TLS_REJECT_UNAUTHORIZED=0</code>). This:
+            </p>
+            <ul style="color: #721c24;">
+                <li>Makes your connection vulnerable to man-in-the-middle attacks</li>
+                <li>Violates security best practices</li>
+                <li>May violate your organization's security policies</li>
+                <li>Doesn't actually fix the root cause</li>
+            </ul>
+            <p style="color: #721c24; margin: 15px 0 0 0; font-weight: 600;">
+                Always work with IT to implement proper solutions above.
+            </p>
+        </div>
+
+        <p><strong>Quick diagnostic steps:</strong></p>
+        <ol>
+            <li><strong>Test basic connectivity:</strong>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <code>curl -I https://api.anthropic.com/v1/messages</code>
+                </div>
+                <p>You should see HTTP response headers. If you get connection refused or timeout, network is blocking.</p>
+            </li>
+            <li><strong>Check if proxy is in use:</strong>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <code>echo $HTTP_PROXY<br>
+echo $HTTPS_PROXY</code>
+                </div>
+            </li>
+            <li><strong>Test from different network:</strong> Try from home WiFi or mobile hotspot to confirm if it's enterprise network-specific</li>
+            <li><strong>Check certificate errors:</strong>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <code>openssl s_client -connect api.anthropic.com:443 -servername api.anthropic.com</code>
+                </div>
+                <p>Look for certificate chain issues or self-signed certificates in the output.</p>
+            </li>
+        </ol>
+
+        <div class="info-box">
+            <strong>💡 Business justification for IT:</strong> Claude Code is an approved enterprise tool requiring API access to <code>*.anthropic.com</code> for your organization's pilot program. Whitelisting these domains enables developer productivity improvements while maintaining security through proper certificate validation.
+        </div>
+
         <h3>Authentication Issues - Selecting the Correct Option & Organization</h3>
 
         <div class="warning-box">
