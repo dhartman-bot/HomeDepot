@@ -561,8 +561,9 @@
             <div class="progress-step" data-step="1" onclick="scrollToStep(1)">1. Invite</div>
             <div class="progress-step" data-step="2" onclick="scrollToStep(2)">2. Prerequisites</div>
             <div class="progress-step" data-step="3" onclick="scrollToStep(3)">3. Install</div>
-            <div class="progress-step" data-step="4" onclick="scrollToStep(4)">4. Authenticate</div>
+            <div class="progress-step" data-step="4" onclick="scrollToStep(4)">4. Auth</div>
             <div class="progress-step" data-step="5" onclick="scrollToStep(5)">5. Verify</div>
+            <div class="progress-step" data-step="5.5" onclick="scrollToStep('5-5')">5.5. Customize</div>
             <div class="progress-step" data-step="6" onclick="scrollToStep(6)">6. Explore</div>
         </div>
     </div>
@@ -576,7 +577,7 @@
         <div class="header">
             <h1>Claude Code</h1>
             <div class="subtitle">Console Setup Guide for Pilot Participants</div>
-            <div class="time-badge">⏱️ Setup Time: 10-15 minutes</div>
+            <div class="time-badge">⏱️ Setup Time: 15-20 minutes (including customization)</div>
         </div>
 
         <!-- Critical Prerequisites Warning -->
@@ -609,6 +610,7 @@
                 <li><a href="#step3"><span class="step-number">3</span>Install Claude Code</a></li>
                 <li><a href="#step4"><span class="step-number">4</span>Configure & Authenticate</a></li>
                 <li><a href="#step5"><span class="step-number">5</span>Verify Your Setup</a></li>
+                <li><a href="#step5-5"><span class="step-number">5.5</span>Customize for Your Workflow</a></li>
                 <li><a href="#step6"><span class="step-number">6</span>Explore Basic Features</a></li>
             </ul>
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
@@ -934,6 +936,154 @@
         <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             <code>claude health</code>
+        </div>
+
+        <h2 id="step5-5"><span class="step-number">5.5</span> Customize Claude Code for Your Workflow (Optional but Recommended)</h2>
+
+        <p>Before diving into daily use, take 5 minutes to customize Claude Code for your projects. This will make Claude much more helpful and context-aware.</p>
+
+        <h3>Create a CLAUDE.md File for Your Project</h3>
+
+        <p>A <code>CLAUDE.md</code> file is like a README for Claude. It tells Claude Code about your project's context, coding standards, and team preferences. Place it in your project root directory.</p>
+
+        <div class="info-box">
+            <strong>Why this matters:</strong> Claude will automatically read this file when working in your project, giving it essential context about your codebase, conventions, and goals.
+        </div>
+
+        <p><strong>Example CLAUDE.md for a typical Home Depot project:</strong></p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># Project Context
+
+## Overview
+This is [Project Name], a [web application/microservice/etc.] that handles [brief description].
+Built with [tech stack: Java/Spring Boot, React, etc.].
+
+## Coding Standards
+- Follow Home Depot's enterprise Java coding guidelines
+- Use meaningful variable names (no abbreviations unless standard)
+- All new code must include unit tests (JUnit 5 + Mockito)
+- API endpoints follow RESTful conventions
+- Database queries use JPA/Hibernate (no raw SQL unless justified)
+
+## Architecture
+- Microservices architecture with Spring Boot
+- PostgreSQL database
+- Redis for caching
+- Kafka for event streaming
+- Deployed on Azure Kubernetes Service (AKS)
+
+## Key Directories
+- `/src/main/java` - Java source code
+- `/src/test/java` - Unit and integration tests
+- `/src/main/resources` - Configuration files
+- `/docs` - Architecture and API documentation
+
+## Dependencies
+- Spring Boot 3.x
+- Java 17
+- Maven for build management
+
+## Testing Requirements
+- Minimum 80% code coverage for new code
+- All PRs must pass CI/CD pipeline
+- Integration tests for all API endpoints
+
+## Common Tasks
+- Run tests: `mvn test`
+- Run locally: `mvn spring-boot:run`
+- Build: `mvn clean package`
+
+## Security Considerations
+- Never commit credentials or API keys
+- Use Azure Key Vault for secrets
+- All endpoints require authentication (OAuth 2.0)
+- PII data must be handled per GDPR/CCPA requirements
+
+## Notes for Claude
+- When generating code, prefer functional programming patterns
+- Include JavaDoc comments for public methods
+- Suggest performance optimizations when working with database queries
+- Flag potential security issues proactively</code>
+        </div>
+
+        <p><strong>How to create your CLAUDE.md:</strong></p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code>cd /path/to/your/project<br>
+claude "Create a CLAUDE.md file for this project"</code>
+        </div>
+
+        <p>Claude will analyze your project and draft a custom CLAUDE.md file for you!</p>
+
+        <h3>Discover Available Skills</h3>
+
+        <p>Skills are pre-built capabilities that extend Claude Code's functionality. Think of them as plugins or add-ons.</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code>claude<br>
+/skill</code>
+        </div>
+
+        <p><strong>Useful skills for developers:</strong></p>
+        <ul class="checklist">
+            <li><strong>webapp-testing:</strong> Test web applications using Playwright</li>
+            <li><strong>mcp-builder:</strong> Build Model Context Protocol servers</li>
+            <li><strong>skill-creator:</strong> Create your own custom skills</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>💡 Pro Tip:</strong> Type <code>/help</code> in interactive mode to see all available slash commands, including <code>/plugin</code> for plugin management and <code>/skill</code> for skills.
+        </div>
+
+        <h3>Configure .claudeignore (For Large Repos)</h3>
+
+        <p>If your project has large directories that Claude doesn't need (like <code>node_modules</code>, build artifacts, or generated files), create a <code>.claudeignore</code> file:</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code># .claudeignore (place in project root)
+node_modules/
+target/
+build/
+dist/
+*.log
+.git/
+coverage/
+*.class
+*.jar
+*.war</code>
+        </div>
+
+        <p>This improves performance and keeps Claude focused on your actual source code.</p>
+
+        <h3>Set Up Your First Real Task</h3>
+
+        <p>Now that Claude is configured, try a real work task instead of "hello world" examples:</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+            <div style="background: #e8f4f8; padding: 20px; border-radius: 8px;">
+                <h4 style="color: #0066cc; margin-bottom: 10px;">📝 For New Developers</h4>
+                <p style="margin: 10px 0; font-size: 0.95em;">"Explain the architecture of this codebase and how the components interact"</p>
+            </div>
+            <div style="background: #d4edda; padding: 20px; border-radius: 8px;">
+                <h4 style="color: #28a745; margin-bottom: 10px;">🐛 For Bug Fixes</h4>
+                <p style="margin: 10px 0; font-size: 0.95em;">"Help me debug this error: [paste stack trace]"</p>
+            </div>
+            <div style="background: #fff3cd; padding: 20px; border-radius: 8px;">
+                <h4 style="color: #856404; margin-bottom: 10px;">🧪 For Testing</h4>
+                <p style="margin: 10px 0; font-size: 0.95em;">"Generate comprehensive unit tests for [specific class/function]"</p>
+            </div>
+            <div style="background: #f8d7da; padding: 20px; border-radius: 8px;">
+                <h4 style="color: #721c24; margin-bottom: 10px;">🔍 For Code Review</h4>
+                <p style="margin: 10px 0; font-size: 0.95em;">"Review this code for bugs, security issues, and improvements"</p>
+            </div>
+        </div>
+
+        <div class="success-box">
+            <strong>✅ You're Ready!</strong> With Claude Code configured for your project, you'll get much better, more contextually relevant assistance.
         </div>
 
         <h2 id="step6"><span class="step-number">6</span> Explore Basic Features</h2>
