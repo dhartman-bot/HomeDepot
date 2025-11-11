@@ -967,11 +967,13 @@
 
         <h3>Verify Installation</h3>
         <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             <code>claude doctor</code>
         </div>
 
         <p>This will show your installation type and version. You can also use:</p>
         <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             <code>claude --version</code>
         </div>
 
@@ -1227,11 +1229,13 @@ coverage/
         <div style="margin-top: 20px;">
             <strong>1. Interactive Mode</strong>
             <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                 <code>claude</code>
             </div>
 
             <strong>2. Get Help Anytime</strong>
             <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                 <code>claude<br>
 /help</code>
             </div>
@@ -1239,22 +1243,26 @@ coverage/
 
             <strong>3. Code Analysis</strong>
             <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                 <code>cd /path/to/your/project<br>
 claude "Analyze the structure of this codebase"</code>
             </div>
 
             <strong>4. Code Generation</strong>
             <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                 <code>claude "Create a REST API endpoint for user authentication"</code>
             </div>
 
             <strong>5. Code Modification</strong>
             <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                 <code>claude "Add error handling to the database connection code"</code>
             </div>
 
             <strong>6. Resume Previous Conversation</strong>
             <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                 <code>claude -c</code>
             </div>
             <p>Continue where you left off in your most recent session.</p>
@@ -1551,6 +1559,7 @@ claude<br><br>
                     <ol style="margin-left: 20px;">
                         <li>Open your shell config file:
                             <div class="code-block" style="margin: 10px 0;">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                                 <code># For zsh users (most Mac users):<br>
 nano ~/.zshrc<br><br>
 # For bash users:<br>
@@ -1559,6 +1568,7 @@ nano ~/.bashrc</code>
                         </li>
                         <li>Add these lines to the end:
                             <div class="code-block" style="margin: 10px 0;">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                                 <code>export HTTP_PROXY="http://proxy.company.com:8080"<br>
 export HTTPS_PROXY="http://proxy.company.com:8080"</code>
                             </div>
@@ -1571,11 +1581,13 @@ export HTTPS_PROXY="http://proxy.company.com:8080"</code>
                     <ol style="margin-left: 20px;">
                         <li>Open PowerShell profile (creates if doesn't exist):
                             <div class="code-block" style="margin: 10px 0;">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                                 <code>notepad $PROFILE</code>
                             </div>
                         </li>
                         <li>Add these lines:
                             <div class="code-block" style="margin: 10px 0;">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                                 <code>$env:HTTP_PROXY="http://proxy.company.com:8080"<br>
 $env:HTTPS_PROXY="http://proxy.company.com:8080"</code>
                             </div>
@@ -1900,11 +1912,13 @@ irm https://claude.ai/install.ps1 | iex</code>
         <h3>Keeping Claude Code Updated</h3>
         <p>Claude Code automatically updates by default. To manually check for updates:</p>
         <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             <code>claude update</code>
         </div>
 
         <p>To disable auto-updates, set this environment variable in your shell configuration:</p>
         <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             <code>export DISABLE_AUTOUPDATER=1</code>
         </div>
 
