@@ -1506,11 +1506,12 @@ claude<br><br>
                 <li><strong>Exclude from SSL/TLS inspection:</strong> Configure your proxy to bypass SSL inspection for Anthropic domains (allows direct encrypted connection)</li>
                 <li><strong>Add root CA certificate to trust store:</strong> If SSL inspection is required, have IT add your organization's root CA certificate to your system's trusted certificate store</li>
                 <li><strong>Configure proxy settings:</strong> Set <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> environment variables if needed:
-                    <p style="margin: 10px 0;"><strong>macOS/Linux (add to ~/.zshrc or ~/.bashrc):</strong></p>
+                    <p style="margin: 10px 0;"><strong>macOS/Linux:</strong> Edit <code>~/.zshrc</code> or <code>~/.bashrc</code> and add:</p>
                     <div class="code-block" style="margin: 10px 0;">
                         <code>export HTTP_PROXY="http://proxy.company.com:8080"<br>
 export HTTPS_PROXY="http://proxy.company.com:8080"</code>
                     </div>
+                    <p style="margin: 10px 0; font-size: 0.9em; font-style: italic;">Then run: <code>source ~/.zshrc</code> (or <code>source ~/.bashrc</code>)</p>
                     <p style="margin: 10px 0;"><strong>Windows PowerShell (add to $PROFILE):</strong></p>
                     <div class="code-block" style="margin: 10px 0;">
                         <code># Set for current session:<br>
@@ -1532,13 +1533,47 @@ $env:HTTPS_PROXY="http://proxy.company.com:8080"<br><br>
 
             <p style="color: #004085; margin: 15px 0 10px 0;"><strong>Add these environment variables to your shell configuration:</strong></p>
 
-            <p style="color: #004085; margin: 10px 0;"><strong>macOS/Linux (add to ~/.zshrc or ~/.bashrc):</strong></p>
-            <div class="code-block" style="margin: 10px 0;">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <code># Home Depot certificate bundle<br>
+            <p style="color: #004085; margin: 10px 0;"><strong>macOS/Linux - Edit your shell config file:</strong></p>
+
+            <div style="background: rgba(0,102,204,0.1); padding: 15px; border-radius: 6px; margin: 10px 0;">
+                <p style="color: #004085; margin: 0 0 10px 0; font-weight: 600;">Which file to edit?</p>
+                <ul style="color: #004085; margin: 0;">
+                    <li>If using <strong>zsh</strong> (default on newer macOS): <code>~/.zshrc</code></li>
+                    <li>If using <strong>bash</strong>: <code>~/.bashrc</code> or <code>~/.bash_profile</code></li>
+                    <li>Not sure? Run <code>echo $SHELL</code> to check</li>
+                </ul>
+            </div>
+
+            <p style="color: #004085; margin: 15px 0 10px 0; font-weight: 600;">Steps:</p>
+            <ol style="color: #004085;">
+                <li><strong>Open your shell config file in a text editor:</strong>
+                    <div class="code-block" style="margin: 10px 0;">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <code># For zsh users (most Mac users):<br>
+nano ~/.zshrc<br><br>
+# For bash users:<br>
+nano ~/.bashrc</code>
+                    </div>
+                </li>
+                <li><strong>Add these lines to the end of the file:</strong>
+                    <div class="code-block" style="margin: 10px 0;">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <code># Home Depot certificate bundle<br>
 export REQUESTS_CA_BUNDLE="/usr/local/munki/thd_certs.pem"<br>
 export NODE_EXTRA_CA_CERTS="/usr/local/munki/thd_certs.pem"</code>
-            </div>
+                    </div>
+                </li>
+                <li><strong>Save the file:</strong> Press <code>Ctrl+O</code>, then <code>Enter</code>, then <code>Ctrl+X</code> to exit nano</li>
+                <li><strong>Apply the changes:</strong>
+                    <div class="code-block" style="margin: 10px 0;">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <code># For zsh:<br>
+source ~/.zshrc<br><br>
+# For bash:<br>
+source ~/.bashrc</code>
+                    </div>
+                </li>
+            </ol>
 
             <p style="color: #004085; margin: 15px 0 10px 0;"><strong>Windows PowerShell (add to $PROFILE):</strong></p>
             <div class="code-block" style="margin: 10px 0;">
@@ -1557,9 +1592,8 @@ $env:NODE_EXTRA_CA_CERTS="/usr/local/munki/thd_certs.pem"<br><br>
                 <li><code>NODE_EXTRA_CA_CERTS</code> - Used by Node.js (Claude Code's runtime) to trust Home Depot's certificates</li>
             </ul>
 
-            <p style="color: #004085; margin: 15px 0 10px 0; font-weight: 600;"><strong>After adding:</strong></p>
+            <p style="color: #004085; margin: 15px 0 10px 0; font-weight: 600;"><strong>Verify everything works:</strong></p>
             <ol style="color: #004085;">
-                <li>Close and reopen your terminal/PowerShell</li>
                 <li>Verify the variables are set:
                     <div class="code-block" style="margin: 10px 0;">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
