@@ -510,6 +510,67 @@
             transform: scale(1.1);
         }
 
+        /* Support Agent Slider */
+        .support-slider {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            background: linear-gradient(135deg, #c48c4d 0%, #9b6f3e 100%);
+            border-radius: 4px 0 0 4px;
+            box-shadow: -2px 0 8px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+        }
+
+        .support-slider:hover {
+            transform: translateY(-50%) translateX(-2px);
+            box-shadow: -3px 0 10px rgba(0,0,0,0.2);
+        }
+
+        .support-slider a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 6px;
+            text-decoration: none;
+            color: white;
+            gap: 4px;
+        }
+
+        .support-slider-icon {
+            font-size: 1em;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .support-slider-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-weight: 600;
+            font-size: 0.6em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .support-slider-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 3px 6px;
+            border-radius: 10px;
+            font-size: 0.5em;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -551,6 +612,36 @@
                 height: 45px;
                 font-size: 1em;
             }
+
+            /* Support Slider Mobile */
+            .support-slider {
+                right: 0;
+                top: auto;
+                bottom: 80px;
+                transform: none;
+            }
+
+            .support-slider:hover {
+                transform: translateX(-2px);
+            }
+
+            .support-slider a {
+                padding: 6px 5px;
+            }
+
+            .support-slider-icon {
+                font-size: 0.9em;
+            }
+
+            .support-slider-text {
+                font-size: 0.55em;
+                letter-spacing: 0.5px;
+            }
+
+            .support-slider-badge {
+                padding: 2px 5px;
+                font-size: 0.45em;
+            }
         }
     </style>
 </head>
@@ -571,6 +662,15 @@
     <!-- Quick Actions -->
     <div class="quick-actions">
         <button class="quick-action-btn" onclick="scrollToTop()" title="Back to top">↑</button>
+    </div>
+
+    <!-- Support Agent Slider -->
+    <div class="support-slider">
+        <a href="https://code.claude.com/docs/en" target="_blank" title="Get help from Claude Code Support Agent">
+            <div class="support-slider-icon">💬</div>
+            <div class="support-slider-text">Claude Code Support Agent</div>
+            <div class="support-slider-badge">24/7</div>
+        </a>
     </div>
 
     <div class="container">
