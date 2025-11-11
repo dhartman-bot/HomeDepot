@@ -861,14 +861,30 @@
 
         <h2 id="step2"><span class="step-number">2</span> Prerequisites</h2>
 
+        <h3>System Requirements</h3>
+
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #c48c4d;">
+            <p><strong>Minimum system requirements:</strong></p>
+            <ul style="margin: 10px 0 10px 20px;">
+                <li><strong>Operating System:</strong> macOS 10.15+, Windows 10/11, or modern Linux distribution</li>
+                <li><strong>Disk Space:</strong> 500MB available</li>
+                <li><strong>Internet:</strong> Active, stable connection required (Claude Code requires API access)</li>
+                <li><strong>Browser:</strong> Modern web browser for authentication (Chrome, Firefox, Safari, Edge)</li>
+                <li><strong>Dependencies:</strong> None - Claude Code is self-contained</li>
+            </ul>
+        </div>
+
+        <h3>Before Installing</h3>
+
         <div class="info-box">
-            <strong>Before installing Claude Code, ensure you have:</strong>
+            <strong>Ensure you have completed these steps:</strong>
         </div>
 
         <ul class="checklist">
-            <li>Accepted and completed your organization's Claude invitation</li>
+            <li>Accepted and completed your organization's Claude invitation (Step 1)</li>
             <li>Created your Claude account credentials</li>
             <li>Command line access on your machine (Terminal, PowerShell, or Command Prompt)</li>
+            <li>Modern web browser installed (Chrome, Firefox, Safari, or Edge)</li>
             <li>Administrator/sudo privileges to install software (if required by your system)</li>
         </ul>
 
@@ -961,12 +977,6 @@
 
         <h2 id="step4"><span class="step-number">4</span> Configure Claude Code</h2>
 
-        <h3>Accept Your Organization Invite</h3>
-
-        <div class="info-box">
-            <strong>📧 Before you begin:</strong> Your organization's administrator will send you an invite to create your Claude account. Check your email and accept the invitation to join your organization's team.
-        </div>
-
         <h3>Authenticate with Your Claude Account</h3>
 
         <p>Launch Claude Code from your command line:</p>
@@ -1005,7 +1015,31 @@
         </div>
 
         <div class="info-box">
-            <strong>Model Selection:</strong> Your organization's administrator has configured which models are available. Claude Sonnet 4.5 offers the best balance of performance and capability for coding tasks, with 1M token context window.
+            <strong>Model Selection:</strong> Your organization's administrator has configured which models are available. Here's what you might have access to:
+            <div style="margin-top: 10px;">
+                <p><strong>🚀 Claude Sonnet 4.5</strong> (Recommended for most coding tasks)</p>
+                <ul style="margin: 5px 0 10px 20px;">
+                    <li>Best balance for 90% of coding workflows</li>
+                    <li>1M token context window (with beta header)</li>
+                    <li>Ideal for code generation, debugging, refactoring</li>
+                </ul>
+
+                <p><strong>🧠 Claude Opus 4.1</strong> (Maximum intelligence)</p>
+                <ul style="margin: 5px 0 10px 20px;">
+                    <li>Best for complex reasoning and strategic decisions</li>
+                    <li>200K token context (32K output)</li>
+                    <li>Extended thinking up to 64K tokens</li>
+                    <li>74.5% on SWE-bench Verified (best coding performance)</li>
+                </ul>
+
+                <p><strong>⚡ Claude Haiku 4.5</strong> (Speed & efficiency)</p>
+                <ul style="margin: 5px 0 10px 20px;">
+                    <li>4-5x faster than Sonnet 4.5</li>
+                    <li>200K token context (64K output), 1M on Developer Platform</li>
+                    <li>73.3% on SWE-bench Verified (Sonnet 4-level at 1/3 cost)</li>
+                    <li>Perfect for high-volume, real-time applications</li>
+                </ul>
+            </div>
         </div>
 
         <h2 id="step5"><span class="step-number">5</span> Verify Your Setup</h2>
@@ -1247,7 +1281,10 @@ claude "Analyze the structure of this codebase"</code>
             <h3>Visual Studio Code Extension</h3>
 
             <div class="info-box">
-                <strong>Supported Editors:</strong> VS Code, Cursor, Windsurf, and VSCodium (requires v1.98.0 or higher)
+                <strong>Supported Editors:</strong> VS Code (v1.98.0+), Cursor, Windsurf, and VSCodium
+                <p style="margin: 8px 0 0 0; font-size: 0.9em; color: #666;">
+                    VS Code requires version 1.98.0 or higher. Other editors work with their latest versions.
+                </p>
             </div>
 
             <h4>Installation Methods</h4>
@@ -1505,22 +1542,51 @@ claude<br><br>
                 </li>
                 <li><strong>Exclude from SSL/TLS inspection:</strong> Configure your proxy to bypass SSL inspection for Anthropic domains (allows direct encrypted connection)</li>
                 <li><strong>Add root CA certificate to trust store:</strong> If SSL inspection is required, have IT add your organization's root CA certificate to your system's trusted certificate store</li>
-                <li><strong>Configure proxy settings:</strong> Set <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> environment variables if needed:
-                    <p style="margin: 10px 0;"><strong>macOS/Linux:</strong> Edit <code>~/.zshrc</code> or <code>~/.bashrc</code> and add:</p>
-                    <div class="code-block" style="margin: 10px 0;">
-                        <code>export HTTP_PROXY="http://proxy.company.com:8080"<br>
+                <li><strong>Configure proxy settings:</strong> Set <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> environment variables if needed
+                    <p style="margin: 15px 0 10px 0; font-size: 0.9em; font-style: italic; color: #666;">
+                        Note: Replace <code>proxy.company.com:8080</code> with your organization's actual proxy address. Contact IT if unsure.
+                    </p>
+
+                    <p style="margin: 10px 0;"><strong>macOS/Linux - Edit your shell config file:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>Open your shell config file:
+                            <div class="code-block" style="margin: 10px 0;">
+                                <code># For zsh users (most Mac users):<br>
+nano ~/.zshrc<br><br>
+# For bash users:<br>
+nano ~/.bashrc</code>
+                            </div>
+                        </li>
+                        <li>Add these lines to the end:
+                            <div class="code-block" style="margin: 10px 0;">
+                                <code>export HTTP_PROXY="http://proxy.company.com:8080"<br>
 export HTTPS_PROXY="http://proxy.company.com:8080"</code>
-                    </div>
-                    <p style="margin: 10px 0; font-size: 0.9em; font-style: italic;">Then run: <code>source ~/.zshrc</code> (or <code>source ~/.bashrc</code>)</p>
-                    <p style="margin: 10px 0;"><strong>Windows PowerShell (add to $PROFILE):</strong></p>
-                    <div class="code-block" style="margin: 10px 0;">
-                        <code># Set for current session:<br>
-$env:HTTP_PROXY="http://proxy.company.com:8080"<br>
-$env:HTTPS_PROXY="http://proxy.company.com:8080"<br><br>
-# Or set permanently (run as Administrator):<br>
-[System.Environment]::SetEnvironmentVariable("HTTP_PROXY", "http://proxy.company.com:8080", "User")<br>
-[System.Environment]::SetEnvironmentVariable("HTTPS_PROXY", "http://proxy.company.com:8080", "User")</code>
-                    </div>
+                            </div>
+                        </li>
+                        <li>Save (<code>Ctrl+O</code>, <code>Enter</code>) and exit (<code>Ctrl+X</code>)</li>
+                        <li>Apply changes: <code>source ~/.zshrc</code> (or <code>source ~/.bashrc</code>)</li>
+                    </ol>
+
+                    <p style="margin: 15px 0 10px 0;"><strong>Windows PowerShell - Edit your profile:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>Open PowerShell profile (creates if doesn't exist):
+                            <div class="code-block" style="margin: 10px 0;">
+                                <code>notepad $PROFILE</code>
+                            </div>
+                        </li>
+                        <li>Add these lines:
+                            <div class="code-block" style="margin: 10px 0;">
+                                <code>$env:HTTP_PROXY="http://proxy.company.com:8080"<br>
+$env:HTTPS_PROXY="http://proxy.company.com:8080"</code>
+                            </div>
+                        </li>
+                        <li>Save and close Notepad</li>
+                        <li>Reload profile: <code>. $PROFILE</code></li>
+                    </ol>
+                    <p style="margin: 10px 0; font-size: 0.9em; font-style: italic; color: #666;">
+                        Alternative: For system-wide settings (requires Administrator), use:<br>
+                        <code>[System.Environment]::SetEnvironmentVariable("HTTP_PROXY", "http://proxy.company.com:8080", "User")</code>
+                    </p>
                 </li>
             </ol>
         </div>
@@ -1575,16 +1641,34 @@ source ~/.bashrc</code>
                 </li>
             </ol>
 
-            <p style="color: #004085; margin: 15px 0 10px 0;"><strong>Windows PowerShell (add to $PROFILE):</strong></p>
-            <div class="code-block" style="margin: 10px 0;">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <code># Home Depot certificate bundle<br>
-$env:REQUESTS_CA_BUNDLE="/usr/local/munki/thd_certs.pem"<br>
-$env:NODE_EXTRA_CA_CERTS="/usr/local/munki/thd_certs.pem"<br><br>
-# Or set permanently (run as Administrator):<br>
-[System.Environment]::SetEnvironmentVariable("REQUESTS_CA_BUNDLE", "/usr/local/munki/thd_certs.pem", "User")<br>
-[System.Environment]::SetEnvironmentVariable("NODE_EXTRA_CA_CERTS", "/usr/local/munki/thd_certs.pem", "User")</code>
+            <p style="color: #004085; margin: 15px 0 10px 0;"><strong>Windows PowerShell - Edit your profile:</strong></p>
+
+            <div style="background: rgba(255,193,7,0.15); padding: 12px; border-radius: 6px; margin: 10px 0; border-left: 3px solid #ffc107;">
+                <p style="color: #856404; margin: 0; font-weight: 600; font-size: 0.9em;">
+                    ⚠️ <strong>Windows users:</strong> The certificate path below is for macOS (<code>/usr/local/munki/</code>).
+                    Contact your IT department for the correct Windows certificate path (typically in <code>C:\</code> or <code>C:\Program Files\</code>).
+                </p>
             </div>
+
+            <ol style="color: #004085; margin-left: 20px;">
+                <li>Open PowerShell profile (creates if doesn't exist):
+                    <div class="code-block" style="margin: 10px 0;">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <code>notepad $PROFILE</code>
+                    </div>
+                </li>
+                <li>Add these lines (replace path with your IT-provided Windows certificate path):
+                    <div class="code-block" style="margin: 10px 0;">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <code># Home Depot certificate bundle<br>
+# Replace with actual Windows path from IT:<br>
+$env:REQUESTS_CA_BUNDLE="C:\Path\To\thd_certs.pem"<br>
+$env:NODE_EXTRA_CA_CERTS="C:\Path\To\thd_certs.pem"</code>
+                    </div>
+                </li>
+                <li>Save and close Notepad</li>
+                <li>Reload profile: <code>. $PROFILE</code></li>
+            </ol>
 
             <p style="color: #004085; margin: 15px 0 10px 0;"><strong>What these do:</strong></p>
             <ul style="color: #004085;">
