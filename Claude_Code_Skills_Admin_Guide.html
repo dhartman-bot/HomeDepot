@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Home Depot - Claude Code Skills & Sub-Agents Guide">
+    <title>Home Depot | Claude Code Skills & Sub-Agents</title>
+    <style>
+        :root {
+            --hd-orange: #F96302;
+            --hd-dark-orange: #E55A00;
+            --hd-gray: #333333;
+            --hd-light-gray: #F5F5F5;
+            --hd-medium-gray: #666666;
+            --anthropic-cream: #F5F2ED;
+            --text-primary: #1A1A1A;
+            --text-secondary: #5C5C5C;
+            --border-color: #E0E0E0;
+            --success-green: #2D8C3C;
+            --alert-red: #C41E3A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--hd-light-gray) 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--hd-orange) 0%, var(--hd-dark-orange) 100%);
+            color: white;
+            padding: 2rem 2rem 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab-button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .tab-button.active {
+            background: white;
+            color: var(--hd-orange);
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--hd-orange);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--hd-orange);
+        }
+
+        h3 {
+            color: var(--hd-gray);
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            color: var(--hd-gray);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .exec-summary {
+            background: linear-gradient(135deg, var(--anthropic-cream) 0%, #ffffff 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--hd-orange);
+            margin-bottom: 2rem;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            border-color: var(--hd-orange);
+            box-shadow: 0 4px 12px rgba(249, 99, 2, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--hd-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .highlight-box {
+            background: var(--anthropic-cream);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--hd-orange);
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box.success {
+            border-left-color: var(--success-green);
+            background: #f0f8f4;
+        }
+
+        .highlight-box.info {
+            border-left-color: #2E5C99;
+            background: #f0f5fc;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li:before {
+            content: "✓ ";
+            color: var(--success-green);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: var(--hd-orange);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        tr:hover {
+            background: var(--hd-light-gray);
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .code-inline {
+            background: var(--hd-light-gray);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: var(--hd-dark-orange);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--hd-orange);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--hd-dark-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(249, 99, 2, 0.3);
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--hd-orange);
+            box-shadow: 0 4px 12px rgba(249, 99, 2, 0.1);
+        }
+
+        .card h4 {
+            color: var(--hd-orange);
+            margin-top: 0;
+        }
+
+        .example-box {
+            background: var(--hd-light-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--hd-orange);
+        }
+
+        .example-box h5 {
+            color: var(--hd-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background: var(--hd-gray);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--hd-orange);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge.success {
+            background: var(--success-green);
+        }
+
+        .badge.info {
+            background: var(--hd-medium-gray);
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-side {
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .comparison-side.before {
+            background: #fff5f5;
+            border: 2px solid #ffa5a5;
+        }
+
+        .comparison-side.after {
+            background: #f0f8f4;
+            border: 2px solid #7ac99f;
+        }
+
+        .comparison-side h4 {
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                border-radius: 8px;
+            }
+
+            .grid-2col, .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .tab-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>🚀 Claude Code Skills & Sub-Agents</h1>
+            <p class="subtitle">Your Guide to AI-Powered Development Standards at Home Depot</p>
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'overview')">Overview</button>
+                <button class="tab-button" onclick="openTab(event, 'why')">Why Use Them</button>
+                <button class="tab-button" onclick="openTab(event, 'skills-how')">Skills: How to Use</button>
+                <button class="tab-button" onclick="openTab(event, 'subagents-how')">Sub-Agents: How to Use</button>
+                <button class="tab-button" onclick="openTab(event, 'hd-skills')">Home Depot Skills</button>
+                <button class="tab-button" onclick="openTab(event, 'examples')">Real Examples</button>
+                <button class="tab-button" onclick="openTab(event, 'getting-started')">Getting Started</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <h2>What Are Skills & Sub-Agents?</h2>
+
+            <div class="exec-summary">
+                <h3>The Simple Explanation</h3>
+                <p><strong>Skills</strong> are AI workflows that teach Claude your team's exact standards and patterns.</p>
+                <p><strong>Sub-Agents</strong> are specialized AI assistants that handle complex, multi-step tasks autonomously.</p>
+                <p><strong>Together,</strong> they transform Claude Code from a helpful assistant into an expert teammate that knows Home Depot's way of building software.</p>
+            </div>
+
+            <h3>Skills: Your Team's Knowledge, Codified</h3>
+            <div class="card">
+                <p><strong>Think of skills as expert playbooks.</strong> Instead of developers memorizing 50-page standards documents, skills guide Claude to apply those standards automatically.</p>
+
+                <h4>Example: Payment API Security Skill</h4>
+                <p>Instead of a developer reading PCI compliance docs, the skill tells Claude:</p>
+                <ul>
+                    <li>"Always encrypt payment data with AES-256"</li>
+                    <li>"Validate card numbers using Luhn algorithm"</li>
+                    <li>"Log to Splunk with PCI audit tags"</li>
+                    <li>"Never log full card numbers - mask to last 4 digits"</li>
+                </ul>
+                <p><strong>Result:</strong> Every payment API Claude creates is PCI compliant from line one.</p>
+            </div>
+
+            <h3>Sub-Agents: Autonomous Task Specialists</h3>
+            <div class="card">
+                <p><strong>Think of sub-agents as specialist teammates.</strong> When you need deep exploration, complex searches, or multi-step autonomous work, Claude dispatches a specialized sub-agent.</p>
+
+                <h4>Example: Explore Sub-Agent</h4>
+                <p>You ask: "How does payment processing work in our codebase?"</p>
+                <p>Claude launches an Explore sub-agent that:</p>
+                <ul>
+                    <li>Searches for payment-related files across the entire codebase</li>
+                    <li>Reads and analyzes payment service implementations</li>
+                    <li>Traces API endpoints to database queries</li>
+                    <li>Identifies integration points with payment gateways</li>
+                    <li>Returns comprehensive report in one consolidated response</li>
+                </ul>
+                <p><strong>Result:</strong> What would take hours of manual exploration happens in minutes.</p>
+            </div>
+
+            <h3>How They Work Together</h3>
+            <div class="grid-2col">
+                <div class="card">
+                    <h4>Skills = Standards Enforcement</h4>
+                    <p><strong>When you create code:</strong></p>
+                    <ul>
+                        <li>Skills activate based on context</li>
+                        <li>Apply your team's exact patterns</li>
+                        <li>Enforce security, testing, documentation</li>
+                        <li>Work instantly, every time</li>
+                    </ul>
+                    <p><strong>Best for:</strong> Consistency, compliance, quality control</p>
+                </div>
+                <div class="card">
+                    <h4>Sub-Agents = Complex Tasks</h4>
+                    <p><strong>When you need deep work:</strong></p>
+                    <ul>
+                        <li>Sub-agents run autonomously</li>
+                        <li>Handle multi-step workflows</li>
+                        <li>Explore, search, and analyze</li>
+                        <li>Report back with comprehensive findings</li>
+                    </ul>
+                    <p><strong>Best for:</strong> Codebase exploration, research, planning</p>
+                </div>
+            </div>
+
+            <h3>The Power of Both</h3>
+            <div class="highlight-box success">
+                <h4>Real Scenario: Building a New Payment Feature</h4>
+                <ol>
+                    <li><strong>You ask:</strong> "How do we currently process payments?"</li>
+                    <li><strong>Explore sub-agent</strong> analyzes entire payment system, returns architecture overview</li>
+                    <li><strong>You ask:</strong> "Create a new endpoint for Apple Pay"</li>
+                    <li><strong>Payment security skill</strong> activates automatically</li>
+                    <li><strong>Claude generates code</strong> with encryption, validation, logging - all PCI compliant</li>
+                    <li><strong>You ask:</strong> "Review this code"</li>
+                    <li><strong>Code review skill</strong> checks testing, security, documentation</li>
+                </ol>
+                <p><strong>From understanding to implementation to review - all guided by your standards.</strong></p>
+            </div>
+
+            <h3>Available Sub-Agents in Claude Code</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sub-Agent</th>
+                            <th>Purpose</th>
+                            <th>Best For</th>
+                            <th>Example Use</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Explore</strong></td>
+                            <td>Fast codebase exploration and search</td>
+                            <td>Understanding architecture, finding code patterns</td>
+                            <td>"How does authentication work?"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plan</strong></td>
+                            <td>Planning and strategy for complex tasks</td>
+                            <td>Breaking down large features, design decisions</td>
+                            <td>"Plan implementation of new checkout flow"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>General Purpose</strong></td>
+                            <td>Multi-step autonomous workflows</td>
+                            <td>Complex searches, data processing, research</td>
+                            <td>"Find all deprecated API calls and suggest replacements"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Why Use Them Tab -->
+        <div id="why" class="tab-content">
+            <h2>Why Use Skills & Sub-Agents?</h2>
+
+            <h3>The Problems They Solve</h3>
+
+            <div class="comparison">
+                <div class="comparison-side before">
+                    <h4>❌ Without Skills & Sub-Agents</h4>
+                    <ul>
+                        <li><strong>Standards in docs</strong> - Developers must find, read, remember</li>
+                        <li><strong>Inconsistent implementation</strong> - Every dev interprets differently</li>
+                        <li><strong>Repeated mistakes</strong> - Same security issues, missing tests, incomplete docs</li>
+                        <li><strong>Slow onboarding</strong> - New devs take weeks to learn patterns</li>
+                        <li><strong>Manual exploration</strong> - Hours spent searching codebases</li>
+                        <li><strong>Code review burden</strong> - Catching same issues repeatedly</li>
+                    </ul>
+                </div>
+                <div class="comparison-side after">
+                    <h4>✅ With Skills & Sub-Agents</h4>
+                    <ul>
+                        <li><strong>Standards enforced</strong> - Applied automatically every time</li>
+                        <li><strong>Perfect consistency</strong> - Claude follows exact patterns</li>
+                        <li><strong>Prevented mistakes</strong> - Security, testing, docs built in</li>
+                        <li><strong>Instant onboarding</strong> - New devs get institutional knowledge immediately</li>
+                        <li><strong>Autonomous exploration</strong> - Sub-agents handle deep research</li>
+                        <li><strong>Self-reviewed code</strong> - Issues caught before human review</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Benefits for Different Roles</h3>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <h4>For Developers</h4>
+                    <ul class="checklist">
+                        <li><strong>Write correct code first time</strong> - No more review iterations</li>
+                        <li><strong>Learn while building</strong> - Skills teach patterns through use</li>
+                        <li><strong>Explore faster</strong> - Sub-agents handle tedious searches</li>
+                        <li><strong>Less documentation hunting</strong> - Standards applied automatically</li>
+                        <li><strong>More time coding</strong> - Less time on boilerplate and setup</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>For Teams</h4>
+                    <ul class="checklist">
+                        <li><strong>Consistent quality</strong> - All code follows standards</li>
+                        <li><strong>Faster reviews</strong> - Fewer rounds, higher quality submissions</li>
+                        <li><strong>Preserved knowledge</strong> - Tribal knowledge captured in skills</li>
+                        <li><strong>Scalable standards</strong> - Works across 10 or 1000 developers</li>
+                        <li><strong>Rapid onboarding</strong> - New hires productive immediately</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>For Security Teams</h4>
+                    <ul class="checklist">
+                        <li><strong>Enforced compliance</strong> - PCI, GDPR, internal policies</li>
+                        <li><strong>Prevented vulnerabilities</strong> - Security checks built in</li>
+                        <li><strong>Audit logging</strong> - Proper logging from day one</li>
+                        <li><strong>Reduced risk</strong> - Fewer security issues reach production</li>
+                        <li><strong>Consistent encryption</strong> - Sensitive data protected automatically</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>For Engineering Leaders</h4>
+                    <ul class="checklist">
+                        <li><strong>Higher velocity</strong> - Less time on rework and fixes</li>
+                        <li><strong>Better quality</strong> - Consistent standards across org</li>
+                        <li><strong>Lower risk</strong> - Security and compliance enforced</li>
+                        <li><strong>Easier scaling</strong> - Onboard engineers faster</li>
+                        <li><strong>Preserved IP</strong> - Institutional knowledge codified</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Real Impact at Scale (Home Depot Numbers)</h3>
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-value">40-60%</div>
+                    <div class="metric-label">Faster onboarding (8 weeks → 4-5 weeks)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">50-70%</div>
+                    <div class="metric-label">Fewer standards violations in code review</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">30-50%</div>
+                    <div class="metric-label">Faster time to first production PR</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">Zero</div>
+                    <div class="metric-label">PCI violations (with payment security skill)</div>
+                </div>
+            </div>
+
+            <h3>When to Use Skills vs Sub-Agents</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Scenario</th>
+                            <th>Use This</th>
+                            <th>Why</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Creating code (API, service, feature)</td>
+                            <td><span class="badge">Skill</span></td>
+                            <td>Enforce standards automatically as code is written</td>
+                        </tr>
+                        <tr>
+                            <td>Understanding existing codebase</td>
+                            <td><span class="badge info">Sub-Agent</span></td>
+                            <td>Explore agent handles deep analysis autonomously</td>
+                        </tr>
+                        <tr>
+                            <td>Code review preparation</td>
+                            <td><span class="badge">Skill</span></td>
+                            <td>Run comprehensive checks before submitting PR</td>
+                        </tr>
+                        <tr>
+                            <td>Finding patterns across many files</td>
+                            <td><span class="badge info">Sub-Agent</span></td>
+                            <td>General purpose agent searches thoroughly</td>
+                        </tr>
+                        <tr>
+                            <td>Deploying to production</td>
+                            <td><span class="badge">Skill</span></td>
+                            <td>Follow exact deployment checklist every time</td>
+                        </tr>
+                        <tr>
+                            <td>Planning large feature</td>
+                            <td><span class="badge info">Sub-Agent</span></td>
+                            <td>Plan agent breaks down complex requirements</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight-box success">
+                <h3>The Bottom Line</h3>
+                <p><strong>Skills make you faster and more consistent.</strong> They're like having a senior engineer pair programming with you, ensuring you follow best practices.</p>
+                <p><strong>Sub-Agents make you more productive.</strong> They're like having a specialist on your team who can dive deep into complex problems while you keep working.</p>
+                <p><strong>Together, they transform how you build software.</strong></p>
+            </div>
+        </div>
+
+        <!-- Skills: How to Use Tab -->
+        <div id="skills-how" class="tab-content">
+            <h2>Skills: How to Use</h2>
+
+            <h3>Skills Activate Automatically</h3>
+            <div class="highlight-box">
+                <p><strong>The magic of skills: You don't activate them, they activate themselves.</strong></p>
+                <p>Claude detects what you're doing and applies the relevant skill automatically. You just work normally.</p>
+            </div>
+
+            <h3>How Skills Detect When to Activate</h3>
+            <div class="example-box">
+                <h5>Example: Payment API Security Skill</h5>
+                <p><strong>Skill Description (What Claude Sees):</strong></p>
+                <div class="code-block">
+Apply PCI DSS compliance to payment-related APIs.
+Use when creating or modifying endpoints that handle:
+- Credit cards
+- Customer payment data
+- Financial transactions
+
+Activate when developer mentions: payment, credit card,
+transaction, checkout, billing, PCI
+                </div>
+                <p><strong>Your Request:</strong></p>
+                <p>"Create an endpoint to process credit card payments"</p>
+                <p><strong>What Happens:</strong></p>
+                <ol>
+                    <li>Claude sees "credit card" and "payments" in your request</li>
+                    <li>Matches against payment-api-security skill description</li>
+                    <li>Activates the skill automatically</li>
+                    <li>Generates code following all PCI requirements</li>
+                </ol>
+                <p><strong>Result:</strong> Code includes encryption, validation, audit logging - all automatic.</p>
+            </div>
+
+            <h3>Three Ways to Use Skills</h3>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <h4>1. Implicit (Recommended)</h4>
+                    <p><strong>Just work normally. Skills activate based on context.</strong></p>
+
+                    <p><strong>Example:</strong></p>
+                    <div class="code-block">
+You: "Create a new microservice for inventory management"
+
+Claude: [Detects "new microservice"]
+        [Activates new-microservice-scaffolder skill]
+        [Generates complete service structure with HD standards]
+                    </div>
+
+                    <p>✅ <strong>Best for:</strong> Daily development work</p>
+                </div>
+
+                <div class="card">
+                    <h4>2. Explicit</h4>
+                    <p><strong>Name the skill directly when you want to ensure it's used.</strong></p>
+
+                    <p><strong>Example:</strong></p>
+                    <div class="code-block">
+You: "Use the payment security skill to review this endpoint"
+
+Claude: [Applies payment-api-security skill specifically]
+        [Reviews endpoint for PCI compliance]
+        [Reports findings]
+                    </div>
+
+                    <p>✅ <strong>Best for:</strong> Reviewing existing code, learning skills</p>
+                </div>
+
+                <div class="card">
+                    <h4>3. Iterative</h4>
+                    <p><strong>Build first, then ask Claude to apply skills to improve.</strong></p>
+
+                    <p><strong>Example:</strong></p>
+                    <div class="code-block">
+You: "I wrote this payment endpoint. Apply our security standards."
+
+Claude: [Reviews code]
+        [Identifies payment handling]
+        [Applies payment-api-security skill]
+        [Suggests improvements for PCI compliance]
+                    </div>
+
+                    <p>✅ <strong>Best for:</strong> Refactoring, learning from mistakes</p>
+                </div>
+
+                <div class="card">
+                    <h4>4. Discovery</h4>
+                    <p><strong>Ask Claude what skills are available.</strong></p>
+
+                    <p><strong>Example:</strong></p>
+                    <div class="code-block">
+You: "What skills are available for security?"
+
+Claude: [Lists security-related skills]
+        - payment-api-security
+        - security-code-review
+        - pii-data-handling
+
+        [Explains when each activates]
+                    </div>
+
+                    <p>✅ <strong>Best for:</strong> Learning what's available</p>
+                </div>
+            </div>
+
+            <h3>Step-by-Step: Using Skills in Practice</h3>
+
+            <div class="example-box">
+                <h5>Scenario: Building a New Payment Feature</h5>
+
+                <h4>Step 1: Start Building</h4>
+                <div class="code-block">
+You: "Create an API endpoint to accept credit card payments for checkout"
+                </div>
+
+                <h4>Step 2: Skill Activates (Behind the Scenes)</h4>
+                <p>Claude detects "credit card" and "payments" → Activates payment-api-security skill</p>
+
+                <h4>Step 3: Claude Generates Compliant Code</h4>
+                <p>Code includes automatically:</p>
+                <ul>
+                    <li>✅ AES-256 encryption for card data</li>
+                    <li>✅ Luhn algorithm validation</li>
+                    <li>✅ Splunk audit logging with PCI tags</li>
+                    <li>✅ Input sanitization</li>
+                    <li>✅ Rate limiting (10 requests/min)</li>
+                    <li>✅ Security headers (HSTS, CSP, etc.)</li>
+                    <li>✅ Error handling that doesn't expose details</li>
+                </ul>
+
+                <h4>Step 4: Review Generated Code</h4>
+                <div class="code-block">
+You: "Review this code for our standards"
+                </div>
+                <p>Claude activates code-review-checklist skill → Runs tests, security scans, coverage checks</p>
+
+                <h4>Step 5: Deploy</h4>
+                <div class="code-block">
+You: "I'm ready to deploy to production"
+                </div>
+                <p>Claude activates deployment-checklist skill → Guides through safety checks, rollback plan</p>
+            </div>
+
+            <h3>Tips for Getting the Most from Skills</h3>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <h4>✅ Do This</h4>
+                    <ul class="checklist">
+                        <li>Use natural language - skills detect keywords</li>
+                        <li>Mention what you're building ("payment API", "new service")</li>
+                        <li>Ask Claude to review before submitting PRs</li>
+                        <li>Trust the skills - they enforce your standards</li>
+                        <li>Ask "what skills are available?" to discover</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>❌ Don't Do This</h4>
+                    <ul>
+                        <li>Don't try to memorize all skills</li>
+                        <li>Don't manually apply standards (let skills do it)</li>
+                        <li>Don't skip Claude's suggestions from skills</li>
+                        <li>Don't ignore skill-generated checklists</li>
+                        <li>Don't fight the skills - they're protecting you</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Common Questions</h3>
+
+            <div class="example-box">
+                <h5>Q: How do I know which skill activated?</h5>
+                <p><strong>A:</strong> Claude will sometimes mention it ("I'll apply our payment security standards...") or you can ask: "Which skill did you use?"</p>
+            </div>
+
+            <div class="example-box">
+                <h5>Q: What if I don't want a skill to apply?</h5>
+                <p><strong>A:</strong> Just tell Claude: "Don't apply the X skill for this" or "Skip the security checks for this prototype." Skills are helpful, not mandatory.</p>
+            </div>
+
+            <div class="example-box">
+                <h5>Q: Can I see what a skill does before it's applied?</h5>
+                <p><strong>A:</strong> Yes! Ask: "What does the payment security skill do?" or "Explain the code review skill."</p>
+            </div>
+
+            <div class="example-box">
+                <h5>Q: What if Claude doesn't use a skill when I expect it?</h5>
+                <p><strong>A:</strong> Be more explicit. Instead of "create an API," say "create a payment API for credit cards." Keywords matter.</p>
+            </div>
+        </div>
+
+        <!-- Sub-Agents: How to Use Tab -->
+        <div id="subagents-how" class="tab-content">
+            <h2>Sub-Agents: How to Use</h2>
+
+            <h3>Sub-Agents Run Autonomously</h3>
+            <div class="highlight-box">
+                <p><strong>Sub-agents are specialist AI teammates.</strong> When you need deep exploration, complex searches, or multi-step autonomous work, Claude dispatches a sub-agent to handle it.</p>
+                <p>You give the task once, the sub-agent works independently, then reports back with comprehensive results.</p>
+            </div>
+
+            <h3>The Three Sub-Agents</h3>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <h4>🔍 Explore Sub-Agent</h4>
+                    <p><strong>Purpose:</strong> Fast codebase exploration and pattern discovery</p>
+
+                    <p><strong>When to Use:</strong></p>
+                    <ul>
+                        <li>Understanding unfamiliar codebases</li>
+                        <li>"How does X work in our code?"</li>
+                        <li>Finding all instances of a pattern</li>
+                        <li>Tracing data flows</li>
+                        <li>Discovering architecture</li>
+                    </ul>
+
+                    <p><strong>How to Trigger:</strong></p>
+                    <div class="code-block">
+"How does authentication work in our codebase?"
+"Find all API endpoints that handle payments"
+"Explain the architecture of the checkout flow"
+"Where is customer data stored and accessed?"
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>📋 Plan Sub-Agent</h4>
+                    <p><strong>Purpose:</strong> Planning and strategy for complex features</p>
+
+                    <p><strong>When to Use:</strong></p>
+                    <ul>
+                        <li>Breaking down large features</li>
+                        <li>Design decision making</li>
+                        <li>Implementation strategy</li>
+                        <li>Refactoring planning</li>
+                        <li>Migration strategies</li>
+                    </ul>
+
+                    <p><strong>How to Trigger:</strong></p>
+                    <div class="code-block">
+"Plan the implementation of Apple Pay integration"
+"How should we refactor the payment system?"
+"Break down the checkout redesign into steps"
+"Plan migration from REST to GraphQL"
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>⚡ General Purpose Sub-Agent</h4>
+                    <p><strong>Purpose:</strong> Multi-step autonomous workflows</p>
+
+                    <p><strong>When to Use:</strong></p>
+                    <ul>
+                        <li>Complex searches across files</li>
+                        <li>Data processing tasks</li>
+                        <li>Research and analysis</li>
+                        <li>Finding and replacing patterns</li>
+                        <li>Batch operations</li>
+                    </ul>
+
+                    <p><strong>How to Trigger:</strong></p>
+                    <div class="code-block">
+"Find all deprecated API calls and suggest replacements"
+"Search for hardcoded credentials across the repo"
+"Identify all database queries that could cause N+1 problems"
+"Find files missing test coverage"
+                    </div>
+                </div>
+            </div>
+
+            <h3>How Sub-Agents Work: Step-by-Step</h3>
+
+            <div class="example-box">
+                <h5>Example: Understanding Payment Processing</h5>
+
+                <h4>Step 1: You Ask a Complex Question</h4>
+                <div class="code-block">
+You: "How does payment processing work in our codebase?
+     I need to understand the flow from checkout to completion."
+                </div>
+
+                <h4>Step 2: Claude Decides to Use Sub-Agent</h4>
+                <p>Claude recognizes this needs deep exploration and launches <strong>Explore sub-agent</strong></p>
+
+                <h4>Step 3: Sub-Agent Works Autonomously</h4>
+                <p>The Explore sub-agent (you don't see this, it happens automatically):</p>
+                <ol>
+                    <li>Searches for "payment" related files</li>
+                    <li>Finds PaymentController, PaymentService, PaymentGateway</li>
+                    <li>Reads and analyzes each file</li>
+                    <li>Traces API endpoints to service layer to database</li>
+                    <li>Identifies external integrations (Stripe, PayPal)</li>
+                    <li>Maps the complete data flow</li>
+                </ol>
+
+                <h4>Step 4: Sub-Agent Reports Back</h4>
+                <p>Claude receives comprehensive findings and presents them to you:</p>
+                <div class="code-block">
+Claude: "I've analyzed the payment processing system. Here's how it works:
+
+Architecture:
+- Frontend: CheckoutPage.jsx initiates payment
+- API: PaymentController.java (/api/payments endpoint)
+- Service: PaymentService.java (business logic)
+- Gateway: PaymentGateway.java (Stripe integration)
+- Database: payment_transactions table
+
+Flow:
+1. User submits payment on checkout page
+2. POST /api/payments with card data
+3. PaymentService validates and tokenizes card
+4. PaymentGateway sends to Stripe
+5. Response stored in payment_transactions
+6. OrderService notified on success
+
+Key Files:
+- src/controllers/PaymentController.java (entry point)
+- src/services/PaymentService.java (core logic)
+- src/gateways/PaymentGateway.java (external integration)
+
+[Detailed code examples and explanations follow...]"
+                </div>
+            </div>
+
+            <h3>When to Use Each Sub-Agent</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Your Need</th>
+                            <th>Sub-Agent</th>
+                            <th>Example Prompt</th>
+                            <th>What It Does</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Understand architecture</td>
+                            <td><span class="badge info">Explore</span></td>
+                            <td>"How does the order system work?"</td>
+                            <td>Maps architecture, traces flows, explains patterns</td>
+                        </tr>
+                        <tr>
+                            <td>Find all instances</td>
+                            <td><span class="badge info">Explore</span></td>
+                            <td>"Find all database queries"</td>
+                            <td>Searches comprehensively, categorizes findings</td>
+                        </tr>
+                        <tr>
+                            <td>Plan new feature</td>
+                            <td><span class="badge info">Plan</span></td>
+                            <td>"Plan implementation of search"</td>
+                            <td>Breaks into steps, considers dependencies</td>
+                        </tr>
+                        <tr>
+                            <td>Refactoring strategy</td>
+                            <td><span class="badge info">Plan</span></td>
+                            <td>"How should we modernize auth?"</td>
+                            <td>Analyzes current state, proposes approach</td>
+                        </tr>
+                        <tr>
+                            <td>Complex find/replace</td>
+                            <td><span class="badge info">General</span></td>
+                            <td>"Update all API v1 calls to v2"</td>
+                            <td>Finds all instances, suggests changes</td>
+                        </tr>
+                        <tr>
+                            <td>Security audit</td>
+                            <td><span class="badge info">General</span></td>
+                            <td>"Find security vulnerabilities"</td>
+                            <td>Comprehensive scan, categorized report</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Sub-Agent Best Practices</h3>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <h4>✅ Good Sub-Agent Prompts</h4>
+                    <ul class="checklist">
+                        <li><strong>"How does X work in our codebase?"</strong> - Clear exploration goal</li>
+                        <li><strong>"Find all instances of Y pattern"</strong> - Specific search target</li>
+                        <li><strong>"Plan implementation of Z feature"</strong> - Clear planning scope</li>
+                        <li><strong>"Explain the architecture of X system"</strong> - Bounded analysis</li>
+                    </ul>
+                    <p><strong>Key:</strong> Specific, exploration-focused, multi-step tasks</p>
+                </div>
+                <div class="card">
+                    <h4>❌ Poor Sub-Agent Prompts</h4>
+                    <ul>
+                        <li><strong>"Read file.java"</strong> - Too simple, just use Read tool</li>
+                        <li><strong>"Search for 'payment'"</strong> - Too vague, be specific</li>
+                        <li><strong>"Fix this bug"</strong> - Not exploration, use normal Claude</li>
+                        <li><strong>"Everything about payments"</strong> - Too broad, narrow scope</li>
+                    </ul>
+                    <p><strong>Key:</strong> Sub-agents need clear goals and scope</p>
+                </div>
+            </div>
+
+            <h3>Real Sub-Agent Examples</h3>
+
+            <div class="example-box">
+                <h5>Example 1: Understanding Legacy Code</h5>
+                <p><strong>Prompt:</strong></p>
+                <div class="code-block">
+"We have a legacy inventory system I need to understand.
+Can you explain how inventory is tracked across stores?"
+                </div>
+                <p><strong>What Happens:</strong></p>
+                <p>Explore sub-agent:</p>
+                <ol>
+                    <li>Searches for inventory-related files</li>
+                    <li>Identifies InventoryService, StoreInventory, InventorySync</li>
+                    <li>Traces real-time vs batch updates</li>
+                    <li>Maps integration with Oracle Retail</li>
+                    <li>Explains sync mechanisms and data consistency</li>
+                </ol>
+                <p><strong>Result:</strong> Comprehensive architecture doc of inventory system</p>
+            </div>
+
+            <div class="example-box">
+                <h5>Example 2: Planning a Refactor</h5>
+                <p><strong>Prompt:</strong></p>
+                <div class="code-block">
+"We want to move from REST to GraphQL for our product APIs.
+Can you plan the migration strategy?"
+                </div>
+                <p><strong>What Happens:</strong></p>
+                <p>Plan sub-agent:</p>
+                <ol>
+                    <li>Analyzes current REST API structure</li>
+                    <li>Identifies API consumers and usage patterns</li>
+                    <li>Proposes GraphQL schema design</li>
+                    <li>Breaks migration into phases</li>
+                    <li>Suggests backwards compatibility approach</li>
+                </ol>
+                <p><strong>Result:</strong> Step-by-step migration plan with timeline</p>
+            </div>
+
+            <div class="example-box">
+                <h5>Example 3: Security Audit</h5>
+                <p><strong>Prompt:</strong></p>
+                <div class="code-block">
+"Search the entire codebase for potential SQL injection vulnerabilities.
+I need a comprehensive report."
+                </div>
+                <p><strong>What Happens:</strong></p>
+                <p>General Purpose sub-agent:</p>
+                <ol>
+                    <li>Searches all database query patterns</li>
+                    <li>Identifies string concatenation in SQL</li>
+                    <li>Checks for unparameterized queries</li>
+                    <li>Categorizes by risk level</li>
+                    <li>Provides remediation suggestions</li>
+                </ol>
+                <p><strong>Result:</strong> Security audit report with prioritized fixes</p>
+            </div>
+
+            <h3>Sub-Agent vs Direct Claude</h3>
+
+            <div class="comparison">
+                <div class="comparison-side before">
+                    <h4>When NOT to Use Sub-Agents</h4>
+                    <ul>
+                        <li>Reading a specific file</li>
+                        <li>Making small code changes</li>
+                        <li>Answering quick questions</li>
+                        <li>Writing new code</li>
+                        <li>Debugging specific errors</li>
+                    </ul>
+                    <p><strong>Use:</strong> Regular Claude conversation</p>
+                </div>
+                <div class="comparison-side after">
+                    <h4>When to Use Sub-Agents</h4>
+                    <ul>
+                        <li>Exploring unfamiliar codebases</li>
+                        <li>Finding patterns across many files</li>
+                        <li>Planning complex features</li>
+                        <li>Comprehensive analysis tasks</li>
+                        <li>Multi-step autonomous work</li>
+                    </ul>
+                    <p><strong>Use:</strong> Sub-agent with clear scope</p>
+                </div>
+            </div>
+
+            <div class="highlight-box info">
+                <h3>Pro Tip: Let Claude Decide</h3>
+                <p>You don't need to explicitly invoke sub-agents. Claude automatically decides when a task needs a sub-agent.</p>
+                <p><strong>Just ask your question naturally.</strong> If it needs deep exploration or complex analysis, Claude will dispatch a sub-agent automatically.</p>
+            </div>
+        </div>
+
+        <!-- Home Depot Skills Tab -->
+        <div id="hd-skills" class="tab-content">
+            <h2>Home Depot Skills Library</h2>
+
+            <p>These production-ready skills are customized for Home Depot's engineering standards and tech stack.</p>
+
+            <h3>🔒 Security & Compliance Skills</h3>
+
+            <div class="card">
+                <h4>payment-api-security.md</h4>
+                <p><span class="badge">High Priority</span> <span class="badge info">PCI Compliance</span></p>
+
+                <p><strong>What It Does:</strong></p>
+                <p>Enforces PCI DSS requirements for all payment-related APIs. Automatically adds encryption, validation, audit logging, and security controls.</p>
+
+                <p><strong>Activates When:</strong></p>
+                <ul>
+                    <li>You mention: "payment", "credit card", "transaction", "checkout", "billing"</li>
+                    <li>Creating endpoints that handle financial data</li>
+                    <li>Working in payment-related services</li>
+                </ul>
+
+                <p><strong>What It Adds:</strong></p>
+                <ul class="checklist">
+                    <li>AES-256 encryption for payment data</li>
+                    <li>Luhn algorithm card validation</li>
+                    <li>Splunk audit logging with PCI tags</li>
+                    <li>Input sanitization and rate limiting</li>
+                    <li>Security headers (HSTS, CSP, etc.)</li>
+                    <li>Error handling that doesn't expose internals</li>
+                </ul>
+
+                <p><strong>Example:</strong></p>
+                <div class="code-block">
+You: "Create an endpoint to process credit card payments"
+
+Claude: [payment-api-security skill activates]
+        [Generates code with encryption, validation, logging]
+
+// Generated code includes:
+@PostMapping("/api/payments")
+@RateLimit(maxRequests=10, window="1m")
+public PaymentResponse processPayment(@RequestBody PaymentRequest request) {
+    // Validate card (Luhn algorithm)
+    if (!CardValidator.isValid(request.getCardNumber())) {
+        throw new InvalidCardException();
+    }
+
+    // Encrypt and tokenize
+    String token = cryptoUtil.tokenizeCard(request.getCardNumber());
+
+    // Audit log to Splunk
+    auditLogger.logPayment(userId, amount, token.getLast4());
+
+    // Process payment...
+}
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>security-code-review.md</h4>
+                <p><span class="badge">High Priority</span> <span class="badge info">OWASP Top 10</span></p>
+
+                <p><strong>What It Does:</strong></p>
+                <p>Comprehensive security review covering OWASP Top 10, hardcoded secrets, injection vulnerabilities, and dependency issues.</p>
+
+                <p><strong>Activates When:</strong></p>
+                <ul>
+                    <li>You ask for "security review" or "security check"</li>
+                    <li>Before deploying to production</li>
+                    <li>Working with sensitive data (PII, payments)</li>
+                </ul>
+
+                <p><strong>Checks For:</strong></p>
+                <ul class="checklist">
+                    <li>SQL injection vulnerabilities</li>
+                    <li>XSS and CSRF issues</li>
+                    <li>Hardcoded credentials and API keys</li>
+                    <li>Insecure authentication/authorization</li>
+                    <li>Sensitive data exposure in logs</li>
+                    <li>Dependency vulnerabilities</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>pii-data-handling.md</h4>
+                <p><span class="badge">High Priority</span> <span class="badge info">CCPA/GDPR</span></p>
+
+                <p><strong>What It Does:</strong></p>
+                <p>Ensures CCPA/GDPR compliance for customer data. Adds encryption, masking, access control, and data retention policies.</p>
+
+                <p><strong>Activates When:</strong></p>
+                <ul>
+                    <li>Working with Customer, User, or Profile models</li>
+                    <li>Handling names, emails, addresses, SSNs</li>
+                    <li>You mention "customer data" or "personal information"</li>
+                </ul>
+
+                <p><strong>What It Adds:</strong></p>
+                <ul class="checklist">
+                    <li>PII field identification and encryption</li>
+                    <li>Automatic masking in logs (email → j***@example.com)</li>
+                    <li>Access control (users access own data only)</li>
+                    <li>Audit logging for PII access</li>
+                    <li>Data retention and deletion methods</li>
+                    <li>CCPA right-to-access/deletion endpoints</li>
+                </ul>
+            </div>
+
+            <h3>🏗️ Architecture & Development Skills</h3>
+
+            <div class="card">
+                <h4>new-microservice-scaffolder.md</h4>
+                <p><span class="badge">High Priority</span> <span class="badge success">Architecture</span></p>
+
+                <p><strong>What It Does:</strong></p>
+                <p>Creates production-ready microservices with Home Depot's standard structure, configurations, and integrations.</p>
+
+                <p><strong>Activates When:</strong></p>
+                <ul>
+                    <li>You say: "create new service", "new microservice", "scaffold service"</li>
+                    <li>Starting a new backend API project</li>
+                </ul>
+
+                <p><strong>What It Creates:</strong></p>
+                <ul class="checklist">
+                    <li>Standard folder structure (controller/service/repository)</li>
+                    <li>Spring Boot + PostgreSQL + Flyway setup</li>
+                    <li>Health checks for Kubernetes (/actuator/health)</li>
+                    <li>New Relic APM and Splunk logging</li>
+                    <li>Dockerfile with multi-stage build</li>
+                    <li>Kubernetes manifests (deployment, service, ingress)</li>
+                    <li>CI/CD pipeline (GitHub Actions)</li>
+                    <li>Complete README with documentation</li>
+                </ul>
+
+                <p><strong>Example:</strong></p>
+                <div class="code-block">
+You: "Create a new microservice for inventory management"
+
+Claude: [new-microservice-scaffolder skill activates]
+        [Creates complete project structure]
+
+inventory-service/
+├── src/main/java/com/homedepot/inventory/
+│   ├── Application.java
+│   ├── controller/
+│   ├── service/
+│   └── repository/
+├── k8s/
+│   ├── deployment.yml
+│   └── service.yml
+├── Dockerfile
+├── pom.xml
+└── README.md
+
+[All files pre-configured with HD standards]
+                </div>
+            </div>
+
+            <h3>✅ Quality & Testing Skills</h3>
+
+            <div class="card">
+                <h4>code-review-checklist.md</h4>
+                <p><span class="badge">High Priority</span> <span class="badge success">Quality</span></p>
+
+                <p><strong>What It Does:</strong></p>
+                <p>Automated code review following Home Depot standards: testing, security, documentation, performance.</p>
+
+                <p><strong>Activates When:</strong></p>
+                <ul>
+                    <li>You ask: "review my code", "ready for review", "create PR"</li>
+                    <li>Before submitting pull requests</li>
+                </ul>
+
+                <p><strong>What It Checks:</strong></p>
+                <ul class="checklist">
+                    <li>Code style and formatting (runs linters)</li>
+                    <li>Test coverage ≥80% (unit + integration)</li>
+                    <li>Security scans (no vulnerabilities)</li>
+                    <li>Performance (no N+1 queries, proper indexing)</li>
+                    <li>Documentation (JSDoc/Javadoc on public methods)</li>
+                    <li>Git hygiene (commit messages, branch naming)</li>
+                    <li>Dependency health (no outdated/vulnerable deps)</li>
+                </ul>
+
+                <p><strong>Output:</strong></p>
+                <div class="code-block">
+# Code Review Summary
+
+## ✅ Passing (8/10)
+- Code style clean
+- Test coverage: 85%
+- Security scan: Clean
+- Documentation: Complete
+
+## ⚠️  Issues Found
+
+### High Priority (Fix Before Merge)
+1. Security: Hardcoded API key in config/app.properties:42
+   Fix: Move to environment variable
+
+2. Testing: Missing tests for PaymentService.refund()
+   Fix: Add unit tests
+
+### Medium Priority
+1. Performance: N+1 query in OrderController.getOrders()
+   Fix: Use fetch join
+
+## ✓ Ready for Review: After fixing high priority issues
+                </div>
+            </div>
+
+            <h3>🚀 Operations Skills</h3>
+
+            <div class="card">
+                <h4>deployment-checklist.md</h4>
+                <p><span class="badge">Medium Priority</span> <span class="badge success">Operations</span></p>
+
+                <p><strong>What It Does:</strong></p>
+                <p>Guides safe production deployments with pre-deployment validation, monitoring, and rollback procedures.</p>
+
+                <p><strong>Activates When:</strong></p>
+                <ul>
+                    <li>You say: "deploy to prod", "production deployment", "ready to ship"</li>
+                    <li>Preparing for staging or production releases</li>
+                </ul>
+
+                <p><strong>Deployment Checklist:</strong></p>
+                <ul class="checklist">
+                    <li>All tests passing (unit, integration, E2E)</li>
+                    <li>Security scans clean</li>
+                    <li>Code reviews approved</li>
+                    <li>Documentation updated</li>
+                    <li>Rollback plan prepared</li>
+                    <li>Monitoring dashboards ready</li>
+                    <li>Deployment window appropriate (Tue-Thu, 9am-3pm)</li>
+                </ul>
+            </div>
+
+            <h3>How to Add Skills to Your Project</h3>
+            <div class="highlight-box success">
+                <h4>Setup (5 minutes)</h4>
+                <ol>
+                    <li><strong>Copy skills to your repo:</strong></li>
+                </ol>
+                <div class="code-block">
+cd your-project/
+mkdir -p .claude/skills
+cp /path/to/claude-skills-samples/*.md .claude/skills/
+                </div>
+                <ol start="2">
+                    <li><strong>Commit to Git:</strong></li>
+                </ol>
+                <div class="code-block">
+git add .claude/skills/
+git commit -m "Add Home Depot Claude Code skills"
+git push
+                </div>
+                <ol start="3">
+                    <li><strong>Team gets skills:</strong></li>
+                </ol>
+                <div class="code-block">
+git pull  # Skills now available!
+                </div>
+                <p><strong>That's it!</strong> Skills are now active for everyone with repo access.</p>
+            </div>
+        </div>
+
+        <!-- Real Examples Tab -->
+        <div id="examples" class="tab-content">
+            <h2>Real Examples: Skills & Sub-Agents in Action</h2>
+
+            <h3>Example 1: Building a Payment Feature (Skills)</h3>
+            <div class="example-box">
+                <h5>Scenario: Junior Developer Needs to Add Apple Pay</h5>
+
+                <h4>Without Skills:</h4>
+                <div class="comparison">
+                    <div class="comparison-side before">
+                        <h4>❌ The Old Way</h4>
+                        <ol>
+                            <li>Read 15-page PCI compliance doc</li>
+                            <li>Search Confluence for payment patterns</li>
+                            <li>Ask senior dev about encryption library</li>
+                            <li>Write code, forget audit logging</li>
+                            <li>Security review catches missing encryption</li>
+                            <li>Fix and resubmit (2 days later)</li>
+                            <li>Second review catches missing validation</li>
+                            <li>Fix again (1 day later)</li>
+                            <li>Finally approved</li>
+                        </ol>
+                        <p><strong>Time:</strong> 5 days | <strong>Review cycles:</strong> 3</p>
+                    </div>
+                    <div class="comparison-side after">
+                        <h4>✅ With Skills</h4>
+                        <ol>
+                            <li>Ask Claude: "Create Apple Pay endpoint"</li>
+                            <li>payment-api-security skill activates</li>
+                            <li>Code generated with:
+                                <ul>
+                                    <li>✓ AES-256 encryption</li>
+                                    <li>✓ Token validation</li>
+                                    <li>✓ Splunk audit logging</li>
+                                    <li>✓ Rate limiting</li>
+                                    <li>✓ Security headers</li>
+                                </ul>
+                            </li>
+                            <li>Ask Claude: "Review this code"</li>
+                            <li>code-review-checklist runs checks</li>
+                            <li>All checks pass</li>
+                            <li>Submit PR</li>
+                            <li>First review: Approved!</li>
+                        </ol>
+                        <p><strong>Time:</strong> Same day | <strong>Review cycles:</strong> 1</p>
+                    </div>
+                </div>
+
+                <h4>The Conversation:</h4>
+                <div class="code-block">
+Developer: "I need to add an Apple Pay endpoint to our checkout API"
+
+Claude: "I'll create an Apple Pay endpoint following our payment security standards.
+
+First, let me apply our PCI compliance requirements..."
+
+[Generates PaymentController.java with:]
+- Apple Pay token validation
+- Payment data encryption
+- Audit logging to Splunk
+- Rate limiting (10 req/min)
+- Comprehensive error handling
+- Security headers
+- Unit and integration tests
+
+Developer: "Can you review this for our standards?"
+
+Claude: "Running code review checklist...
+
+✅ Code style: Clean
+✅ Test coverage: 92%
+✅ Security scan: No issues
+✅ PCI compliance: Verified
+✅ Documentation: Complete
+✅ Performance: Good
+
+Ready for PR! I've generated a PR description with checklist."
+                </div>
+
+                <p><strong>Impact:</strong> 4 days saved, Zero security issues, Developer learned PCI patterns</p>
+            </div>
+
+            <h3>Example 2: Understanding Legacy Code (Sub-Agent)</h3>
+            <div class="example-box">
+                <h5>Scenario: Need to Modify Unfamiliar Inventory System</h5>
+
+                <h4>Without Sub-Agents:</h4>
+                <div class="comparison">
+                    <div class="comparison-side before">
+                        <h4>❌ Manual Exploration</h4>
+                        <ol>
+                            <li>Search for "inventory" files (dozens of results)</li>
+                            <li>Open each file, try to understand</li>
+                            <li>Draw architecture on whiteboard</li>
+                            <li>Ask teammates about unclear parts</li>
+                            <li>Discover hidden dependencies</li>
+                            <li>Start over with new understanding</li>
+                            <li>Finally feel confident enough to change</li>
+                        </ol>
+                        <p><strong>Time:</strong> 4-6 hours | <strong>Confidence:</strong> Medium</p>
+                    </div>
+                    <div class="comparison-side after">
+                        <h4>✅ With Explore Sub-Agent</h4>
+                        <ol>
+                            <li>Ask Claude: "Explain inventory system"</li>
+                            <li>Explore sub-agent launches</li>
+                            <li>Receives comprehensive report:
+                                <ul>
+                                    <li>✓ Architecture diagram</li>
+                                    <li>✓ Key files and their roles</li>
+                                    <li>✓ Data flow from API to DB</li>
+                                    <li>✓ Integration points</li>
+                                    <li>✓ Code examples</li>
+                                </ul>
+                            </li>
+                            <li>Ask follow-up questions</li>
+                            <li>Make changes confidently</li>
+                        </ol>
+                        <p><strong>Time:</strong> 20-30 minutes | <strong>Confidence:</strong> High</p>
+                    </div>
+                </div>
+
+                <h4>The Conversation:</h4>
+                <div class="code-block">
+Developer: "I need to understand our inventory system. How does
+           real-time inventory tracking work across 2,300 stores?"
+
+Claude: "I'll explore the inventory system architecture for you."
+
+[Explore sub-agent launches and works autonomously]
+
+Claude: "I've analyzed the inventory system. Here's what I found:
+
+ARCHITECTURE:
+- API Layer: InventoryController.java (REST endpoints)
+- Service Layer: InventoryService.java (business logic)
+- Integration: OracleRetailAdapter.java (legacy system)
+- Cache Layer: Redis (store inventory cache)
+- Database: inventory_levels table (PostgreSQL)
+
+DATA FLOW:
+1. Store POS updates inventory locally
+2. Batch sync to Oracle Retail (every 15 min)
+3. Change events published to Kafka
+4. InventoryService consumes events
+5. Updates PostgreSQL + Redis cache
+6. Web/mobile apps query Redis for real-time data
+
+KEY FILES:
+- src/controllers/InventoryController.java (API endpoints)
+- src/services/InventoryService.java (core logic)
+- src/adapters/OracleRetailAdapter.java (legacy integration)
+- src/events/InventoryEventConsumer.java (Kafka consumer)
+
+SYNC MECHANISMS:
+- Real-time: Kafka events for critical changes
+- Batch: 15-min sync for bulk updates
+- Fallback: Direct Oracle query if cache miss
+
+[Detailed code examples follow...]"
+
+Developer: "Where would I add a feature to reserve inventory for online orders?"
+
+Claude: "Based on the architecture, you'd modify:
+1. InventoryService.reserveInventory() method
+2. Add inventory_reservations table
+3. Update Kafka event schema
+[Specific implementation guidance...]"
+                </div>
+
+                <p><strong>Impact:</strong> 4+ hours saved, Comprehensive understanding, Confidence to make changes</p>
+            </div>
+
+            <h3>Example 3: Combining Skills + Sub-Agents</h3>
+            <div class="example-box">
+                <h5>Scenario: Migrate Payment System to New Gateway</h5>
+
+                <h4>The Workflow:</h4>
+
+                <h4>Step 1: Understand Current System (Sub-Agent)</h4>
+                <div class="code-block">
+Developer: "Explain our current payment system architecture"
+
+Claude: [Launches Explore sub-agent]
+        [Returns comprehensive architecture analysis]
+        - Current gateway: Stripe
+        - Payment flow documented
+        - Integration points identified
+                </div>
+
+                <h4>Step 2: Plan Migration (Sub-Agent)</h4>
+                <div class="code-block">
+Developer: "We want to migrate from Stripe to Adyen. Plan the migration."
+
+Claude: [Launches Plan sub-agent]
+        [Returns migration strategy]
+
+Phase 1: Abstraction layer
+Phase 2: Dual-write pattern
+Phase 3: Traffic migration
+Phase 4: Cleanup
+[Detailed implementation plan...]
+                </div>
+
+                <h4>Step 3: Implement Gateway Adapter (Skill)</h4>
+                <div class="code-block">
+Developer: "Create the Adyen payment gateway adapter"
+
+Claude: [payment-api-security skill activates]
+        [Generates AdyenGateway.java with:]
+        - PCI-compliant integration
+        - Proper encryption and tokenization
+        - Audit logging
+        - Error handling
+        - Unit tests
+                </div>
+
+                <h4>Step 4: Review Changes (Skill)</h4>
+                <div class="code-block">
+Developer: "Review all payment changes for security"
+
+Claude: [security-code-review skill activates]
+        [Comprehensive security audit]
+        ✅ No hardcoded credentials
+        ✅ All payment data encrypted
+        ✅ Proper audit logging
+        ✅ Input validation complete
+                </div>
+
+                <h4>Step 5: Deploy (Skill)</h4>
+                <div class="code-block">
+Developer: "Ready to deploy the new payment gateway"
+
+Claude: [deployment-checklist skill activates]
+
+Pre-Deployment Checklist:
+✅ Tests passing (coverage: 88%)
+✅ Security scan clean
+✅ Rollback plan: Feature flag to switch back to Stripe
+✅ Monitoring: New Relic dashboard configured
+⚠️  Recommendation: Deploy to canary first (5% traffic)
+
+Proceed with canary deployment?
+                </div>
+
+                <p><strong>Complete Migration:</strong> Sub-agents handle exploration and planning, Skills ensure security and quality every step of the way.</p>
+            </div>
+
+            <h3>Example 4: Daily Development Flow</h3>
+            <div class="example-box">
+                <h5>A Day in the Life with Skills & Sub-Agents</h5>
+
+                <h4>9:00 AM - Understanding a Bug</h4>
+                <div class="code-block">
+Dev: "Users reporting checkout failures. Where is checkout implemented?"
+
+Claude: [Launches Explore sub-agent]
+        [Maps checkout flow: frontend → API → payment → inventory]
+        [Identifies CheckoutService.java as core logic]
+                </div>
+
+                <h4>9:30 AM - Fixing the Bug</h4>
+                <div class="code-block">
+Dev: "Fix the null pointer exception in inventory check"
+
+Claude: [Reviews code]
+        [Suggests fix with proper null handling]
+        [Adds unit test to prevent regression]
+                </div>
+
+                <h4>10:00 AM - New Feature Request</h4>
+                <div class="code-block">
+Dev: "Add gift message support to orders"
+
+Claude: [Identifies order handling]
+        [Creates OrderGiftMessage model]
+        [Updates OrderService with gift message handling]
+        [Adds validation: max 500 chars, sanitize HTML]
+                </div>
+
+                <h4>11:00 AM - Code Review</h4>
+                <div class="code-block">
+Dev: "Review my changes before I submit PR"
+
+Claude: [code-review-checklist skill activates]
+
+✅ Code style clean
+✅ Tests added (coverage: 85%)
+⚠️  Documentation: Add JSDoc to OrderService.addGiftMessage()
+✅ Security: Input sanitization present
+
+Fix: Adding JSDoc...
+Done! Ready for PR.
+                </div>
+
+                <h4>2:00 PM - New Service Setup</h4>
+                <div class="code-block">
+Dev: "Create a new microservice for product recommendations"
+
+Claude: [new-microservice-scaffolder skill activates]
+        [Generates complete service structure]
+        [Includes health checks, monitoring, CI/CD]
+
+Recommendation: Since this is ML-based, also add:
+- Model serving endpoint
+- Performance monitoring
+- A/B test infrastructure
+Would you like me to add these?
+                </div>
+
+                <h4>4:00 PM - Security Question</h4>
+                <div class="code-block">
+Dev: "Do we have any hardcoded API keys in the codebase?"
+
+Claude: [Launches General Purpose sub-agent]
+        [Searches entire codebase]
+
+Found 2 instances:
+1. config/test-config.properties:15
+   API_KEY="test-key-123" (Test only, OK)
+2. src/services/LegacyService.java:89
+   ⚠️  Hardcoded production API key! Security risk.
+
+Recommendation: Move to environment variable
+                </div>
+
+                <p><strong>Entire Day:</strong> Sub-agents handle exploration, Skills ensure quality and security, Developer stays in flow.</p>
+            </div>
+        </div>
+
+        <!-- Getting Started Tab -->
+        <div id="getting-started" class="tab-content">
+            <h2>Getting Started with Skills & Sub-Agents</h2>
+
+            <h3>For Developers: Start Using Today</h3>
+
+            <div class="card">
+                <h4>Step 1: Check if Skills Are Available (2 min)</h4>
+                <div class="code-block">
+# Check if your project has skills
+ls .claude/skills/
+
+# If you see files like payment-api-security.md, you're ready!
+# If not, ask your team lead to add them
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Step 2: Try Your First Skill (5 min)</h4>
+                <p>Pick something you're working on and ask Claude to help:</p>
+                <div class="code-block">
+# If you're working on payment code:
+"Create an endpoint to process credit card payments"
+
+# If you're starting a new service:
+"Create a new microservice for customer reviews"
+
+# If you're ready for code review:
+"Review my code for our standards"
+                </div>
+                <p>Watch Claude automatically apply Home Depot standards!</p>
+            </div>
+
+            <div class="card">
+                <h4>Step 3: Try a Sub-Agent (5 min)</h4>
+                <p>Ask Claude to explain something complex:</p>
+                <div class="code-block">
+# Understanding architecture:
+"How does authentication work in our codebase?"
+
+# Finding patterns:
+"Find all database queries that could be optimized"
+
+# Planning work:
+"Plan implementation of product search feature"
+                </div>
+                <p>Watch the sub-agent explore and report back!</p>
+            </div>
+
+            <h3>For Team Leads: Add Skills to Your Project</h3>
+
+            <div class="example-box">
+                <h5>15-Minute Setup</h5>
+
+                <h4>Step 1: Copy Skills to Your Repo</h4>
+                <div class="code-block">
+# Navigate to your project
+cd your-homedepot-project/
+
+# Create skills directory
+mkdir -p .claude/skills
+
+# Copy Home Depot skills
+cp /path/to/claude-skills-samples/*.md .claude/skills/
+
+# You should now have:
+.claude/skills/
+├── payment-api-security.md
+├── new-microservice-scaffolder.md
+├── code-review-checklist.md
+├── security-code-review.md
+├── deployment-checklist.md
+└── pii-data-handling.md
+                </div>
+
+                <h4>Step 2: Commit to Git</h4>
+                <div class="code-block">
+git add .claude/skills/
+git commit -m "Add Home Depot Claude Code skills"
+git push origin main
+                </div>
+
+                <h4>Step 3: Notify Team</h4>
+                <p>Post in your team Slack:</p>
+                <div class="code-block">
+📢 Claude Code Skills Now Available!
+
+We've added AI-powered skills to enforce our team standards automatically.
+
+What's new:
+- Payment security (PCI compliance)
+- Code review automation
+- Security scanning
+- New service scaffolding
+- And more!
+
+Try it: Just use Claude Code normally. Skills activate automatically.
+Example: "Create a payment endpoint" → Security standards applied automatically!
+
+Questions? Reply in thread.
+                </div>
+            </div>
+
+            <h3>Tips for Success</h3>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <h4>For Skills</h4>
+                    <ul class="checklist">
+                        <li>Be specific about what you're building</li>
+                        <li>Mention keywords: "payment", "service", "deploy"</li>
+                        <li>Trust the skills - they enforce your standards</li>
+                        <li>Ask Claude "What skills are available?"</li>
+                        <li>Review code before submitting PRs</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>For Sub-Agents</h4>
+                    <ul class="checklist">
+                        <li>Ask "How does X work?" for exploration</li>
+                        <li>Give clear scope: "Explain payment system"</li>
+                        <li>Let Claude decide when to use sub-agents</li>
+                        <li>Ask follow-up questions</li>
+                        <li>Use for unfamiliar codebases</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Resources</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Resource</th>
+                            <th>What It Is</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Skills Samples</strong></td>
+                            <td>All Home Depot skills with documentation</td>
+                            <td><code>/HomeDepot/claude-skills-samples/</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Skills README</strong></td>
+                            <td>Detailed guide to each skill</td>
+                            <td><code>claude-skills-samples/README.md</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quick Start</strong></td>
+                            <td>30-minute getting started guide</td>
+                            <td><code>QUICK_START_GUIDE.md</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anthropic Docs</strong></td>
+                            <td>Official Claude Code documentation</td>
+                            <td><a href="https://docs.claude.com/en/docs/claude-code/skills">docs.claude.com/claude-code/skills</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Common Questions</h3>
+
+            <div class="example-box">
+                <h5>Q: Do I need to learn how skills work?</h5>
+                <p><strong>A:</strong> No! Just use Claude Code normally. Skills activate automatically based on what you're doing. You can ignore that they exist and still benefit.</p>
+            </div>
+
+            <div class="example-box">
+                <h5>Q: How do I know if a skill activated?</h5>
+                <p><strong>A:</strong> Claude will sometimes mention it ("Applying our payment security standards...") or you can ask: "Did you use a skill for this?"</p>
+            </div>
+
+            <div class="example-box">
+                <h5>Q: What if I don't want a skill to apply?</h5>
+                <p><strong>A:</strong> Just tell Claude: "Don't apply security checks for this prototype" or "Skip the standards for now." Skills are helpful, not mandatory.</p>
+            </div>
+
+            <div class="example-box">
+                <h5>Q: How do sub-agents differ from regular Claude?</h5>
+                <p><strong>A:</strong> Sub-agents run autonomously for complex tasks. Regular Claude is conversational. You don't need to choose - Claude automatically uses sub-agents when needed.</p>
+            </div>
+
+            <div class="example-box">
+                <h5>Q: Can I create my own skills?</h5>
+                <p><strong>A:</strong> Yes! Skills are just markdown files. Copy an existing skill as a template and customize for your team's needs. Ask your team lead.</p>
+            </div>
+
+            <div class="highlight-box success">
+                <h3>Ready to Start?</h3>
+                <p><strong>Developers:</strong> Just use Claude Code! If skills are in your project, they're already working.</p>
+                <p><strong>Team Leads:</strong> Follow the 15-minute setup above to add skills to your project.</p>
+                <p><strong>Questions:</strong> Ask in your team Slack or contact platform engineering.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Home Depot | Claude Code Skills & Sub-Agents Guide</strong></p>
+        <p>Internal Resource for Home Depot Engineering Teams</p>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            const tabContent = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove('active');
+            }
+
+            const tabButtons = document.getElementsByClassName('tab-button');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
