@@ -546,6 +546,230 @@
             }
         }
 
+        /* Header improvements */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .version-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-align: right;
+            backdrop-filter: blur(10px);
+        }
+
+        .version-badge .version {
+            display: block;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .version-badge .date {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* Search functionality */
+        .search-container {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.95);
+            color: var(--text-primary);
+        }
+
+        .search-container input:focus {
+            outline: 3px solid rgba(255,255,255,0.5);
+        }
+
+        .search-container input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background: var(--hd-light-gray);
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item .result-title {
+            font-weight: 600;
+            color: var(--hd-orange);
+            margin-bottom: 0.25rem;
+        }
+
+        .search-result-item .result-context {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .search-result-item .result-tab {
+            font-size: 0.75rem;
+            background: var(--hd-light-gray);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .no-results {
+            padding: 1rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--hd-orange);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(249, 99, 2, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(249, 99, 2, 0.5);
+        }
+
+        /* Tab navigation (prev/next) */
+        .tab-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--hd-light-gray);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--hd-orange);
+            border-color: var(--hd-orange);
+            color: white;
+        }
+
+        .nav-btn.disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .nav-btn .nav-direction {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn .nav-title {
+            font-weight: 600;
+        }
+
+        .nav-btn-prev {
+            text-align: left;
+        }
+
+        .nav-btn-next {
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .version-badge {
+                text-align: left;
+            }
+
+            .tab-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
         .comparison {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -602,16 +826,32 @@
 <body>
     <div class="header">
         <div class="header-content">
-            <h1>🚀 Claude Code Skills & Sub-Agents</h1>
-            <p class="subtitle">Your Guide to AI-Powered Development Standards at Home Depot</p>
+            <div class="header-top">
+                <div>
+                    <h1>🚀 Claude Code Skills & Sub-Agents</h1>
+                    <p class="subtitle">Your Guide to AI-Powered Development Standards at Home Depot</p>
+                </div>
+                <div class="version-badge">
+                    <span class="version">v2.1</span>
+                    <span class="date">Updated Nov 2025</span>
+                </div>
+            </div>
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search guide... (e.g., 'payment', 'security', 'deploy')" onkeyup="searchContent()">
+                <span class="search-icon">🔍</span>
+                <div id="searchResults" class="search-results"></div>
+            </div>
             <div class="tabs">
-                <button class="tab-button active" onclick="openTab(event, 'overview')">Overview</button>
-                <button class="tab-button" onclick="openTab(event, 'why')">Why Use Them</button>
-                <button class="tab-button" onclick="openTab(event, 'skills-how')">Skills: How to Use</button>
-                <button class="tab-button" onclick="openTab(event, 'subagents-how')">Sub-Agents: How to Use</button>
-                <button class="tab-button" onclick="openTab(event, 'hd-skills')">Home Depot Skills</button>
-                <button class="tab-button" onclick="openTab(event, 'examples')">Real Examples</button>
-                <button class="tab-button" onclick="openTab(event, 'getting-started')">Getting Started</button>
+                <button class="tab-button active" onclick="openTab(event, 'overview')" data-tab="overview">Overview</button>
+                <button class="tab-button" onclick="openTab(event, 'why')" data-tab="why">Why Use Them</button>
+                <button class="tab-button" onclick="openTab(event, 'skills-how')" data-tab="skills-how">Skills: How to Use</button>
+                <button class="tab-button" onclick="openTab(event, 'subagents-how')" data-tab="subagents-how">Sub-Agents: How to Use</button>
+                <button class="tab-button" onclick="openTab(event, 'hd-skills')" data-tab="hd-skills">Home Depot Skills</button>
+                <button class="tab-button" onclick="openTab(event, 'cicd')" data-tab="cicd">CI/CD Integration</button>
+                <button class="tab-button" onclick="openTab(event, 'troubleshooting')" data-tab="troubleshooting">Troubleshooting</button>
+                <button class="tab-button" onclick="openTab(event, 'examples')" data-tab="examples">Real Examples</button>
+                <button class="tab-button" onclick="openTab(event, 'getting-started')" data-tab="getting-started">Getting Started</button>
             </div>
         </div>
     </div>
@@ -733,6 +973,24 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tab-navigation">
+                <button class="nav-btn nav-btn-prev disabled" id="prevBtn">
+                    <span>←</span>
+                    <div>
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title"></span>
+                    </div>
+                </button>
+                <button class="nav-btn nav-btn-next" id="nextBtn">
+                    <div>
+                        <span class="nav-direction">Next</span>
+                        <span class="nav-title">Why Use Them</span>
+                    </div>
+                    <span>→</span>
+                </button>
             </div>
         </div>
 
@@ -1722,6 +1980,418 @@ git pull  # Skills now available!
             </div>
         </div>
 
+        <!-- CI/CD Integration Tab -->
+        <div id="cicd" class="tab-content">
+            <h2>CI/CD Integration</h2>
+
+            <div class="exec-summary">
+                <h3>Skills in Your Pipeline</h3>
+                <p>Claude Code skills integrate seamlessly with CI/CD pipelines to enforce standards automatically during pull requests, builds, and deployments.</p>
+            </div>
+
+            <h3>GitHub Actions Integration</h3>
+
+            <div class="card">
+                <h4>Automated Code Review on PR</h4>
+                <p>Run Claude Code skills as part of your PR workflow to catch issues before human review.</p>
+
+                <div class="code-block">
+# .github/workflows/claude-review.yml
+name: Claude Code Review
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  claude-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Claude Code
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude --version
+
+      - name: Run Code Review Skill
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude "Review the changes in this PR using our code-review-checklist skill.
+                  Focus on security, testing, and documentation."
+
+      - name: Run Security Scan
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude "Run security-code-review skill on all changed files.
+                  Report any OWASP Top 10 vulnerabilities."
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Pre-Commit Hooks</h4>
+                <p>Use skills locally before code even reaches the PR.</p>
+
+                <div class="code-block">
+# .pre-commit-config.yaml
+repos:
+  - repo: local
+    hooks:
+      - id: claude-security-check
+        name: Claude Security Check
+        entry: claude "Check this file for security issues using security-code-review skill"
+        language: system
+        files: \.(java|js|ts|py)$
+        pass_filenames: true
+
+      - id: claude-pii-check
+        name: Claude PII Check
+        entry: claude "Check for PII handling issues using pii-data-handling skill"
+        language: system
+        files: (Customer|User|Profile|Account)\.(java|ts)$
+                </div>
+            </div>
+
+            <h3>Jenkins Integration</h3>
+
+            <div class="card">
+                <h4>Jenkinsfile Pipeline</h4>
+                <div class="code-block">
+pipeline {
+    agent any
+
+    environment {
+        ANTHROPIC_API_KEY = credentials('anthropic-api-key')
+    }
+
+    stages {
+        stage('Claude Code Review') {
+            steps {
+                sh '''
+                    claude "Review all Java files modified in this build.
+                           Apply code-review-checklist skill.
+                           Fail if any high-priority issues found."
+                '''
+            }
+        }
+
+        stage('Security Scan') {
+            steps {
+                sh '''
+                    claude "Run security-code-review skill.
+                           Check for SQL injection, XSS, and hardcoded credentials.
+                           Output results to security-report.md"
+                '''
+                archiveArtifacts artifacts: 'security-report.md'
+            }
+        }
+
+        stage('Deployment Readiness') {
+            when {
+                branch 'main'
+            }
+            steps {
+                sh '''
+                    claude "Run deployment-checklist skill.
+                           Verify all pre-deployment requirements are met.
+                           Generate deployment plan."
+                '''
+            }
+        }
+    }
+}
+                </div>
+            </div>
+
+            <h3>GitLab CI Integration</h3>
+
+            <div class="card">
+                <h4>.gitlab-ci.yml Configuration</h4>
+                <div class="code-block">
+stages:
+  - review
+  - security
+  - deploy
+
+claude-review:
+  stage: review
+  image: node:18
+  before_script:
+    - npm install -g @anthropic-ai/claude-code
+  script:
+    - claude "Review MR changes using code-review-checklist skill"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+security-scan:
+  stage: security
+  script:
+    - claude "Run security-code-review on src/ directory"
+  artifacts:
+    reports:
+      junit: security-results.xml
+
+deployment-check:
+  stage: deploy
+  script:
+    - claude "Run deployment-checklist skill for production release"
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+                </div>
+            </div>
+
+            <h3>Best Practices for CI/CD</h3>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <h4>✅ Do This</h4>
+                    <ul class="checklist">
+                        <li>Store API keys in CI/CD secrets manager</li>
+                        <li>Run skills on changed files only (faster)</li>
+                        <li>Cache Claude Code installation</li>
+                        <li>Set timeouts for Claude operations</li>
+                        <li>Archive skill output as artifacts</li>
+                        <li>Use skills as quality gates</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>❌ Avoid This</h4>
+                    <ul>
+                        <li>Hardcoding API keys in pipeline files</li>
+                        <li>Running all skills on every file</li>
+                        <li>Ignoring skill warnings in CI output</li>
+                        <li>Blocking deployments without override option</li>
+                        <li>Running skills without context limits</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Metrics & Monitoring</h3>
+
+            <div class="highlight-box info">
+                <h4>Track Skill Effectiveness in CI/CD</h4>
+                <ul>
+                    <li><strong>Issues caught pre-merge:</strong> Track how many issues skills find before human review</li>
+                    <li><strong>Pipeline pass rate:</strong> Monitor skill-related stage success rates</li>
+                    <li><strong>Time saved:</strong> Compare review cycle time before/after skill adoption</li>
+                    <li><strong>False positive rate:</strong> Track skill suggestions that were overridden</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Troubleshooting Tab -->
+        <div id="troubleshooting" class="tab-content">
+            <h2>Troubleshooting</h2>
+
+            <div class="exec-summary">
+                <h3>Common Issues & Solutions</h3>
+                <p>Quick fixes for the most frequent problems encountered when using Claude Code skills and sub-agents.</p>
+            </div>
+
+            <h3>🔧 Skills Not Activating</h3>
+
+            <div class="card">
+                <h4>Problem: Claude doesn't use my skill</h4>
+                <p><strong>Symptoms:</strong> You mention payment/security/etc. but Claude doesn't apply the relevant skill.</p>
+
+                <div class="comparison">
+                    <div class="comparison-side before">
+                        <h4>❌ Common Causes</h4>
+                        <ul>
+                            <li>Skill file not in <code>.claude/skills/</code></li>
+                            <li>Skill description too vague</li>
+                            <li>File extension not <code>.md</code></li>
+                            <li>Skill not committed to git</li>
+                            <li>Keywords don't match your request</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-side after">
+                        <h4>✅ Solutions</h4>
+                        <ul>
+                            <li>Verify: <code>ls .claude/skills/*.md</code></li>
+                            <li>Add specific trigger phrases to description</li>
+                            <li>Rename to <code>.md</code> extension</li>
+                            <li>Run <code>git status</code> and commit</li>
+                            <li>Update skill keywords to match usage</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h5>Quick Fix: Explicit Activation</h5>
+                    <p>If automatic activation fails, explicitly request the skill:</p>
+                    <div class="code-block">
+"Use the payment-api-security skill to create this endpoint"
+"Apply our security-code-review skill to this file"
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Problem: Wrong skill activates</h4>
+                <p><strong>Symptoms:</strong> Claude uses a different skill than expected.</p>
+
+                <div class="highlight-box">
+                    <h5>Solution: Improve Skill Descriptions</h5>
+                    <div class="code-block">
+# ❌ Vague description (causes conflicts)
+"Security checks for code"
+
+# ✅ Specific description (clear activation)
+"Apply PCI DSS compliance to payment-related APIs.
+Activate when: creating payment endpoints, handling credit cards,
+processing transactions, working with billing data.
+Keywords: payment, credit card, checkout, billing, PCI, transaction"
+                    </div>
+                </div>
+            </div>
+
+            <h3>🔍 Sub-Agent Issues</h3>
+
+            <div class="card">
+                <h4>Problem: Sub-agent returns incomplete results</h4>
+                <p><strong>Symptoms:</strong> Explore agent misses files or Plan agent gives superficial analysis.</p>
+
+                <div class="example-box">
+                    <h5>Solution: Be More Specific</h5>
+                    <div class="code-block">
+# ❌ Too vague
+"How does the code work?"
+
+# ✅ Specific scope and goals
+"How does payment processing work in our codebase?
+Specifically:
+1. Trace the flow from checkout page to payment gateway
+2. Identify which services handle card validation
+3. Find where audit logging occurs
+4. List all external payment integrations (Stripe, PayPal, etc.)"
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Problem: Sub-agent takes too long</h4>
+                <p><strong>Symptoms:</strong> Explore or General Purpose agent runs for several minutes.</p>
+
+                <div class="highlight-box">
+                    <h5>Solutions</h5>
+                    <ul>
+                        <li><strong>Narrow the scope:</strong> "Search only in src/services/" instead of entire repo</li>
+                        <li><strong>Limit file types:</strong> "Find .java files with payment logic"</li>
+                        <li><strong>Break into smaller tasks:</strong> Multiple focused queries vs one broad query</li>
+                        <li><strong>Use direct tools:</strong> For simple searches, use Grep/Glob directly instead of sub-agent</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>⚠️ Error Messages</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Error</th>
+                            <th>Cause</th>
+                            <th>Fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>Skill not found</code></td>
+                            <td>File missing or wrong location</td>
+                            <td>Check <code>.claude/skills/</code> directory exists and contains .md files</td>
+                        </tr>
+                        <tr>
+                            <td><code>Permission denied</code></td>
+                            <td>File permissions issue</td>
+                            <td>Run <code>chmod 644 .claude/skills/*.md</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>Invalid skill format</code></td>
+                            <td>Skill file has syntax errors</td>
+                            <td>Check markdown formatting, especially code blocks</td>
+                        </tr>
+                        <tr>
+                            <td><code>Context limit exceeded</code></td>
+                            <td>Too much content for Claude to process</td>
+                            <td>Break request into smaller parts or narrow file scope</td>
+                        </tr>
+                        <tr>
+                            <td><code>API rate limit</code></td>
+                            <td>Too many requests to Anthropic API</td>
+                            <td>Wait and retry, or check API usage dashboard</td>
+                        </tr>
+                        <tr>
+                            <td><code>Network timeout</code></td>
+                            <td>Connection issues</td>
+                            <td>Check internet connection, retry request</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>🛠️ Debugging Skills</h3>
+
+            <div class="card">
+                <h4>How to Debug Skill Behavior</h4>
+
+                <ol>
+                    <li>
+                        <strong>Check skill is loaded:</strong>
+                        <div class="code-block">Ask Claude: "What skills are available in this project?"</div>
+                    </li>
+                    <li>
+                        <strong>Test skill explicitly:</strong>
+                        <div class="code-block">Ask Claude: "Explain what the payment-api-security skill does"</div>
+                    </li>
+                    <li>
+                        <strong>Verify activation triggers:</strong>
+                        <div class="code-block">Ask Claude: "Which skill would you use if I asked you to create a payment endpoint?"</div>
+                    </li>
+                    <li>
+                        <strong>Check for conflicts:</strong>
+                        <div class="code-block">Ask Claude: "Are there any skills with overlapping triggers?"</div>
+                    </li>
+                </ol>
+            </div>
+
+            <h3>📞 Getting Help</h3>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <h4>Internal Support</h4>
+                    <ul>
+                        <li><strong>Slack:</strong> #claude-code-pilot</li>
+                        <li><strong>Email:</strong> platform-engineering@homedepot.com</li>
+                        <li><strong>Office Hours:</strong> Thursdays 2-3pm EST</li>
+                        <li><strong>Wiki:</strong> Internal Confluence docs</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>Anthropic Support</h4>
+                    <ul>
+                        <li><strong>Docs:</strong> <a href="https://docs.claude.com/en/docs/claude-code">docs.claude.com/claude-code</a></li>
+                        <li><strong>Status:</strong> <a href="https://status.anthropic.com">status.anthropic.com</a></li>
+                        <li><strong>Email:</strong> support@anthropic.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box success">
+                <h3>Still Stuck?</h3>
+                <p>When reporting issues, include:</p>
+                <ul>
+                    <li>What you asked Claude to do (exact prompt)</li>
+                    <li>What Claude did (or didn't do)</li>
+                    <li>Contents of <code>.claude/skills/</code> directory</li>
+                    <li>Any error messages received</li>
+                    <li>Your Claude Code version (<code>claude --version</code>)</li>
+                </ul>
+            </div>
+        </div>
+
         <!-- Real Examples Tab -->
         <div id="examples" class="tab-content">
             <h2>Real Examples: Skills & Sub-Agents in Action</h2>
@@ -2253,9 +2923,12 @@ Questions? Reply in thread.
         </div>
     </div>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()" aria-label="Back to top">↑</button>
+
     <div class="footer">
         <p><strong>Home Depot | Claude Code Skills & Sub-Agents Guide</strong></p>
-        <p>Internal Resource for Home Depot Engineering Teams</p>
+        <p>Internal Resource for Home Depot Engineering Teams | v2.1</p>
     </div>
 
     <script>
@@ -2274,7 +2947,148 @@ Questions? Reply in thread.
             evt.currentTarget.classList.add('active');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Update prev/next navigation
+            updateNavigation(tabName);
         }
+
+        // Tab order for navigation
+        const tabOrder = ['overview', 'why', 'skills-how', 'subagents-how', 'hd-skills', 'cicd', 'troubleshooting', 'examples', 'getting-started'];
+        const tabNames = {
+            'overview': 'Overview',
+            'why': 'Why Use Them',
+            'skills-how': 'Skills: How to Use',
+            'subagents-how': 'Sub-Agents: How to Use',
+            'hd-skills': 'Home Depot Skills',
+            'cicd': 'CI/CD Integration',
+            'troubleshooting': 'Troubleshooting',
+            'examples': 'Real Examples',
+            'getting-started': 'Getting Started'
+        };
+
+        // Update prev/next navigation buttons
+        function updateNavigation(currentTab) {
+            const currentIndex = tabOrder.indexOf(currentTab);
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if (prevBtn && nextBtn) {
+                if (currentIndex <= 0) {
+                    prevBtn.classList.add('disabled');
+                    prevBtn.querySelector('.nav-title').textContent = '';
+                } else {
+                    prevBtn.classList.remove('disabled');
+                    prevBtn.querySelector('.nav-title').textContent = tabNames[tabOrder[currentIndex - 1]];
+                    prevBtn.onclick = () => navigateToTab(tabOrder[currentIndex - 1]);
+                }
+
+                if (currentIndex >= tabOrder.length - 1) {
+                    nextBtn.classList.add('disabled');
+                    nextBtn.querySelector('.nav-title').textContent = '';
+                } else {
+                    nextBtn.classList.remove('disabled');
+                    nextBtn.querySelector('.nav-title').textContent = tabNames[tabOrder[currentIndex + 1]];
+                    nextBtn.onclick = () => navigateToTab(tabOrder[currentIndex + 1]);
+                }
+            }
+        }
+
+        function navigateToTab(tabName) {
+            const tabButton = document.querySelector(`[data-tab="${tabName}"]`);
+            if (tabButton) {
+                tabButton.click();
+            }
+        }
+
+        // Back to top button
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/hide back to top button
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Search functionality
+        const searchIndex = [
+            { title: 'Skills Overview', tab: 'overview', keywords: 'skills sub-agents overview introduction what are' },
+            { title: 'Payment API Security', tab: 'hd-skills', keywords: 'payment pci credit card encryption security compliance' },
+            { title: 'Security Code Review', tab: 'hd-skills', keywords: 'owasp security review vulnerability xss sql injection' },
+            { title: 'PII Data Handling', tab: 'hd-skills', keywords: 'pii gdpr ccpa privacy customer data encryption' },
+            { title: 'New Microservice Scaffolder', tab: 'hd-skills', keywords: 'microservice scaffold create new service spring boot kubernetes' },
+            { title: 'Code Review Checklist', tab: 'hd-skills', keywords: 'code review pr pull request quality testing' },
+            { title: 'Deployment Checklist', tab: 'hd-skills', keywords: 'deploy production deployment rollback release' },
+            { title: 'Explore Sub-Agent', tab: 'subagents-how', keywords: 'explore search codebase architecture find' },
+            { title: 'Plan Sub-Agent', tab: 'subagents-how', keywords: 'plan strategy feature design refactor migration' },
+            { title: 'General Purpose Sub-Agent', tab: 'subagents-how', keywords: 'general autonomous search batch operations' },
+            { title: 'GitHub Actions Integration', tab: 'cicd', keywords: 'github actions ci cd pipeline workflow automation' },
+            { title: 'Jenkins Integration', tab: 'cicd', keywords: 'jenkins pipeline ci cd build automation' },
+            { title: 'GitLab CI Integration', tab: 'cicd', keywords: 'gitlab ci cd pipeline merge request' },
+            { title: 'Pre-commit Hooks', tab: 'cicd', keywords: 'pre-commit hooks local validation' },
+            { title: 'Skills Not Activating', tab: 'troubleshooting', keywords: 'troubleshoot debug skill not working activate' },
+            { title: 'Sub-Agent Issues', tab: 'troubleshooting', keywords: 'troubleshoot sub-agent slow incomplete' },
+            { title: 'Error Messages', tab: 'troubleshooting', keywords: 'error permission denied rate limit timeout' },
+            { title: 'Getting Help', tab: 'troubleshooting', keywords: 'support help slack contact' },
+            { title: 'Benefits for Developers', tab: 'why', keywords: 'benefits developers productivity time saving' },
+            { title: 'Benefits for Teams', tab: 'why', keywords: 'benefits teams consistency onboarding' },
+            { title: 'Benefits for Security', tab: 'why', keywords: 'benefits security compliance pci gdpr' },
+            { title: 'Payment Feature Example', tab: 'examples', keywords: 'example payment apple pay real world' },
+            { title: 'Legacy Code Example', tab: 'examples', keywords: 'example legacy code explore understand' },
+            { title: 'Getting Started Guide', tab: 'getting-started', keywords: 'getting started setup install configure' },
+            { title: 'Download Skills', tab: 'hd-skills', keywords: 'download skills tar zip github repository' }
+        ];
+
+        function searchContent() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const resultsContainer = document.getElementById('searchResults');
+
+            if (input.length < 2) {
+                resultsContainer.classList.remove('active');
+                return;
+            }
+
+            const results = searchIndex.filter(item =>
+                item.title.toLowerCase().includes(input) ||
+                item.keywords.toLowerCase().includes(input)
+            );
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="no-results">No results found</div>';
+            } else {
+                resultsContainer.innerHTML = results.slice(0, 6).map(item => `
+                    <div class="search-result-item" onclick="goToResult('${item.tab}')">
+                        <div class="result-title">${item.title}</div>
+                        <div class="result-tab">${tabNames[item.tab]}</div>
+                    </div>
+                `).join('');
+            }
+
+            resultsContainer.classList.add('active');
+        }
+
+        function goToResult(tabName) {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchResults').classList.remove('active');
+            navigateToTab(tabName);
+        }
+
+        // Close search results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                document.getElementById('searchResults').classList.remove('active');
+            }
+        });
+
+        // Initialize navigation on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateNavigation('overview');
+        });
 
         // Skills content for download
         const skillsContent = {
