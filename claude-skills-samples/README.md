@@ -96,6 +96,91 @@ Guides safe production deployments:
 
 ---
 
+### 📦 Inventory & Supply Chain (NEW)
+
+#### `inventory-sync-patterns.md`
+**Priority:** High | **Category:** Retail Operations
+
+Enforces Oracle Retail and SAP inventory synchronization standards:
+- Canonical inventory data model
+- Real-time vs batch sync strategy selection
+- ATP (Available-to-Promise) calculation
+- Kafka event integration
+- Error handling with dead letter queues
+- Reconciliation procedures
+
+**Use when:** Creating inventory services, store inventory APIs, or Oracle Retail/SAP integrations
+
+---
+
+### 🔄 API Standards (NEW)
+
+#### `api-versioning-standards.md`
+**Priority:** High | **Category:** API Governance
+
+Enforces API versioning, deprecation, and backward compatibility:
+- Semantic versioning in URL paths
+- Breaking vs non-breaking change rules
+- 6-month deprecation timeline
+- Header-based version negotiation
+- Changelog requirements
+- Client SDK versioning
+
+**Use when:** Creating APIs, modifying endpoints, deprecating features, or planning API changes
+
+---
+
+### ♿ Frontend Standards (NEW)
+
+#### `accessibility-compliance.md`
+**Priority:** High | **Category:** Legal/UX
+
+Enforces WCAG 2.1 AA compliance for all customer-facing UIs:
+- ARIA attributes and semantic HTML
+- Keyboard navigation support
+- Color contrast requirements
+- Form accessibility patterns
+- Screen reader compatibility
+- Jest-axe testing requirements
+
+**Use when:** Creating UI components, forms, modals, or any customer-facing interface
+
+---
+
+### 📨 Event Architecture (NEW)
+
+#### `event-driven-patterns.md`
+**Priority:** High | **Category:** Architecture
+
+Enforces Kafka event-driven architecture standards:
+- Topic naming conventions
+- Avro schema standards with envelope wrapper
+- Producer/consumer implementation patterns
+- Idempotency and duplicate detection
+- Dead letter queue handling
+- Schema evolution rules
+
+**Use when:** Creating Kafka producers/consumers, defining event schemas, or integrating services via events
+
+---
+
+### 🏪 B2B & Pro Customers (NEW)
+
+#### `pro-customer-apis.md`
+**Priority:** High | **Category:** Business
+
+Enforces Pro Xtra loyalty program and B2B customer API standards:
+- Pro customer data model with business fields
+- Authorization for authorized buyers
+- Volume and tier pricing logic
+- Job/project tracking
+- Purchase account management
+- Perks and rewards API
+
+**Use when:** Creating APIs for Pro customers, business accounts, volume pricing, or Pro Xtra features
+
+---
+
 ## 🚀 Quick Start
 
 ### 1. Copy Skills to Your Project
