@@ -361,6 +361,191 @@
             background: var(--hd-medium-gray);
         }
 
+        /* Download Section Styles */
+        .download-section {
+            background: linear-gradient(135deg, #fff8f5 0%, #ffffff 100%);
+            border: 2px solid var(--hd-orange);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .download-section h3 {
+            margin-top: 0;
+            color: var(--hd-orange);
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            border-color: var(--hd-orange);
+            box-shadow: 0 4px 12px rgba(249, 99, 2, 0.15);
+        }
+
+        .download-card.primary {
+            border-color: var(--hd-orange);
+            background: linear-gradient(135deg, #fff 0%, #fff8f5 100%);
+        }
+
+        .download-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .download-card h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--hd-gray);
+        }
+
+        .download-card p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn {
+            margin-bottom: 0.5rem;
+        }
+
+        .file-size {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--hd-orange);
+            border: 2px solid var(--hd-orange);
+        }
+
+        .btn-outline:hover {
+            background: var(--hd-orange);
+            color: white;
+        }
+
+        .quick-setup {
+            background: var(--hd-light-gray);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+        }
+
+        .quick-setup h4 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1rem;
+        }
+
+        .copy-block {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-block:hover {
+            transform: scale(1.01);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .copy-hint {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.75rem;
+            font-size: 0.75rem;
+            color: #7a8599;
+            opacity: 0.7;
+        }
+
+        .copy-block.copied .copy-hint {
+            color: var(--success-green);
+            opacity: 1;
+        }
+
+        .skill-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--hd-light-gray);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .skill-download-btn:hover {
+            background: var(--hd-orange);
+            color: white;
+            border-color: var(--hd-orange);
+        }
+
+        .skill-card .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-card .skill-header h4 {
+            margin: 0;
+            color: var(--hd-orange);
+        }
+
+        .skill-example {
+            margin-top: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .skill-example summary {
+            background: var(--hd-light-gray);
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .skill-example summary:hover {
+            background: #e8e8e8;
+            color: var(--hd-orange);
+        }
+
+        .skill-example[open] summary {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .skill-example .code-block {
+            margin: 0;
+            border-radius: 0;
+        }
+
+        @media (max-width: 768px) {
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-card .skill-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
         .comparison {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1205,10 +1390,48 @@ I need a comprehensive report."
 
             <p>These production-ready skills are customized for Home Depot's engineering standards and tech stack.</p>
 
+            <!-- Download Section -->
+            <div class="download-section">
+                <h3>Download Skills</h3>
+                <div class="download-grid">
+                    <div class="download-card primary">
+                        <div class="download-icon">📦</div>
+                        <h4>Download All Skills</h4>
+                        <p>Get all 6 production-ready skills in one package</p>
+                        <button class="btn download-btn" onclick="downloadAllSkills()">
+                            Download skills.tar.gz
+                        </button>
+                        <span class="file-size">~15 KB</span>
+                    </div>
+                    <div class="download-card">
+                        <div class="download-icon">🔗</div>
+                        <h4>Browse on GitHub</h4>
+                        <p>View source files and contribute improvements</p>
+                        <a href="https://github.com/dhartman-bot/HomeDepot/tree/main/claude-skills-samples" target="_blank" class="btn btn-outline">
+                            View Repository
+                        </a>
+                    </div>
+                </div>
+
+                <div class="quick-setup">
+                    <h4>Quick Setup via Git</h4>
+                    <div class="code-block copy-block" onclick="copyToClipboard(this)">
+                        <span class="copy-hint">Click to copy</span>
+git clone https://github.com/dhartman-bot/HomeDepot.git
+cp -r HomeDepot/claude-skills-samples/*.md your-project/.claude/skills/
+                    </div>
+                </div>
+            </div>
+
             <h3>🔒 Security & Compliance Skills</h3>
 
-            <div class="card">
-                <h4>payment-api-security.md</h4>
+            <div class="card skill-card">
+                <div class="skill-header">
+                    <h4>payment-api-security.md</h4>
+                    <button class="skill-download-btn" onclick="downloadSkill('payment-api-security.md')">
+                        ⬇️ Download
+                    </button>
+                </div>
                 <p><span class="badge">High Priority</span> <span class="badge info">PCI Compliance</span></p>
 
                 <p><strong>What It Does:</strong></p>
@@ -1231,8 +1454,9 @@ I need a comprehensive report."
                     <li>Error handling that doesn't expose internals</li>
                 </ul>
 
-                <p><strong>Example:</strong></p>
-                <div class="code-block">
+                <details class="skill-example">
+                    <summary>View Example Usage</summary>
+                    <div class="code-block">
 You: "Create an endpoint to process credit card payments"
 
 Claude: [payment-api-security skill activates]
@@ -1255,11 +1479,17 @@ public PaymentResponse processPayment(@RequestBody PaymentRequest request) {
 
     // Process payment...
 }
-                </div>
+                    </div>
+                </details>
             </div>
 
-            <div class="card">
-                <h4>security-code-review.md</h4>
+            <div class="card skill-card">
+                <div class="skill-header">
+                    <h4>security-code-review.md</h4>
+                    <button class="skill-download-btn" onclick="downloadSkill('security-code-review.md')">
+                        ⬇️ Download
+                    </button>
+                </div>
                 <p><span class="badge">High Priority</span> <span class="badge info">OWASP Top 10</span></p>
 
                 <p><strong>What It Does:</strong></p>
@@ -1283,8 +1513,13 @@ public PaymentResponse processPayment(@RequestBody PaymentRequest request) {
                 </ul>
             </div>
 
-            <div class="card">
-                <h4>pii-data-handling.md</h4>
+            <div class="card skill-card">
+                <div class="skill-header">
+                    <h4>pii-data-handling.md</h4>
+                    <button class="skill-download-btn" onclick="downloadSkill('pii-data-handling.md')">
+                        ⬇️ Download
+                    </button>
+                </div>
                 <p><span class="badge">High Priority</span> <span class="badge info">CCPA/GDPR</span></p>
 
                 <p><strong>What It Does:</strong></p>
@@ -1310,8 +1545,13 @@ public PaymentResponse processPayment(@RequestBody PaymentRequest request) {
 
             <h3>🏗️ Architecture & Development Skills</h3>
 
-            <div class="card">
-                <h4>new-microservice-scaffolder.md</h4>
+            <div class="card skill-card">
+                <div class="skill-header">
+                    <h4>new-microservice-scaffolder.md</h4>
+                    <button class="skill-download-btn" onclick="downloadSkill('new-microservice-scaffolder.md')">
+                        ⬇️ Download
+                    </button>
+                </div>
                 <p><span class="badge">High Priority</span> <span class="badge success">Architecture</span></p>
 
                 <p><strong>What It Does:</strong></p>
@@ -1335,8 +1575,9 @@ public PaymentResponse processPayment(@RequestBody PaymentRequest request) {
                     <li>Complete README with documentation</li>
                 </ul>
 
-                <p><strong>Example:</strong></p>
-                <div class="code-block">
+                <details class="skill-example">
+                    <summary>View Example Usage</summary>
+                    <div class="code-block">
 You: "Create a new microservice for inventory management"
 
 Claude: [new-microservice-scaffolder skill activates]
@@ -1356,13 +1597,19 @@ inventory-service/
 └── README.md
 
 [All files pre-configured with HD standards]
-                </div>
+                    </div>
+                </details>
             </div>
 
             <h3>✅ Quality & Testing Skills</h3>
 
-            <div class="card">
-                <h4>code-review-checklist.md</h4>
+            <div class="card skill-card">
+                <div class="skill-header">
+                    <h4>code-review-checklist.md</h4>
+                    <button class="skill-download-btn" onclick="downloadSkill('code-review-checklist.md')">
+                        ⬇️ Download
+                    </button>
+                </div>
                 <p><span class="badge">High Priority</span> <span class="badge success">Quality</span></p>
 
                 <p><strong>What It Does:</strong></p>
@@ -1385,8 +1632,9 @@ inventory-service/
                     <li>Dependency health (no outdated/vulnerable deps)</li>
                 </ul>
 
-                <p><strong>Output:</strong></p>
-                <div class="code-block">
+                <details class="skill-example">
+                    <summary>View Example Output</summary>
+                    <div class="code-block">
 # Code Review Summary
 
 ## ✅ Passing (8/10)
@@ -1409,13 +1657,19 @@ inventory-service/
    Fix: Use fetch join
 
 ## ✓ Ready for Review: After fixing high priority issues
-                </div>
+                    </div>
+                </details>
             </div>
 
             <h3>🚀 Operations Skills</h3>
 
-            <div class="card">
-                <h4>deployment-checklist.md</h4>
+            <div class="card skill-card">
+                <div class="skill-header">
+                    <h4>deployment-checklist.md</h4>
+                    <button class="skill-download-btn" onclick="downloadSkill('deployment-checklist.md')">
+                        ⬇️ Download
+                    </button>
+                </div>
                 <p><span class="badge">Medium Priority</span> <span class="badge success">Operations</span></p>
 
                 <p><strong>What It Does:</strong></p>
@@ -2020,6 +2274,542 @@ Questions? Reply in thread.
             evt.currentTarget.classList.add('active');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Skills content for download
+        const skillsContent = {
+            'payment-api-security.md': `# Payment API Security Skill
+
+## Description
+Apply PCI DSS compliance requirements to all payment-related APIs.
+
+**Use when:** Creating or modifying endpoints that handle credit cards, customer payment data, or financial transactions.
+
+**Activate for phrases like:** "payment", "credit card", "transaction", "checkout", "billing", "PCI"
+
+## Instructions
+
+### 1. Data Encryption
+- Encrypt all payment data using AES-256
+- Never store raw card numbers - tokenize immediately
+- Use TLS 1.3 for all data in transit
+
+### 2. Input Validation
+- Validate card numbers using Luhn algorithm
+- Sanitize all input to prevent injection attacks
+- Enforce maximum field lengths
+
+### 3. Audit Logging
+- Log all payment events to Splunk
+- Use tags: index=pci_compliance, source=payment_audit
+- Never log full card numbers - mask to last 4 digits
+- Include: timestamp, user_id, action, result, masked_card
+
+### 4. Rate Limiting
+- Implement rate limiting: 10 requests per minute per user
+- Return 429 status for exceeded limits
+- Log rate limit violations
+
+### 5. Security Headers
+- Add HSTS, CSP, X-Frame-Options headers
+- Set secure cookie flags
+- Implement CORS properly
+
+### 6. Error Handling
+- Never expose internal details in error messages
+- Log full errors server-side only
+- Return generic error messages to clients
+
+## Example Output
+
+\`\`\`java
+@PostMapping("/api/payments")
+@RateLimit(maxRequests = 10, window = "1m")
+public PaymentResponse processPayment(@RequestBody @Valid PaymentRequest request) {
+    // Validate card (Luhn algorithm)
+    if (!CardValidator.isValid(request.getCardNumber())) {
+        auditLogger.logFailure(userId, "INVALID_CARD");
+        throw new InvalidCardException("Card validation failed");
+    }
+
+    // Encrypt and tokenize
+    String token = cryptoUtil.tokenizeCard(request.getCardNumber());
+
+    // Audit log to Splunk
+    auditLogger.logPaymentAttempt(userId, request.getAmount(), token.getLast4());
+
+    // Process payment...
+    PaymentResult result = paymentGateway.process(token, request.getAmount());
+
+    auditLogger.logPaymentResult(userId, result.getStatus(), token.getLast4());
+    return new PaymentResponse(result);
+}
+\`\`\`
+
+## Tools Available
+All tools (Read, Edit, Write, Bash, Grep, Glob)`,
+
+            'security-code-review.md': `# Security Code Review Skill
+
+## Description
+Comprehensive security review covering OWASP Top 10 vulnerabilities.
+
+**Use when:** Before merging to main, deploying to production, or handling sensitive data.
+
+**Activate for phrases like:** "security review", "security check", "vulnerability scan", "OWASP"
+
+## Instructions
+
+### 1. Injection Vulnerabilities
+- Check for SQL injection (string concatenation in queries)
+- Check for command injection (user input in system calls)
+- Verify parameterized queries are used everywhere
+- Look for template injection in output rendering
+
+### 2. Authentication Issues
+- Verify password hashing (bcrypt, Argon2)
+- Check session management
+- Look for hardcoded credentials
+- Verify MFA implementation if required
+
+### 3. Sensitive Data Exposure
+- Check for PII in logs
+- Verify encryption at rest and in transit
+- Look for credentials in config files
+- Check error messages for data leaks
+
+### 4. XSS and CSRF
+- Verify output encoding
+- Check for CSP headers
+- Validate CSRF tokens on state-changing operations
+- Review client-side JavaScript for DOM XSS
+
+### 5. Dependency Vulnerabilities
+- Check package versions against CVE databases
+- Flag outdated dependencies
+- Review transitive dependency risks
+
+## Output Format
+
+\`\`\`markdown
+# Security Review Summary
+
+## Critical Issues (Fix Immediately)
+1. [File:Line] Description of vulnerability
+   - Impact: What could happen
+   - Fix: How to remediate
+
+## High Priority
+...
+
+## Medium Priority
+...
+
+## Recommendations
+...
+\`\`\`
+
+## Tools Available
+All tools (Read, Edit, Write, Bash, Grep, Glob)`,
+
+            'pii-data-handling.md': `# PII Data Handling Skill
+
+## Description
+Ensures CCPA/GDPR compliance for customer PII data.
+
+**Use when:** Working with Customer, User, or Profile models, or handling names, emails, addresses, SSNs.
+
+**Activate for phrases like:** "customer data", "personal information", "PII", "GDPR", "CCPA", "user profile"
+
+## Instructions
+
+### 1. Identify PII Fields
+Common PII fields to protect:
+- Full name, email, phone number
+- Physical address
+- SSN, tax ID, government IDs
+- Date of birth
+- Financial account numbers
+- IP addresses, device IDs
+
+### 2. Encryption Requirements
+- Encrypt PII at rest using AES-256
+- Use field-level encryption for sensitive columns
+- Implement key rotation policies
+
+### 3. Logging Protection
+- Never log raw PII values
+- Mask emails: j***@example.com
+- Mask phone: ***-***-1234
+- Mask SSN: ***-**-1234
+
+### 4. Access Control
+- Implement row-level security
+- Users can only access their own data
+- Log all PII access attempts
+
+### 5. Data Retention
+- Implement soft delete for compliance
+- Add retention period tracking
+- Create data purge procedures
+
+### 6. CCPA/GDPR Endpoints
+- GET /api/users/{id}/data - Right to access
+- DELETE /api/users/{id}/data - Right to deletion
+- GET /api/users/{id}/export - Data portability
+
+## Example Output
+
+\`\`\`java
+@Entity
+public class Customer {
+    @Id
+    private Long id;
+
+    @Encrypted
+    @PIIField(type = PIIType.NAME)
+    private String fullName;
+
+    @Encrypted
+    @PIIField(type = PIIType.EMAIL)
+    @MaskedInLogs(pattern = "***@{domain}")
+    private String email;
+
+    @Encrypted
+    @PIIField(type = PIIType.SSN)
+    @MaskedInLogs(pattern = "***-**-{last4}")
+    private String ssn;
+
+    @Column
+    private LocalDateTime dataRetentionExpiry;
+
+    @PreRemove
+    public void anonymize() {
+        this.fullName = "REDACTED";
+        this.email = "redacted@deleted.com";
+        this.ssn = null;
+    }
+}
+\`\`\`
+
+## Tools Available
+All tools (Read, Edit, Write, Bash, Grep, Glob)`,
+
+            'new-microservice-scaffolder.md': `# New Microservice Scaffolder Skill
+
+## Description
+Creates production-ready microservices with Home Depot standards.
+
+**Use when:** Starting a new microservice or backend API.
+
+**Activate for phrases like:** "create new service", "new microservice", "scaffold service", "bootstrap API"
+
+## Instructions
+
+### 1. Project Structure
+Create standard folder structure:
+\`\`\`
+{service-name}/
+├── src/main/java/com/homedepot/{service}/
+│   ├── Application.java
+│   ├── controller/
+│   ├── service/
+│   ├── repository/
+│   ├── model/
+│   └── config/
+├── src/main/resources/
+│   ├── application.yml
+│   └── db/migration/
+├── src/test/java/
+├── k8s/
+│   ├── deployment.yml
+│   ├── service.yml
+│   └── ingress.yml
+├── Dockerfile
+├── pom.xml
+└── README.md
+\`\`\`
+
+### 2. Spring Boot Configuration
+- Spring Boot 3.x with Java 17+
+- PostgreSQL + Flyway migrations
+- Spring Security with OAuth2
+- Actuator health endpoints
+
+### 3. Observability
+- New Relic APM integration
+- Splunk logging configuration
+- Distributed tracing headers
+- Custom metrics endpoints
+
+### 4. Kubernetes Setup
+- Multi-stage Dockerfile
+- Resource limits and requests
+- Health check probes
+- Horizontal pod autoscaling
+
+### 5. CI/CD Pipeline
+- GitHub Actions workflow
+- Unit and integration tests
+- Security scanning
+- Container registry push
+
+### 6. Documentation
+- README with setup instructions
+- API documentation (OpenAPI)
+- Architecture decision records
+
+## Example Output
+
+See generated files for complete implementation.
+
+## Tools Available
+All tools (Read, Edit, Write, Bash, Grep, Glob)`,
+
+            'code-review-checklist.md': `# Code Review Checklist Skill
+
+## Description
+Automated code review following Home Depot standards.
+
+**Use when:** Creating pull requests or before requesting code review.
+
+**Activate for phrases like:** "review my code", "ready for review", "create PR", "code review"
+
+## Instructions
+
+### 1. Code Style
+- Run linters (ESLint, Checkstyle, etc.)
+- Verify formatting matches project standards
+- Check naming conventions
+- Review code organization
+
+### 2. Testing
+- Verify test coverage >= 80%
+- Check unit tests exist for new code
+- Verify integration tests for APIs
+- Look for edge case coverage
+
+### 3. Security
+- Run security scanners
+- Check for hardcoded credentials
+- Verify input validation
+- Review authentication/authorization
+
+### 4. Performance
+- Check for N+1 queries
+- Verify proper indexing
+- Look for memory leaks
+- Review async operations
+
+### 5. Documentation
+- JSDoc/Javadoc on public methods
+- README updates if needed
+- API documentation current
+- Inline comments for complex logic
+
+### 6. Git Hygiene
+- Descriptive commit messages
+- Proper branch naming
+- No merge commits (rebase)
+- Squashed related commits
+
+## Output Format
+
+\`\`\`markdown
+# Code Review Summary
+
+## Passing (X/Y)
+- [x] Code style clean
+- [x] Test coverage: XX%
+- [x] Security scan: Clean
+...
+
+## Issues Found
+
+### High Priority (Fix Before Merge)
+1. [File:Line] Issue description
+   Fix: Suggested remediation
+
+### Medium Priority
+...
+
+## Ready for Review: [Yes/No - reason if no]
+\`\`\`
+
+## Tools Available
+All tools (Read, Edit, Write, Bash, Grep, Glob)`,
+
+            'deployment-checklist.md': `# Deployment Checklist Skill
+
+## Description
+Guides safe production deployments with validation and rollback procedures.
+
+**Use when:** Deploying to staging or production.
+
+**Activate for phrases like:** "deploy to prod", "production deployment", "ready to ship", "release"
+
+## Instructions
+
+### 1. Pre-Deployment Validation
+- [ ] All tests passing (unit, integration, E2E)
+- [ ] Security scans clean
+- [ ] Code reviews approved
+- [ ] Documentation updated
+- [ ] Database migrations tested
+
+### 2. Deployment Window
+- Preferred: Tuesday-Thursday, 9am-3pm EST
+- Avoid: Fridays, weekends, holidays
+- Notify: #deployments Slack channel
+
+### 3. Staging Deployment
+- Deploy to staging first
+- Run smoke tests
+- Soak period: minimum 2 hours
+- Monitor error rates and latency
+
+### 4. Production Deployment
+- Use canary deployment (5% traffic first)
+- Monitor dashboards during rollout
+- Gradual traffic increase: 5% → 25% → 50% → 100%
+- Minimum 15 minutes between stages
+
+### 5. Rollback Plan
+- Document rollback procedure
+- Keep previous version ready
+- Database rollback scripts tested
+- Feature flags for instant disable
+
+### 6. Post-Deployment
+- Verify health checks passing
+- Monitor error rates for 1 hour
+- Check business metrics
+- Update deployment log
+
+## Output Format
+
+\`\`\`markdown
+# Deployment Checklist
+
+## Service: {service-name}
+## Version: {version}
+## Date: {date}
+
+## Pre-Deployment
+- [x] Tests passing
+- [x] Security scan clean
+...
+
+## Deployment Plan
+1. Deploy to staging at {time}
+2. Soak period: 2 hours
+3. Canary at {time} (5%)
+4. Full rollout at {time}
+
+## Rollback Plan
+1. kubectl rollout undo deployment/{service}
+2. Verify health checks
+3. Notify team
+
+## Monitoring Links
+- New Relic: {link}
+- Splunk: {link}
+- Grafana: {link}
+\`\`\`
+
+## Tools Available
+All tools (Read, Edit, Write, Bash, Grep, Glob)`
+        };
+
+        // Copy to clipboard function
+        function copyToClipboard(element) {
+            const text = element.innerText.replace('Click to copy', '').trim();
+            navigator.clipboard.writeText(text).then(() => {
+                element.classList.add('copied');
+                element.querySelector('.copy-hint').textContent = 'Copied!';
+                setTimeout(() => {
+                    element.classList.remove('copied');
+                    element.querySelector('.copy-hint').textContent = 'Click to copy';
+                }, 2000);
+            });
+        }
+
+        // Download individual skill
+        function downloadSkill(skillName) {
+            const content = skillsContent[skillName];
+            if (!content) {
+                alert('Skill not found: ' + skillName);
+                return;
+            }
+
+            const blob = new Blob([content], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = skillName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Download all skills as tar.gz
+        async function downloadAllSkills() {
+            // Since we can't create a real tar.gz in browser without a library,
+            // we'll create a zip-like structure or redirect to GitHub
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = 'Preparing download...';
+            btn.disabled = true;
+
+            try {
+                // Create a combined file with all skills
+                let combined = `# Home Depot Claude Code Skills Package
+# Downloaded from: https://dhartman-bot.github.io/HomeDepot/
+# Date: ${new Date().toISOString().split('T')[0]}
+#
+# Installation:
+# 1. Extract this file
+# 2. Copy .md files to your project's .claude/skills/ directory
+# 3. Commit and push to share with your team
+#
+# ============================================
+
+`;
+
+                for (const [filename, content] of Object.entries(skillsContent)) {
+                    combined += `\n\n${'='.repeat(60)}\n`;
+                    combined += `FILE: ${filename}\n`;
+                    combined += `${'='.repeat(60)}\n\n`;
+                    combined += content;
+                }
+
+                // For a proper tar.gz, we'd need a library like pako
+                // Instead, offer the combined markdown or redirect to GitHub releases
+                const blob = new Blob([combined], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'homedepot-claude-skills.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                // Also offer GitHub download
+                setTimeout(() => {
+                    if (confirm('Skills downloaded as text file.\\n\\nWould you also like to download individual .md files from GitHub?')) {
+                        window.open('https://github.com/dhartman-bot/HomeDepot/tree/main/claude-skills-samples', '_blank');
+                    }
+                }, 500);
+
+            } catch (error) {
+                console.error('Download error:', error);
+                alert('Download failed. Please try the GitHub link instead.');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
         }
     </script>
 </body>
