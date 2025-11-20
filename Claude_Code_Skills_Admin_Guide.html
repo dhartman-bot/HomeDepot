@@ -1655,11 +1655,11 @@ I need a comprehensive report."
                     <div class="download-card primary">
                         <div class="download-icon">📦</div>
                         <h4>Download All Skills</h4>
-                        <p>Get all 6 production-ready skills in one package</p>
+                        <p>Get all 11 production-ready skills in one package</p>
                         <button class="btn download-btn" onclick="downloadAllSkills()">
                             Download skills.tar.gz
                         </button>
-                        <span class="file-size">~15 KB</span>
+                        <span class="file-size">~52 KB</span>
                     </div>
                     <div class="download-card">
                         <div class="download-icon">🔗</div>
@@ -1859,6 +1859,118 @@ inventory-service/
                 </details>
             </div>
 
+            <div class="card skill-card">
+                <div class="skill-header">
+                    <h4>event-driven-patterns.md</h4>
+                    <button class="skill-download-btn" onclick="downloadSkill('event-driven-patterns.md')">
+                        ⬇️ Download
+                    </button>
+                </div>
+                <p><span class="badge">High Priority</span> <span class="badge success">Kafka</span></p>
+
+                <p><strong>What It Does:</strong></p>
+                <p>Enforces Home Depot's Kafka event-driven architecture standards, including event schemas, topic naming, consumer patterns, and error handling.</p>
+
+                <p><strong>Activates When:</strong></p>
+                <ul>
+                    <li>You mention: "Kafka", "event", "publish", "subscribe", "topic", "consumer", "producer"</li>
+                    <li>Creating event-driven workflows or async messaging</li>
+                    <li>Working with Avro schemas or stream processing</li>
+                </ul>
+
+                <p><strong>What It Enforces:</strong></p>
+                <ul class="checklist">
+                    <li>Topic naming: {domain}.{entity}.{event-type}</li>
+                    <li>Standard EventEnvelope wrapper with Avro schemas</li>
+                    <li>Idempotent consumers with duplicate detection</li>
+                    <li>Dead letter queue handling for failed events</li>
+                    <li>Proper acknowledgment patterns</li>
+                    <li>Schema evolution and versioning rules</li>
+                    <li>Metrics and observability (consumer lag, latency)</li>
+                </ul>
+
+                <details class="skill-example">
+                    <summary>View Example Usage</summary>
+                    <div class="code-block">
+You: "Create a Kafka consumer for order events"
+
+Claude: [event-driven-patterns skill activates]
+        [Generates code with idempotency, DLQ, metrics]
+
+@KafkaListener(topics = "order.checkout.completed")
+@Transactional
+public void handleOrderCompleted(
+        @Payload EventEnvelope envelope,
+        Acknowledgment ack) {
+
+    // Idempotency check
+    if (processedEvents.exists(envelope.getEventId())) {
+        ack.acknowledge();
+        return;
+    }
+
+    // Process with proper error handling...
+    // Dead letter on non-retryable failures
+}
+                    </div>
+                </details>
+            </div>
+
+            <div class="card skill-card">
+                <div class="skill-header">
+                    <h4>api-versioning-standards.md</h4>
+                    <button class="skill-download-btn" onclick="downloadSkill('api-versioning-standards.md')">
+                        ⬇️ Download
+                    </button>
+                </div>
+                <p><span class="badge">High Priority</span> <span class="badge success">API Design</span></p>
+
+                <p><strong>What It Does:</strong></p>
+                <p>Enforces API versioning, deprecation, and backward compatibility standards. Prevents breaking changes and ensures smooth API evolution.</p>
+
+                <p><strong>Activates When:</strong></p>
+                <ul>
+                    <li>You mention: "API version", "versioning", "deprecate", "breaking change"</li>
+                    <li>Creating new APIs or modifying existing endpoints</li>
+                    <li>Planning API migrations (v1 → v2)</li>
+                </ul>
+
+                <p><strong>What It Enforces:</strong></p>
+                <ul class="checklist">
+                    <li>Semantic versioning in URL path (/api/v1/resource)</li>
+                    <li>6-month deprecation timeline with sunset headers</li>
+                    <li>Breaking vs non-breaking change classification</li>
+                    <li>Deprecation headers (Deprecation, Sunset, Link)</li>
+                    <li>Changelog documentation requirements</li>
+                    <li>OpenAPI version metadata</li>
+                    <li>Client SDK versioning alignment</li>
+                </ul>
+
+                <details class="skill-example">
+                    <summary>View Example Usage</summary>
+                    <div class="code-block">
+You: "Deprecate the /products/by-upc endpoint"
+
+Claude: [api-versioning-standards skill activates]
+        [Adds proper deprecation with headers and timeline]
+
+@Deprecated(since = "2024-01", forRemoval = true)
+@Operation(
+    summary = "Get product by UPC (DEPRECATED)",
+    description = "Use GET /products/{skuId} instead. " +
+                  "Will be removed 2024-07-01.",
+    deprecated = true
+)
+@GetMapping("/by-upc/{upc}")
+public ProductResponse getProductByUpc(@PathVariable String upc) {
+    // Log deprecation usage for monitoring
+    deprecationMetrics.recordUsage("products.by-upc", getClientId());
+    return productService.getProductByUpc(upc);
+}
+                    </div>
+                </details>
+            </div>
+
             <h3>✅ Quality & Testing Skills</h3>
 
             <div class="card skill-card">
@@ -1919,6 +2031,67 @@ inventory-service/
                 </details>
             </div>
 
+            <div class="card skill-card">
+                <div class="skill-header">
+                    <h4>accessibility-compliance.md</h4>
+                    <button class="skill-download-btn" onclick="downloadSkill('accessibility-compliance.md')">
+                        ⬇️ Download
+                    </button>
+                </div>
+                <p><span class="badge">High Priority</span> <span class="badge info">WCAG 2.1 AA</span></p>
+
+                <p><strong>What It Does:</strong></p>
+                <p>Enforces WCAG 2.1 AA compliance for all customer-facing user interfaces. Ensures legal compliance and inclusive shopping experience for all customers.</p>
+
+                <p><strong>Activates When:</strong></p>
+                <ul>
+                    <li>You mention: "accessibility", "a11y", "WCAG", "screen reader", "ARIA"</li>
+                    <li>Creating UI components, forms, modals, or navigation</li>
+                    <li>Working on any customer-facing interface</li>
+                </ul>
+
+                <p><strong>What It Enforces:</strong></p>
+                <ul class="checklist">
+                    <li>Proper ARIA attributes and semantic HTML</li>
+                    <li>Keyboard navigation (Tab, Enter, Escape, Arrow keys)</li>
+                    <li>Color contrast ≥ 4.5:1 for text</li>
+                    <li>Focus management and visible focus indicators</li>
+                    <li>Screen reader announcements (aria-live regions)</li>
+                    <li>Form labels, error messages, and validation</li>
+                    <li>Jest-axe automated accessibility tests</li>
+                </ul>
+
+                <details class="skill-example">
+                    <summary>View Example Usage</summary>
+                    <div class="code-block">
+You: "Create a product card component"
+
+Claude: [accessibility-compliance skill activates]
+        [Generates fully accessible React component]
+
+const ProductCard = ({ product }) => (
+  &lt;article
+    role="article"
+    tabIndex={0}
+    onKeyDown={handleKeyDown}
+    aria-labelledby={`product-name-${product.sku}`}
+  &gt;
+    &lt;img
+      src={product.image}
+      alt={`${product.name} - ${product.brand}`}
+    /&gt;
+    &lt;h3 id={`product-name-${product.sku}`}&gt;
+      {product.name}
+    &lt;/h3&gt;
+    &lt;p aria-label={`Price: ${product.price} dollars`}&gt;
+      ${product.price}
+    &lt;/p&gt;
+  &lt;/article&gt;
+);
+                    </div>
+                </details>
+            </div>
+
             <h3>🚀 Operations Skills</h3>
 
             <div class="card skill-card">
@@ -1949,6 +2122,124 @@ inventory-service/
                     <li>Monitoring dashboards ready</li>
                     <li>Deployment window appropriate (Tue-Thu, 9am-3pm)</li>
                 </ul>
+            </div>
+
+            <h3>🏪 Retail Operations Skills</h3>
+
+            <div class="card skill-card">
+                <div class="skill-header">
+                    <h4>inventory-sync-patterns.md</h4>
+                    <button class="skill-download-btn" onclick="downloadSkill('inventory-sync-patterns.md')">
+                        ⬇️ Download
+                    </button>
+                </div>
+                <p><span class="badge">High Priority</span> <span class="badge info">Oracle Retail</span> <span class="badge info">SAP</span></p>
+
+                <p><strong>What It Does:</strong></p>
+                <p>Enforces Home Depot's inventory synchronization standards for Oracle Retail and SAP integration. Ensures real-time inventory accuracy across 2,300+ stores, distribution centers, and e-commerce.</p>
+
+                <p><strong>Activates When:</strong></p>
+                <ul>
+                    <li>You mention: "inventory", "stock level", "Oracle Retail", "SAP", "ATP"</li>
+                    <li>Creating inventory-related services or fulfillment logic</li>
+                    <li>Working with store inventory APIs</li>
+                </ul>
+
+                <p><strong>What It Enforces:</strong></p>
+                <ul class="checklist">
+                    <li>Canonical InventoryPosition data model</li>
+                    <li>Oracle Retail RIB message format integration</li>
+                    <li>Real-time vs batch sync rules (sale &lt;5s, receipt &lt;30s)</li>
+                    <li>ATP (Available-To-Promise) calculation formula</li>
+                    <li>Kafka events for inventory changes with Avro schemas</li>
+                    <li>Reconciliation and discrepancy handling</li>
+                    <li>Dead letter queue for failed syncs</li>
+                </ul>
+
+                <details class="skill-example">
+                    <summary>View Example Usage</summary>
+                    <div class="code-block">
+You: "Create an inventory availability check"
+
+Claude: [inventory-sync-patterns skill activates]
+        [Implements standard ATP formula]
+
+public int calculateATP(String storeId, String skuId) {
+    InventoryPosition pos = inventoryRepo.findByStoreAndSku(storeId, skuId);
+
+    int onHand = pos.getOnHandQty();
+    int allocated = pos.getAllocatedQty();
+    int safetyStock = getSafetyStock(storeId, skuId);
+    int pendingReceipts = getPendingReceipts(storeId, skuId, Duration.ofHours(24));
+
+    // ATP = OnHand - Allocated - SafetyStock + PendingReceipts(24h)
+    int atp = onHand - allocated - safetyStock + pendingReceipts;
+
+    return Math.max(0, atp);  // Never negative
+}
+                    </div>
+                </details>
+            </div>
+
+            <div class="card skill-card">
+                <div class="skill-header">
+                    <h4>pro-customer-apis.md</h4>
+                    <button class="skill-download-btn" onclick="downloadSkill('pro-customer-apis.md')">
+                        ⬇️ Download
+                    </button>
+                </div>
+                <p><span class="badge">High Priority</span> <span class="badge success">Pro Xtra</span> <span class="badge info">B2B</span></p>
+
+                <p><strong>What It Does:</strong></p>
+                <p>Enforces Home Depot's Pro Xtra loyalty program and B2B customer API standards. Handles Pro accounts, volume pricing, purchase tracking, and business customer features.</p>
+
+                <p><strong>Activates When:</strong></p>
+                <ul>
+                    <li>You mention: "Pro customer", "Pro Xtra", "business account", "volume pricing"</li>
+                    <li>Creating APIs for contractors or trade professionals</li>
+                    <li>Working with job/project tracking or purchase accounts</li>
+                </ul>
+
+                <p><strong>What It Enforces:</strong></p>
+                <ul class="checklist">
+                    <li>Pro customer data model (tier, perks, authorized buyers)</li>
+                    <li>Multi-tier authorization (owner, admin, authorized buyer)</li>
+                    <li>Volume pricing hierarchy (contract → volume → tier → standard)</li>
+                    <li>Job/project tracking with budget alerts</li>
+                    <li>Purchase account management and statements</li>
+                    <li>Pro Xtra perks earning and redemption (1-2.5% by tier)</li>
+                    <li>B2B reporting (spending by category, job, buyer)</li>
+                </ul>
+
+                <details class="skill-example">
+                    <summary>View Example Usage</summary>
+                    <div class="code-block">
+You: "Create a Pro pricing quote API"
+
+Claude: [pro-customer-apis skill activates]
+        [Implements volume pricing hierarchy]
+
+private BigDecimal determineBestPrice(Product product, ProTier tier, int quantity) {
+    List&lt;BigDecimal&gt; applicablePrices = new ArrayList&lt;&gt;();
+
+    // Standard Pro price
+    applicablePrices.add(product.getProPrice());
+
+    // Tier pricing (Silver, Gold, Platinum)
+    BigDecimal tierPrice = getTierPrice(product, tier);
+    if (tierPrice != null) applicablePrices.add(tierPrice);
+
+    // Volume pricing breaks
+    BigDecimal volumePrice = getVolumePriceBreak(product, quantity);
+    if (volumePrice != null) applicablePrices.add(volumePrice);
+
+    // Return lowest applicable price
+    return applicablePrices.stream()
+        .min(BigDecimal::compareTo)
+        .orElse(product.getRetailPrice());
+}
+                    </div>
+                </details>
             </div>
 
             <h3>How to Add Skills to Your Project</h3>
@@ -3530,6 +3821,201 @@ Guides safe production deployments with validation and rollback procedures.
 - Splunk: {link}
 - Grafana: {link}
 \`\`\`
+
+## Tools Available
+All tools (Read, Edit, Write, Bash, Grep, Glob)`,
+
+            'event-driven-patterns.md': `# Event-Driven Architecture Patterns Skill
+
+## Description
+Enforce Home Depot's Kafka event-driven architecture standards, including event schemas, topic naming, consumer patterns, and error handling.
+
+**Use when:** Creating Kafka producers/consumers, defining event schemas, or setting up event-driven workflows.
+
+**Activate for phrases like:** "Kafka", "event", "publish", "subscribe", "topic", "consumer", "producer", "message", "stream", "Avro"
+
+## Instructions
+
+### 1. Topic Naming Convention
+Use the standard format: {domain}.{entity}.{event-type}
+Examples: order.checkout.completed, inventory.position.updated
+
+### 2. Event Schema Standards (Avro)
+Use the Home Depot EventEnvelope wrapper with eventId, eventType, eventTime, source, correlationId, version, payload.
+
+### 3. Consumer Implementation
+- Implement idempotent consumers with duplicate detection
+- Use manual acknowledgment for at-least-once delivery
+- Set correlation ID from MDC for distributed tracing
+
+### 4. Dead Letter Queue Handling
+- DLQ naming: original-topic.dlq
+- Alert on critical events
+- Store for manual review with replay mechanism
+
+### 5. Monitoring
+- Track consumer lag
+- Record publish latency
+- Log events for Splunk auditing
+
+## Tools Available
+All tools (Read, Edit, Write, Bash, Grep, Glob)`,
+
+            'api-versioning-standards.md': `# API Versioning Standards Skill
+
+## Description
+Enforce Home Depot's API versioning, deprecation, and backward compatibility standards.
+
+**Use when:** Creating new APIs, modifying existing endpoints, or deprecating features.
+
+**Activate for phrases like:** "API version", "versioning", "deprecate", "breaking change", "backward compatible"
+
+## Instructions
+
+### 1. Version Format
+Use semantic versioning in URL path: /api/v{major}/resource
+Never use /api/v1.1/ or /api/v1-beta/ in URLs.
+
+### 2. Breaking Changes Require New Major Version
+- Remove endpoint → v2
+- Remove required field → v2
+- Change field type → v2
+- Add required field to request → v2
+
+### 3. Non-Breaking Changes (Keep Same Version)
+- Add optional field to request
+- Add field to response
+- Add new endpoint
+
+### 4. Deprecation Process (6-month timeline)
+1. Announce: Mark deprecated in OpenAPI + Changelog
+2. Monitor: Track usage for 30 days
+3. Notify: Contact high-usage clients
+4. Sunset: Remove after 6 months minimum
+
+### 5. Deprecation Headers
+- Deprecation: date when deprecated
+- Sunset: date when removed
+- Link: successor endpoint
+
+## Tools Available
+All tools (Read, Edit, Write, Bash, Grep, Glob)`,
+
+            'accessibility-compliance.md': `# Accessibility Compliance Skill
+
+## Description
+Enforce WCAG 2.1 AA compliance for all customer-facing user interfaces at Home Depot.
+
+**Use when:** Creating UI components, forms, modals, or any customer-facing interface.
+
+**Activate for phrases like:** "accessibility", "a11y", "WCAG", "screen reader", "keyboard navigation", "ARIA"
+
+## Instructions
+
+### 1. Core WCAG 2.1 AA Requirements
+- Perceivable: Text contrast ≥ 4.5:1
+- Operable: All elements keyboard accessible
+- Understandable: Form errors clearly identified
+- Robust: Valid HTML, proper ARIA
+
+### 2. React Component Standards
+- Include tabIndex for custom interactive elements
+- Add aria-labelledby for complex components
+- Implement keyboard handlers (Enter, Space, Escape, Arrow keys)
+- Use semantic HTML elements
+
+### 3. Form Accessibility
+- Associate labels with inputs using htmlFor/id
+- Use aria-required and aria-invalid
+- Provide error summaries with role="alert"
+- Include hint text with aria-describedby
+
+### 4. Color and Contrast
+- Use HD accessible color palette
+- Never rely on color alone for state
+- Ensure visible focus indicators
+
+### 5. Testing Requirements
+- Run jest-axe on all components
+- Manual keyboard navigation test
+- Screen reader testing (VoiceOver/NVDA)
+
+## Tools Available
+All tools (Read, Edit, Write, Bash, Grep, Glob)`,
+
+            'inventory-sync-patterns.md': `# Inventory Sync Patterns Skill
+
+## Description
+Enforce Home Depot's inventory synchronization standards for Oracle Retail and SAP integration.
+
+**Use when:** Creating inventory services, store inventory APIs, or integrating with Oracle Retail/SAP systems.
+
+**Activate for phrases like:** "inventory", "stock level", "Oracle Retail", "SAP", "ATP", "fulfillment"
+
+## Instructions
+
+### 1. Inventory Data Model
+Always include: storeId, skuId, locationId, onHandQty, allocatedQty, inTransitQty, availableQty, timestamps, sourceSystem.
+
+### 2. Oracle Retail Integration
+Use RIB (Retail Integration Bus) message format. Log to Splunk BEFORE sending. Handle failures with dead letter queue.
+
+### 3. Real-Time vs Batch Sync Rules
+- Sale transaction: < 5 seconds
+- Inventory receipt: < 30 seconds
+- Cycle count: 15 minutes batch
+- E-commerce reserve: < 2 seconds
+
+### 4. ATP Calculation (Official Formula)
+ATP = OnHand - Allocated - SafetyStock + PendingReceipts(24h)
+Never return negative values.
+
+### 5. Error Handling
+- Reconciliation job every 15 minutes
+- Auto-correct discrepancies ≤ 5 units
+- Alert inventory team for larger discrepancies
+
+## Tools Available
+All tools (Read, Edit, Write, Bash, Grep, Glob)`,
+
+            'pro-customer-apis.md': `# Pro Customer APIs Skill
+
+## Description
+Enforce Home Depot's Pro Xtra loyalty program and B2B customer API standards.
+
+**Use when:** Creating APIs for Pro customers, business accounts, volume pricing, or job tracking.
+
+**Activate for phrases like:** "Pro customer", "Pro Xtra", "business account", "volume pricing", "contractor"
+
+## Instructions
+
+### 1. Pro Customer Data Model
+Include: proXtraId, businessName, businessType, tier (MEMBER/SILVER/GOLD/PLATINUM), ytdSpend, perksBalance, authorizedBuyers, purchaseAccounts, activeJobs.
+
+### 2. Authorization Levels
+- Account Owner: Full access
+- Account Admin: Manage buyers, view all
+- Authorized Buyer: Purchase with limits
+
+### 3. Volume Pricing Hierarchy (return lowest)
+1. Contract pricing (negotiated)
+2. Volume pricing (quantity breaks)
+3. Tier pricing (by Pro Xtra tier)
+4. Standard Pro price
+
+### 4. Pro Xtra Perks Rates
+- Member: 1%
+- Silver: 1.5%
+- Gold: 2%
+- Platinum: 2.5%
+
+### 5. Job/Project Tracking
+- Link purchases to jobs
+- Track budget vs spent
+- Alert at 90% budget usage
+
+### 6. Audit Logging
+Log all: account access, purchase authorization, perks redemption, job linking.
 
 ## Tools Available
 All tools (Read, Edit, Write, Bash, Grep, Glob)`
